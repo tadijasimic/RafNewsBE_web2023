@@ -32,8 +32,5 @@ public class CategoryService {
         return categoryRepository.searchCategoryByName(name);
     }
 
-    public Category searchCategoryById(int id) {
-        return categoryRepository.searchCategoryById(id);
-    }
 
 }

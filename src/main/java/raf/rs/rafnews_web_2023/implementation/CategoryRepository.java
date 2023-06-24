@@ -3,6 +3,7 @@ package raf.rs.rafnews_web_2023.implementation;
 
 import raf.rs.rafnews_web_2023.entity.Category;
 import raf.rs.rafnews_web_2023.repository.api.CategoryRepositoryAPI;
+import raf.rs.rafnews_web_2023.repository.api.UserRepositoryAPI;
 import raf.rs.rafnews_web_2023.repository.mysql.MySQLRepository;
 
 import java.sql.*;
@@ -29,7 +30,7 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
             while(resultSet.next())
             {
                 allCategories.add(new Category(
-                        resultSet.getInt(ColumnNames.ID.column_index),
+                        resultSet.getInt(ColumnNames.ID.column_name),
                         resultSet.getString(ColumnNames.NAME.column_name),
                         resultSet.getString(ColumnNames.DESCRIPTION.column_name)
                 ));
@@ -85,16 +86,58 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
 
     @Override
     public void deleteCategory(Category category) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = this.getDB_Connection();
+            preparedStatement = connection.prepareStatement(
+                    "DELETE FROM " + ENTITY_NAME + " WHERE " + ColumnNames.ID.column_name + " = ?");
+            preparedStatement.setInt(1, category.getId());
+            int rows_changed = preparedStatement.executeUpdate();
+            if(rows_changed != 1)
+                throw new RuntimeException("delete failed");
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            this.closeStatement(preparedStatement);
+            this.closeConnection(connection);
+        }
     }
 
     @Override
     public Category searchCategoryByName(String name) {
-        return null;
+
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Category category = null;
+        try {
+            connection = this.getDB_Connection();
+
+            preparedStatement = connection.prepareStatement("SELECT * FROM " + ENTITY_NAME + " WHERE " + ColumnNames.NAME + " = ?");
+            preparedStatement.setString(1, name);
+            resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next())
+                category = new Category(
+                        resultSet.getInt(ColumnNames.ID.column_index),
+                        resultSet.getString(ColumnNames.NAME.column_name),
+                        resultSet.getString(ColumnNames.DESCRIPTION.column_name)
+                );
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeStatement(preparedStatement);
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+
+        return category;
     }
 
-    @Override
-    public Category searchCategoryById(int id) {
-        return null;
-    }
 }

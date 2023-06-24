@@ -1,12 +1,21 @@
 package raf.rs.rafnews_web_2023.entity;
 
+import raf.rs.rafnews_web_2023.service.CategoryService;
+
 public class Category {
     private int id;
     private String name;
     private String description;
+    public Category() {
+    }
+
 
     public Category(int id, String name, String description) {
         this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+    public Category(String name, String description) {
         this.name = name;
         this.description = description;
     }

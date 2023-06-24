@@ -96,22 +96,14 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
 
     @Override
     public void deleteUser(User user) {
+
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
             connection = this.getDB_Connection();
-
-            if ( user.getEmail() == null || user.getEmail().equals("") ) {
-                preparedStatement = connection.prepareStatement(
-                        "DELETE FROM " + ENTITY_NAME + " WHERE " + ColumnNames.ID + " = ?");
-                preparedStatement.setInt(1, user.getId());
-
-            }
-            else {
-                preparedStatement = connection.prepareStatement(
-                        "DELETE FROM " + ENTITY_NAME + " WHERE " + ColumnNames.EMAIL + " = ?");
-                preparedStatement.setString(1, user.getEmail());
-            }
+            preparedStatement = connection.prepareStatement(
+                    "DELETE FROM " + ENTITY_NAME + " WHERE " + ColumnNames.ID + " = ?");
+            preparedStatement.setInt(1, user.getId());
             preparedStatement.executeUpdate();
 
 

@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("/users")
 public class UserResource {
@@ -17,8 +17,8 @@ public class UserResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response all() {
-        return Response.ok(userService.getAllUsers()).build();
+    public List<User> allUsers() {
+        return userService.getAllUsers();
     }
 
     @POST

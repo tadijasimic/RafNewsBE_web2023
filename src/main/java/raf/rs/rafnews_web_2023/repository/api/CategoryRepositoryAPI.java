@@ -12,9 +12,10 @@ public interface CategoryRepositoryAPI {
     Category addCategory(Category category);
 
     void deleteCategory(Category category);
+
+
     Category searchCategoryByName(String name);
 
-    Category searchCategoryById(int id);
 
     enum ColumnNames{
 
@@ -34,24 +35,24 @@ public interface CategoryRepositoryAPI {
 
         public static String buildColumnsInsertQuery(String ... without)
         {   StringBuilder stringBuilder = new StringBuilder("(");
-            ColumnNames[] names = values();
+            ColumnNames[] columnNames = values();
 
-            for(int i = 1; i < names.length - 1; i++) {
-                stringBuilder.append(names[i]).append(", ");
+            for(int i = 1; i < columnNames.length - 1; i++) {
+                stringBuilder.append(columnNames[i].column_name).append(", ");
             }
-            stringBuilder.append(names[names.length - 1]).append(")");
+            stringBuilder.append(columnNames[columnNames.length - 1].column_name).append(")");
             System.out.println(stringBuilder.toString());
             System.out.flush();
             return stringBuilder.toString();
         }
         public static String buildColumnsUpdateQuery() {
             StringBuilder stringBuilder = new StringBuilder();
-            ColumnNames[] names = values();
+            ColumnNames[] columnNames = values();
 
-            for (int i = 1; i < names.length - 1; i++) {
-                stringBuilder.append(names[i]).append(" = ?, ");
+            for (int i = 1; i < columnNames.length - 1; i++) {
+                stringBuilder.append(columnNames[i].column_name).append(" = ?, ");
             }
-            stringBuilder.append(names[names.length - 1]).append(" = ?");
+            stringBuilder.append(columnNames[columnNames.length - 1].column_name).append(" = ?");
             System.out.println(stringBuilder);
             return stringBuilder.toString();
 

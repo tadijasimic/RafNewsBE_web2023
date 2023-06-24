@@ -1,10 +1,13 @@
 package raf.rs.rafnews_web_2023.entity;
 
+import javax.validation.constraints.NotNull;
+
 public class User {
 
     public static final String CONTENT_CREATOR_ROLE = "content_creator";
     public static final String ADMIN_ROLE = "admin";
     private int id;
+
 
     private String email;
     private String name;
