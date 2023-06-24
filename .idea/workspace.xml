@@ -1,19 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="RafNews_web_2023:war exploded" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15e93882-fa6f-4040-9567-eee794732ab6" name="Changes" comment="">
+    <list default="true" id="15e93882-fa6f-4040-9567-eee794732ab6" name="Changes" comment="initial commit.">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/RafNewsApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/Comment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/News.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/Tag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/enumeration/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/enumeration/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/filter/AuthFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/CategoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/CommentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/NewsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/TagRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/CategoryRepositoryAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/CommentRepositoryAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/NewsRepositoryAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/TagRepositoryAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/UserRepositoryAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/mysql/MySQLRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/CategoryResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/CommentResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/NewsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/TagResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/UserResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/CategoryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/CommentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/NewsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/TagService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/webapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/HelloApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/HelloResource.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectId" id="2Rc0NTjSu8Ba5vuOa7aVLYmpvho" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -21,30 +81,107 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
-    <configuration name="Tomcat 9.0.73" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.73" ALTERNATIVE_JRE_ENABLED="false">
+    <configuration name="Tomcat 9.0.76" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.76" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="11.0.6">
+      <option name="OPEN_IN_BROWSER" value="false" />
       <deployment>
         <artifact name="RafNews_web_2023:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/RafNews_web_2023_war_exploded" />
+            <option name="CONTEXT_PATH" value="/" />
           </settings>
         </artifact>
       </deployment>
-      <server-settings />
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="0153fe8a-0e56-4d36-b990-e30bbee1d86e" />
+      </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
       <predefined_log_file id="Tomcat Manager" />
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="65037" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
@@ -61,8 +198,37 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1687534024134</updated>
-      <workItem from="1687534025408" duration="1000" />
+      <workItem from="1687534025408" duration="4088000" />
+      <workItem from="1687557580004" duration="1626000" />
+      <workItem from="1687568605487" duration="14073000" />
+      <workItem from="1687611062882" duration="1799000" />
     </task>
+    <task id="LOCAL-00001" summary="initial commit.">
+      <created>1687534135282</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687534135282</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial commit." />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit." />
   </component>
 </project>
