@@ -21,8 +21,14 @@ public class NewsService {
     public List<News> newsForPage(int pageIndex, int pageSize) {
         return newsRepository.newsForPage(pageIndex, pageSize);
     }
+
+    public List<News> newsInCategory(int categoryId) {
+        return newsRepository.newsInCategory(categoryId);
+    }
     public News addNews(News news) {
         return newsRepository.addNews(news);
     }
+
+
 
 }

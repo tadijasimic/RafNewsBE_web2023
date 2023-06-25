@@ -26,10 +26,11 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
 
             preparedStatement = connection.prepareStatement(
                     "INSERT INTO " + ENTITY_NAME + " " + ColumnNames.buildColumnsInsertQuery() +
-                            " VALUES(?, ?, ?)", generatedColumns);
+                            " VALUES(?, ?, ?, ?)", generatedColumns);
             preparedStatement.setString(1, news.getTitle());
             preparedStatement.setString(2, news.getContent());
             preparedStatement.setInt(3, news.getAuthorId());
+            preparedStatement.setInt(4, news.getCategoryId());
 
             preparedStatement.executeUpdate();
 
@@ -68,7 +69,8 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
                                 resultSet.getInt(ColumnNames.ID.column_index),
                                 resultSet.getString(ColumnNames.TITLE.column_name),
                                 resultSet.getString(ColumnNames.CONTENT.column_name),
-                                resultSet.getInt(ColumnNames.AUTHOR_ID.column_name)
+                                resultSet.getInt(ColumnNames.AUTHOR_ID.column_name),
+                                resultSet.getInt(ColumnNames.CATEGORY_ID.column_name)
                         ));
             }
         } catch (SQLException e) {
@@ -92,7 +94,7 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
             connection = getDB_Connection();
             statement = connection.createStatement();
             int startIndex = pageIndex * pageSize;
-            String sqlQuery = "SELECT * FROM news LIMIT " + startIndex + ", " + pageSize;
+            String sqlQuery = "SELECT * FROM " + ENTITY_NAME + " LIMIT " + startIndex + ", " + pageSize;
             resultSet = statement.executeQuery(sqlQuery);
             newsForPage = new ArrayList<>();
             while (resultSet.next()) {
@@ -101,7 +103,8 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
                                 resultSet.getInt(ColumnNames.ID.column_index),
                                 resultSet.getString(ColumnNames.TITLE.column_name),
                                 resultSet.getString(ColumnNames.CONTENT.column_name),
-                                resultSet.getInt(ColumnNames.AUTHOR_ID.column_name)
+                                resultSet.getInt(ColumnNames.AUTHOR_ID.column_name),
+                                resultSet.getInt(ColumnNames.CATEGORY_ID.column_name)
                         ));
             }
         } catch (SQLException e) {
@@ -112,6 +115,43 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
             closeConnection(connection);
         }
         return newsForPage;
+    }
+
+    @Override
+    public List<News> newsInCategory(int categoryId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<News> newsInCategory = null;
+        try {
+            connection = this.getDB_Connection();
+
+            preparedStatement = connection.prepareStatement("SELECT * FROM " + ENTITY_NAME + " WHERE " + ColumnNames.CATEGORY_ID + " = ?");
+            preparedStatement.setInt(1, categoryId);
+            resultSet = preparedStatement.executeQuery();
+            newsInCategory = new ArrayList<>();
+
+            while (resultSet.next()) {
+                newsInCategory.add(
+                        new News(
+                                resultSet.getInt(ColumnNames.ID.column_index),
+                                resultSet.getString(ColumnNames.TITLE.column_name),
+                                resultSet.getString(ColumnNames.CONTENT.column_name),
+                                resultSet.getInt(ColumnNames.AUTHOR_ID.column_name),
+                                resultSet.getInt(ColumnNames.CATEGORY_ID.column_name)
+                        )
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeStatement(preparedStatement);
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+
+        return newsInCategory;
     }
 
 

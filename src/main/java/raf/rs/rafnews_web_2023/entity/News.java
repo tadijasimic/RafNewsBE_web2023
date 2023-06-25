@@ -7,12 +7,15 @@ public class News {
     private String content;
     private int authorId;
 
+    private int categoryId;
+
     public News(){};
-    public News(int id, String title, String content, int authorId) {
+    public News(int id, String title, String content, int authorId, int categoryId) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.authorId = authorId;
+        this.categoryId = categoryId;
     }
 
     public int getId() {
@@ -45,5 +48,13 @@ public class News {
 
     public void setAuthorId(int authorId) {
         this.authorId = authorId;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 }

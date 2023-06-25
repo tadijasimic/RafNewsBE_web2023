@@ -17,27 +17,28 @@ public interface CategoryRepositoryAPI {
     Category searchCategoryByName(String name);
 
 
-    enum ColumnNames{
+    enum ColumnNames {
 
-        ID(1,"id",Integer.class),
-        NAME(2,"name",String.class),
-        DESCRIPTION(3,"description",String.class);
+        ID(1, "id", Integer.class),
+        NAME(2, "name", String.class),
+        DESCRIPTION(3, "description", String.class);
 
 
-        public final Class typeClass;
+        public final Class<?> typeClass;
         public final int column_index;
-        public  final String column_name;
+        public final String column_name;
+
         ColumnNames(int index, String name, Class<?> typeClass) {
             this.column_index = index;
             this.column_name = name;
             this.typeClass = typeClass;
         }
 
-        public static String buildColumnsInsertQuery(String ... without)
-        {   StringBuilder stringBuilder = new StringBuilder("(");
+        public static String buildColumnsInsertQuery(String... without) {
+            StringBuilder stringBuilder = new StringBuilder("(");
             ColumnNames[] columnNames = values();
 
-            for(int i = 1; i < columnNames.length - 1; i++) {
+            for (int i = 1; i < columnNames.length - 1; i++) {
                 stringBuilder.append(columnNames[i].column_name).append(", ");
             }
             stringBuilder.append(columnNames[columnNames.length - 1].column_name).append(")");
@@ -45,6 +46,7 @@ public interface CategoryRepositoryAPI {
             System.out.flush();
             return stringBuilder.toString();
         }
+
         public static String buildColumnsUpdateQuery() {
             StringBuilder stringBuilder = new StringBuilder();
             ColumnNames[] columnNames = values();

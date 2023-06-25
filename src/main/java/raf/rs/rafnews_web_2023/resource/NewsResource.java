@@ -27,6 +27,12 @@ public class NewsResource {
         return newsService.newsForPage(pageIndex, pageSize);
     }
 
+    @GET
+    @Path("/category/{categoryId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<News> newsInCategory(@PathParam("categoryId") int categoryId){
+        return newsService.newsInCategory(categoryId);
+    }
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public News addNews(News news) {
