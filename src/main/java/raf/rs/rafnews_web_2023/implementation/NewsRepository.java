@@ -12,6 +12,7 @@ import java.util.List;
 public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI {
 
     private static final String ENTITY_NAME = "news";
+
     @Override
     public News addNews(News news) {
         Connection connection = null;
@@ -35,7 +36,7 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
             resultSet = preparedStatement.getGeneratedKeys();
 
             if (resultSet.next()) {
-                 news.setId(resultSet.getInt(ColumnNames.ID.column_index));
+                news.setId(resultSet.getInt(ColumnNames.ID.column_index));
             } else
                 throw new RuntimeException("adding user failed");
         } catch (SQLException e) {
@@ -48,7 +49,7 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
         return news;
     }
 
-
+    @Override
     public List<News> allNews() {
 
         List<News> allNews = null;
@@ -66,7 +67,7 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
                         new News(
                                 resultSet.getInt(ColumnNames.ID.column_index),
                                 resultSet.getString(ColumnNames.TITLE.column_name),
-                                resultSet.getString(ColumnNames.TITLE.column_name),
+                                resultSet.getString(ColumnNames.CONTENT.column_name),
                                 resultSet.getInt(ColumnNames.AUTHOR_ID.column_name)
                         ));
             }
@@ -80,7 +81,38 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
         return allNews;
     }
 
+    @Override
+    public List<News> newsForPage(int pageIndex, int pageSize) {
+        List<News> newsForPage = null;
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
 
+        try {
+            connection = getDB_Connection();
+            statement = connection.createStatement();
+            int startIndex = pageIndex * pageSize;
+            String sqlQuery = "SELECT * FROM news LIMIT " + startIndex + ", " + pageSize;
+            resultSet = statement.executeQuery(sqlQuery);
+            newsForPage = new ArrayList<>();
+            while (resultSet.next()) {
+                newsForPage.add(
+                        new News(
+                                resultSet.getInt(ColumnNames.ID.column_index),
+                                resultSet.getString(ColumnNames.TITLE.column_name),
+                                resultSet.getString(ColumnNames.CONTENT.column_name),
+                                resultSet.getInt(ColumnNames.AUTHOR_ID.column_name)
+                        ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeStatement(statement);
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+        return newsForPage;
+    }
 
 
 }

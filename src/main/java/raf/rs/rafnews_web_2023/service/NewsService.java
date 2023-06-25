@@ -18,6 +18,9 @@ public class NewsService {
         return newsRepository.allNews();
     }
 
+    public List<News> newsForPage(int pageIndex, int pageSize) {
+        return newsRepository.newsForPage(pageIndex, pageSize);
+    }
     public News addNews(News news) {
         return newsRepository.addNews(news);
     }

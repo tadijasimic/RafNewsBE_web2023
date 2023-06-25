@@ -4,10 +4,7 @@ import raf.rs.rafnews_web_2023.entity.News;
 import raf.rs.rafnews_web_2023.service.NewsService;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -21,6 +18,13 @@ public class NewsResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<News> allNews() {
         return newsService.allNews();
+    }
+
+    @GET
+    @Path("/pageIndex/{pageIndex}/pageSize/{pageSize}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<News> newsForPage(@PathParam("pageIndex") int pageIndex, @PathParam("pageSize") int pageSize){
+        return newsService.newsForPage(pageIndex, pageSize);
     }
 
     @POST

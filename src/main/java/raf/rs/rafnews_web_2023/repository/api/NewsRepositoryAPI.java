@@ -8,6 +8,8 @@ public interface NewsRepositoryAPI {
 
     List<News> allNews();
 
+    List<News> newsForPage(int pageIndex, int pageSize);
+
     News addNews(News news);
 
 
