@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CategoryRepositoryAPI {
 
-    List<Category> getAllCategories();
+    List<Category> allCategories();
 
     Category addCategory(Category category);
 

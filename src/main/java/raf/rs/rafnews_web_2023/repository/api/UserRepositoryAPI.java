@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserRepositoryAPI {
 
 
-    List<User> getAllUsers();
+    List<User> allUsers();
     User addUser(User user);
     void deleteUser(User user);
 

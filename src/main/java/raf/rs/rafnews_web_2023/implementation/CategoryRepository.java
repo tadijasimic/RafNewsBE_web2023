@@ -3,7 +3,6 @@ package raf.rs.rafnews_web_2023.implementation;
 
 import raf.rs.rafnews_web_2023.entity.Category;
 import raf.rs.rafnews_web_2023.repository.api.CategoryRepositoryAPI;
-import raf.rs.rafnews_web_2023.repository.api.UserRepositoryAPI;
 import raf.rs.rafnews_web_2023.repository.mysql.MySQLRepository;
 
 import java.sql.*;
@@ -15,7 +14,7 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
     private static final String ENTITY_NAME ="category";
 
     @Override
-    public List<Category> getAllCategories() {
+    public List<Category> allCategories() {
 
         List<Category> allCategories = new ArrayList<>();
         Connection connection = null;
@@ -36,7 +35,7 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
                 ));
             }
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
         }
         finally {
@@ -49,6 +48,7 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
 
     @Override
     public Category addCategory(Category category) {
+
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -70,10 +70,8 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
             if (resultSet.next()) {
                 category.setId(resultSet.getInt(CategoryRepositoryAPI.ColumnNames.ID.column_index));
             }
-            else
-                throw new RuntimeException("adding category failed");
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
         }
         finally {
@@ -94,10 +92,8 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
                     "DELETE FROM " + ENTITY_NAME + " WHERE " + ColumnNames.ID.column_name + " = ?");
             preparedStatement.setInt(1, category.getId());
             int rows_changed = preparedStatement.executeUpdate();
-            if(rows_changed != 1)
-                throw new RuntimeException("delete failed");
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         finally {
@@ -129,8 +125,9 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
                 );
 
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+
         } finally {
             closeStatement(preparedStatement);
             closeResultSet(resultSet);

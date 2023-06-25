@@ -23,7 +23,7 @@ public class UserService {
     }
 
     public List<User> getAllUsers() {
-        return userRepository.getAllUsers();
+        return userRepository.allUsers();
     }
 
     public User addUser(User user) {

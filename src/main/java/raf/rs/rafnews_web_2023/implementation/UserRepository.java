@@ -14,7 +14,7 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
     private static final String ENTITY_NAME = "users";
 
     @Override
-    public List<User> getAllUsers() {
+    public List<User> allUsers() {
 
         List<User> allUsers = new ArrayList<>();
         Connection connection = null;
@@ -24,9 +24,8 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
         try {
             connection = getDB_Connection();
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select * from " + ENTITY_NAME);
-            while(resultSet.next())
-            {
+            resultSet = statement.executeQuery("SELECT * FROM " + ENTITY_NAME);
+            while (resultSet.next()) {
                 allUsers.add(new User(
                         resultSet.getInt(ColumnNames.ID.column_index),
                         resultSet.getString(ColumnNames.EMAIL.column_name),
@@ -37,18 +36,15 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
                         resultSet.getString(ColumnNames.STATUS.column_name)
                 ));
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             closeStatement(statement);
             closeResultSet(resultSet);
             closeConnection(connection);
         }
         return allUsers;
     }
-
 
 
     @Override
@@ -78,20 +74,17 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
 
             if (resultSet.next()) {
                 user.setId(resultSet.getInt(ColumnNames.ID.column_index));
-            }
-            else
+            } else
                 throw new RuntimeException("adding user failed");
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             closeStatement(preparedStatement);
             closeResultSet(resultSet);
             closeConnection(connection);
         }
         return user;
-        }
+    }
 
 
     @Override
@@ -134,7 +127,7 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
             preparedStatement.setString(4, user.getHashedPassword());
             preparedStatement.setString(5, user.getRole());
             preparedStatement.setString(6, user.getStatus());
-            preparedStatement.setInt(7,user.getId());
+            preparedStatement.setInt(7, user.getId());
 
 
             preparedStatement.executeUpdate();
@@ -151,39 +144,39 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
 
     @Override
     public User searchUserByEmail(String email) {
-            Connection connection = null;
-            PreparedStatement preparedStatement = null;
-            ResultSet resultSet = null;
-            User user = null;
-            try {
-                connection = this.getDB_Connection();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        User user = null;
+        try {
+            connection = this.getDB_Connection();
 
-                preparedStatement = connection.prepareStatement("SELECT * FROM " + ENTITY_NAME + " WHERE " + ColumnNames.EMAIL + " = ?");
-                preparedStatement.setString(1, email);
-                resultSet = preparedStatement.executeQuery();
+            preparedStatement = connection.prepareStatement("SELECT * FROM " + ENTITY_NAME + " WHERE " + ColumnNames.EMAIL + " = ?");
+            preparedStatement.setString(1, email);
+            resultSet = preparedStatement.executeQuery();
 
-                if(resultSet.next())
-                   user = new User(
-                            resultSet.getInt(ColumnNames.ID.column_index),
-                            resultSet.getString(ColumnNames.EMAIL.column_name),
-                            resultSet.getString(ColumnNames.NAME.column_name),
-                            resultSet.getString(ColumnNames.SURNAME.column_name),
-                            resultSet.getString(ColumnNames.PASSWORD.column_name),
-                            resultSet.getString(ColumnNames.ROLE.column_name),
-                            resultSet.getString(ColumnNames.STATUS.column_name)
-                    );
+            if (resultSet.next())
+                user = new User(
+                        resultSet.getInt(ColumnNames.ID.column_index),
+                        resultSet.getString(ColumnNames.EMAIL.column_name),
+                        resultSet.getString(ColumnNames.NAME.column_name),
+                        resultSet.getString(ColumnNames.SURNAME.column_name),
+                        resultSet.getString(ColumnNames.PASSWORD.column_name),
+                        resultSet.getString(ColumnNames.ROLE.column_name),
+                        resultSet.getString(ColumnNames.STATUS.column_name)
+                );
 
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                closeStatement(preparedStatement);
-                closeResultSet(resultSet);
-                closeConnection(connection);
-            }
-
-            return user;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeStatement(preparedStatement);
+            closeResultSet(resultSet);
+            closeConnection(connection);
         }
+
+        return user;
+    }
 
     @Override
     public User searchUserById(int id) {
@@ -198,7 +191,7 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next())
+            if (resultSet.next())
                 user = new User(
                         resultSet.getInt(ColumnNames.ID.column_index),
                         resultSet.getString(ColumnNames.EMAIL.column_name),

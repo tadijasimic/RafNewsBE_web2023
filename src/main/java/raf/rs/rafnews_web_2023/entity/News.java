@@ -3,12 +3,11 @@ package raf.rs.rafnews_web_2023.entity;
 public class News {
 
     private int id;
-
     private String title;
-
     private String content;
     private int authorId;
 
+    public News(){};
     public News(int id, String title, String content, int authorId) {
         this.id = id;
         this.title = title;

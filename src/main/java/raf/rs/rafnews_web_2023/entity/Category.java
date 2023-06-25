@@ -1,6 +1,5 @@
 package raf.rs.rafnews_web_2023.entity;
 
-import raf.rs.rafnews_web_2023.service.CategoryService;
 
 public class Category {
     private int id;

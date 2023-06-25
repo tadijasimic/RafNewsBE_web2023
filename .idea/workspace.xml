@@ -9,18 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15e93882-fa6f-4040-9567-eee794732ab6" name="Changes" comment="users , categories rest">
+    <list default="true" id="15e93882-fa6f-4040-9567-eee794732ab6" name="Changes" comment="category repository.">
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/News.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/News.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/CategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/NewsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/NewsRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/CategoryRepositoryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/CategoryRepositoryAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/NewsRepositoryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/NewsRepositoryAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/UserRepositoryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/UserRepositoryAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/CategoryResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/CategoryResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/UserResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/NewsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/NewsResource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/CategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/webapp/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/NewsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/NewsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/TagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/TagService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +176,7 @@
       <workItem from="1687534025408" duration="4088000" />
       <workItem from="1687557580004" duration="1626000" />
       <workItem from="1687568605487" duration="14073000" />
-      <workItem from="1687611062882" duration="7653000" />
+      <workItem from="1687611062882" duration="14051000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit.">
       <created>1687534135282</created>
@@ -188,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687613030494</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="category repository.">
+      <created>1687619421445</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1687619421445</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,6 +219,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit." />
     <MESSAGE value="users , categories rest" />
-    <option name="LAST_COMMIT_MESSAGE" value="users , categories rest" />
+    <MESSAGE value="category repository." />
+    <option name="LAST_COMMIT_MESSAGE" value="category repository." />
   </component>
 </project>
