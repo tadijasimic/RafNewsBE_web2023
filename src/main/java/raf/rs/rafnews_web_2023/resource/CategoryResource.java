@@ -1,6 +1,6 @@
 package raf.rs.rafnews_web_2023.resource;
 
-import raf.rs.rafnews_web_2023.entity.Category;
+import raf.rs.rafnews_web_2023.entity.dto.CategoryDTO;
 import raf.rs.rafnews_web_2023.service.CategoryService;
 
 import javax.inject.Inject;
@@ -8,45 +8,43 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/category")
+@Path("/categories")
 public class CategoryResource {
 
     @Inject
     private CategoryService categoryService;
 
     @GET
+    @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Category> allCategories() {
-
-        return categoryService.getAllCategories();
+    public List<CategoryDTO> allCategories() {
+        return categoryService.allCategories();
     }
 
-    @POST
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Category addCategory(Category category) {
-        return categoryService.addCategory(category);
+    public List<CategoryDTO> usersForPage(@QueryParam("pageIndex") int pageIndex, @QueryParam("pageSize") int pageSize) {
+        return categoryService.categoriesForPage(pageIndex, pageSize);
     }
-
-    @DELETE
-    public void deleteCategory(Category category) {
-        categoryService.deleteCategory(category);
-    }
-
-
 
     @GET
     @Path("name/{name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Category findByName(@PathParam("name") String name) {
+    public CategoryDTO findByName(@PathParam("name") String name) {
         return categoryService.searchCategoryByName(name);
     }
 
 
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public CategoryDTO addCategory(CategoryDTO category) {
+        return categoryService.addCategory(category);
+    }
 
-
-
-
-
+    @DELETE
+    public void deleteCategory(CategoryDTO category) {
+        categoryService.deleteCategory(category);
+    }
 
 
 }

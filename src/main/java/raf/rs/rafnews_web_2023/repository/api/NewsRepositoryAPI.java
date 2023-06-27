@@ -2,6 +2,7 @@ package raf.rs.rafnews_web_2023.repository.api;
 
 import raf.rs.rafnews_web_2023.entity.News;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface NewsRepositoryAPI {
@@ -21,8 +22,9 @@ public interface NewsRepositoryAPI {
         ID(1, "id", Integer.class),
         TITLE(2, "title", String.class),
         CONTENT(3, "content", String.class),
-        AUTHOR_ID(4, "author_id", Integer.class),
-        CATEGORY_ID(5, "category_id", Integer.class);
+        CREATION_TIME(4, "creation_time", Timestamp.class),
+        AUTHOR_ID(5, "author_id", Integer.class),
+        CATEGORY_ID(6, "category_id", Integer.class);
 
 
         public final Class<?> typeClass;

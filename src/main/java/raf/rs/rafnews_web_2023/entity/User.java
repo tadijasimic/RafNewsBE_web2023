@@ -1,13 +1,13 @@
 package raf.rs.rafnews_web_2023.entity;
 
-import javax.validation.constraints.NotNull;
+import raf.rs.rafnews_web_2023.entity.dto.UserDTO;
+import raf.rs.rafnews_web_2023.entity.enumeration.Role;
+import raf.rs.rafnews_web_2023.entity.enumeration.Status;
 
 public class User {
 
-    public static final String CONTENT_CREATOR_ROLE = "content_creator";
-    public static final String ADMIN_ROLE = "admin";
-    private int id;
 
+    private int id;
 
     private String email;
     private String name;
@@ -15,20 +15,11 @@ public class User {
 
     private String hashedPassword;
 
-    private String role;
+    private Role role;
 
-    private String status;
+    private Status status;
 
-    public User() {}
 
-    public User(String email, String name, String surname,String hashedPassword, String role, String status) {
-        this.email = email;
-        this.name = name;
-        this.surname = surname;
-        this.hashedPassword = hashedPassword;
-        this.role = role;
-        this.status = status;
-    }
 
     public User(int id, String email, String name, String surname, String hashedPassword, String role, String status) {
         this.id = id;
@@ -36,12 +27,13 @@ public class User {
         this.surname = surname;
         this.hashedPassword = hashedPassword;
         this.email = email;
-        this.role = role;
-        this.status = status;
+        this.role = Role.valueOf(role);
+        this.status = Status.valueOf(status);
     }
 
-
-
+    public UserDTO buildDTO(){
+        return new UserDTO(this);
+    }
 
     public int getId() {
         return id;
@@ -57,21 +49,10 @@ public class User {
 
 
 
-
-
-    public User setEmail(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public User setName(String name) {
-        this.name = name;
-        return this;
-    }
-
     public String getName() {
         return name;
     }
+
 
 
     public String getHashedPassword() {
@@ -79,27 +60,21 @@ public class User {
     }
 
 
-    public User setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
-        return this;
-    }
-
     public String getSurname() {
         return surname;
     }
 
-    public String getStatus() {
+
+    public Role getRole() {
+        return role;
+    }
+    public Status getStatus() {
         return status;
     }
 
-    public String getRole() {
-        return role;
-    }
 
-    public User setRole(String role) {
-        this.role = role;
-        return this;
-    }
+
+
 
 
 }

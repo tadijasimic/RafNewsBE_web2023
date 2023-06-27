@@ -3,11 +3,14 @@ package raf.rs.rafnews_web_2023.repository.api;
 
 import raf.rs.rafnews_web_2023.entity.Category;
 
+
 import java.util.List;
 
 public interface CategoryRepositoryAPI {
 
     List<Category> allCategories();
+
+    List<Category> categoriesForPage(int pageIndex, int pageSize);
 
     Category addCategory(Category category);
 

@@ -7,7 +7,7 @@ public class MySQLRepository {
 
     private static final String HOST = "localhost";
     private static final int PORT = 3306;
-    private static final String DB_NAME = "raf_news_db";
+    private static final String DB_NAME = "raf_news";
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "mivanmajer99";
     private static final String DB_DIR_PATH = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DB_NAME;

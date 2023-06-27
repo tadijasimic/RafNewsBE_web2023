@@ -1,6 +1,6 @@
 package raf.rs.rafnews_web_2023.entity.enumeration;
 
-enum Status {
+public enum Status {
     ACTIVE,
     INACTIVE;
 }

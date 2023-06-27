@@ -1,7 +1,7 @@
 package raf.rs.rafnews_web_2023.implementation;
 
-
 import raf.rs.rafnews_web_2023.entity.User;
+import raf.rs.rafnews_web_2023.entity.dto.UserDTO;
 import raf.rs.rafnews_web_2023.repository.api.UserRepositoryAPI;
 import raf.rs.rafnews_web_2023.repository.mysql.MySQLRepository;
 
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserRepository extends MySQLRepository implements UserRepositoryAPI {
 
-    private static final String ENTITY_NAME = "users";
+    private static final String ENTITY_NAME = "user";
 
     @Override
     public List<User> allUsers() {
@@ -26,15 +26,17 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM " + ENTITY_NAME);
             while (resultSet.next()) {
-                allUsers.add(new User(
-                        resultSet.getInt(ColumnNames.ID.column_index),
-                        resultSet.getString(ColumnNames.EMAIL.column_name),
-                        resultSet.getString(ColumnNames.NAME.column_name),
-                        resultSet.getString(ColumnNames.SURNAME.column_name),
-                        resultSet.getString(ColumnNames.PASSWORD.column_name),
-                        resultSet.getString(ColumnNames.ROLE.column_name),
-                        resultSet.getString(ColumnNames.STATUS.column_name)
-                ));
+                allUsers.add(
+                        new User(
+                                resultSet.getInt(ColumnNames.ID.column_index),
+                                resultSet.getString(ColumnNames.EMAIL.column_name),
+                                resultSet.getString(ColumnNames.NAME.column_name),
+                                resultSet.getString(ColumnNames.SURNAME.column_name),
+                                resultSet.getString(ColumnNames.PASSWORD.column_name),
+                                resultSet.getString(ColumnNames.ROLE.column_name),
+                                resultSet.getString(ColumnNames.STATUS.column_name)
+                        )
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -46,6 +48,42 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
         return allUsers;
     }
 
+    @Override
+    public List<User> usersForPage(int pageIndex, int pageSize) {
+        List<User> newsForPage = null;
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = getDB_Connection();
+            statement = connection.createStatement();
+            int startIndex = pageIndex * pageSize;
+            String sqlQuery = "SELECT * FROM " + ENTITY_NAME + " LIMIT " + startIndex + ", " + pageSize;
+            resultSet = statement.executeQuery(sqlQuery);
+            newsForPage = new ArrayList<>();
+            while (resultSet.next()) {
+                newsForPage.add(
+                        new User(
+                                resultSet.getInt(ColumnNames.ID.column_index),
+                                resultSet.getString(ColumnNames.EMAIL.column_name),
+                                resultSet.getString(ColumnNames.NAME.column_name),
+                                resultSet.getString(ColumnNames.SURNAME.column_name),
+                                resultSet.getString(ColumnNames.PASSWORD.column_name),
+                                resultSet.getString(ColumnNames.ROLE.column_name),
+                                resultSet.getString(ColumnNames.STATUS.column_name)
+                        )
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeStatement(statement);
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+        return newsForPage;
+    }
 
     @Override
     public User addUser(User user) {
@@ -59,19 +97,17 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
 
             String[] generatedColumns = {"id"};
 
-            preparedStatement = connection.prepareStatement(
-                    "INSERT INTO " + ENTITY_NAME + " " + ColumnNames.buildColumnsInsertQuery() + " VALUES(?, ?, ?, ?, ?, ?)",
-                    generatedColumns);
+            String sql = "INSERT INTO " + ENTITY_NAME + " " + ColumnNames.buildColumnsInsertQuery(ColumnNames.PASSWORD)
+                    + " VALUES(?, ?, ?, ?, ?, ?)";
+            preparedStatement = connection.prepareStatement(sql, generatedColumns);
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getName());
             preparedStatement.setString(3, user.getSurname());
-            preparedStatement.setString(4, user.getHashedPassword());
-            preparedStatement.setString(5, user.getRole());
-            preparedStatement.setString(6, user.getStatus());
+            preparedStatement.setString(5, user.getRole().name());
+            preparedStatement.setString(6, user.getStatus().name());
             preparedStatement.executeUpdate();
 
             resultSet = preparedStatement.getGeneratedKeys();
-
             if (resultSet.next()) {
                 user.setId(resultSet.getInt(ColumnNames.ID.column_index));
             } else
@@ -125,8 +161,8 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
             preparedStatement.setString(2, user.getName());
             preparedStatement.setString(3, user.getSurname());
             preparedStatement.setString(4, user.getHashedPassword());
-            preparedStatement.setString(5, user.getRole());
-            preparedStatement.setString(6, user.getStatus());
+            preparedStatement.setString(5, user.getRole().name());
+            preparedStatement.setString(6, user.getStatus().name());
             preparedStatement.setInt(7, user.getId());
 
 

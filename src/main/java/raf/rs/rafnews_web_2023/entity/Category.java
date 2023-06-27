@@ -1,45 +1,38 @@
 package raf.rs.rafnews_web_2023.entity;
 
 
-public class Category {
-    private int id;
-    private String name;
-    private String description;
-    public Category() {
-    }
+import raf.rs.rafnews_web_2023.entity.dto.CategoryDTO;
 
+public class Category {
+
+    private int id;
+    private final String name;
+    private final String description;
 
     public Category(int id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
     }
-    public Category(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
 
-    public int getId() {
-        return id;
+    public CategoryDTO buildDTO(){
+        return new CategoryDTO(this);
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getName() {
+        return name;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

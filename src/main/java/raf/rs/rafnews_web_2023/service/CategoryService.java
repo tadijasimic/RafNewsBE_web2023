@@ -2,9 +2,11 @@ package raf.rs.rafnews_web_2023.service;
 
 
 import raf.rs.rafnews_web_2023.entity.Category;
+import raf.rs.rafnews_web_2023.entity.dto.CategoryDTO;
 import raf.rs.rafnews_web_2023.repository.api.CategoryRepositoryAPI;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryService {
@@ -12,25 +14,40 @@ public class CategoryService {
     @Inject
     CategoryRepositoryAPI categoryRepository;
 
+    
 
+    
     public CategoryService(){
         System.out.println(this);
     }
 
-    public List<Category> getAllCategories() {
-        return categoryRepository.allCategories();
+    public List<CategoryDTO> allCategories() {
+        return buildListDTO(categoryRepository.allCategories());
     }
 
-    public Category addCategory(Category category) {
-        return categoryRepository.addCategory(category);
+    public List<CategoryDTO> categoriesForPage(int pageIndex, int pageSize) {
+        return buildListDTO(categoryRepository.categoriesForPage(pageIndex, pageSize));
     }
 
-    public void deleteCategory(Category category) {
+    public CategoryDTO addCategory(CategoryDTO categoryDTO) {
+        Category category = new Category(categoryDTO.getId(), categoryDTO.getName(), categoryDTO.getDescription());
+        return categoryRepository.addCategory(category).buildDTO();
+    }
+
+    public void deleteCategory(CategoryDTO categoryDTO) {
+
+        Category category = new Category(categoryDTO.getId(), categoryDTO.getName(), categoryDTO.getDescription());
         categoryRepository.deleteCategory(category);
     }
-    public Category searchCategoryByName(String name) {
-        return categoryRepository.searchCategoryByName(name);
+    public CategoryDTO searchCategoryByName(String name) {
+        return categoryRepository.searchCategoryByName(name).buildDTO();
     }
 
-
+    private List<CategoryDTO> buildListDTO(List<Category> categories) {
+        List<CategoryDTO> DTOs = new ArrayList<>();
+        for(Category category: categories){
+            DTOs.add(category.buildDTO());
+        }
+        return DTOs;
+    }
 }

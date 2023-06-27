@@ -2,6 +2,7 @@ package raf.rs.rafnews_web_2023.implementation;
 
 
 import raf.rs.rafnews_web_2023.entity.Category;
+import raf.rs.rafnews_web_2023.entity.dto.CategoryDTO;
 import raf.rs.rafnews_web_2023.repository.api.CategoryRepositoryAPI;
 import raf.rs.rafnews_web_2023.repository.mysql.MySQLRepository;
 
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class CategoryRepository extends MySQLRepository implements CategoryRepositoryAPI {
 
-    private static final String ENTITY_NAME ="category";
+    private static final String ENTITY_NAME = "category";
 
     @Override
     public List<Category> allCategories() {
@@ -26,25 +27,59 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
 
             statement = connection.createStatement();
             resultSet = statement.executeQuery("select * from " + ENTITY_NAME);
-            while(resultSet.next())
-            {
-                allCategories.add(new Category(
-                        resultSet.getInt(ColumnNames.ID.column_name),
-                        resultSet.getString(ColumnNames.NAME.column_name),
-                        resultSet.getString(ColumnNames.DESCRIPTION.column_name)
-                ));
+            while (resultSet.next()) {
+                allCategories.add(
+                        new Category(
+                                resultSet.getInt(ColumnNames.ID.column_name),
+                                resultSet.getString(ColumnNames.NAME.column_name),
+                                resultSet.getString(ColumnNames.DESCRIPTION.column_name)
+                        )
+                );
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             closeStatement(statement);
             closeResultSet(resultSet);
             closeConnection(connection);
         }
         return allCategories;
     }
+
+    @Override
+    public List<Category> categoriesForPage(int pageIndex, int pageSize) {
+        List<Category> categoriesForPage = null;
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = getDB_Connection();
+            statement = connection.createStatement();
+            int startIndex = pageIndex * pageSize;
+            String sqlQuery = "SELECT * FROM " + ENTITY_NAME + " LIMIT " + startIndex + ", " + pageSize;
+            resultSet = statement.executeQuery(sqlQuery);
+            categoriesForPage = new ArrayList<>();
+            while (resultSet.next()) {
+                categoriesForPage.add(
+                        new Category(
+                                resultSet.getInt(ColumnNames.ID.column_name),
+                                resultSet.getString(ColumnNames.NAME.column_name),
+                                resultSet.getString(ColumnNames.DESCRIPTION.column_name)
+                        )
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeStatement(statement);
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+        return categoriesForPage;
+    }
+
+
 
     @Override
     public Category addCategory(Category category) {
@@ -70,11 +105,9 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
             if (resultSet.next()) {
                 category.setId(resultSet.getInt(CategoryRepositoryAPI.ColumnNames.ID.column_index));
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             closeStatement(preparedStatement);
             closeResultSet(resultSet);
             closeConnection(connection);
@@ -95,8 +128,7 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             this.closeStatement(preparedStatement);
             this.closeConnection(connection);
         }
@@ -117,7 +149,7 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
             preparedStatement.setString(1, name);
             resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next())
+            if (resultSet.next())
                 category = new Category(
                         resultSet.getInt(ColumnNames.ID.column_index),
                         resultSet.getString(ColumnNames.NAME.column_name),

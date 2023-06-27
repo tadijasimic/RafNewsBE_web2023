@@ -2,6 +2,7 @@ package raf.rs.rafnews_web_2023.repository.api;
 
 
 import raf.rs.rafnews_web_2023.entity.User;
+import raf.rs.rafnews_web_2023.entity.dto.UserDTO;
 
 import java.util.List;
 
@@ -10,11 +11,14 @@ public interface UserRepositoryAPI {
 
     List<User> allUsers();
 
+    List<User> usersForPage(int pageIndex, int pageSize);
+
     User addUser(User user);
 
     void deleteUser(User user);
 
     User editUser(User user);
+
 
     User searchUserByEmail(String email);
 
@@ -40,11 +44,13 @@ public interface UserRepositoryAPI {
             this.typeClass = typeClass;
         }
 
-        public static String buildColumnsInsertQuery(String... without) {
+        public static String buildColumnsInsertQuery(ColumnNames... without) {
             StringBuilder stringBuilder = new StringBuilder("(");
             ColumnNames[] columnNames = values();
 
             for (int i = 1; i < columnNames.length - 1; i++) {
+                if(without.length == 1 && without[0] ==  columnNames[i])
+                    continue;
                 stringBuilder.append(columnNames[i].column_name).append(", ");
             }
             stringBuilder.append(columnNames[columnNames.length - 1].column_name).append(")");

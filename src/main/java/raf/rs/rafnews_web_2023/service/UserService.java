@@ -7,9 +7,11 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import org.apache.commons.codec.digest.DigestUtils;
 import raf.rs.rafnews_web_2023.entity.User;
+import raf.rs.rafnews_web_2023.entity.dto.UserDTO;
 import raf.rs.rafnews_web_2023.repository.api.UserRepositoryAPI;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,37 +21,68 @@ public class UserService {
     private UserRepositoryAPI userRepository;
 
     public UserService() {
-        System.out.println(this);
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.allUsers();
+    public List<UserDTO> allUsers() {
+        return buildListDTO(userRepository.allUsers());
     }
 
-    public User addUser(User user) {
-        return userRepository.addUser(user);
+    public List<UserDTO> usersForPage(int pageIndex, int pageSize) {
+        return buildListDTO(userRepository.allUsers());
     }
 
-    public void deleteUser(User user) {
+
+    public UserDTO addUser(UserDTO userDTO) {
+        User user = new User(
+                userDTO.getId(),
+                userDTO.getEmail(),
+                userDTO.getName(),
+                userDTO.getSurname(),
+                null,
+                userDTO.getRole(),
+                userDTO.getStatus()
+        );
+        return userRepository.addUser(user).buildDTO();
+    }
+
+    public void deleteUser(UserDTO userDTO) {
+        User user = new User(
+                userDTO.getId(),
+                userDTO.getEmail(),
+                userDTO.getName(),
+                userDTO.getSurname(),
+                null,
+                userDTO.getRole(),
+                userDTO.getStatus()
+        );
         userRepository.deleteUser(user);
     }
 
-    public User searchUserByEmail(String email) {
-        return userRepository.searchUserByEmail(email);
+    public UserDTO searchUserByEmail(String email) {
+        return userRepository.searchUserByEmail(email).buildDTO();
     }
 
-    public User searchUserById(int id) {
-        return userRepository.searchUserById(id);
+    public UserDTO searchUserById(int id) {
+        return userRepository.searchUserById(id).buildDTO();
     }
 
-    public User editUser(User user) {
-        return userRepository.editUser(user);
+    public UserDTO editUser(UserDTO userDTO) {
+        User user = new User(
+                userDTO.getId(),
+                userDTO.getEmail(),
+                userDTO.getName(),
+                userDTO.getSurname(),
+                null,
+                userDTO.getRole(),
+                userDTO.getStatus()
+        );
+        return userRepository.editUser(user).buildDTO();
     }
 
-    public String login(String username, String password) {
+    public String login(String email, String password) {
         String hashedPassword = DigestUtils.sha256Hex(password);
 
-        User user = userRepository.searchUserByEmail(username);
+        User user = userRepository.searchUserByEmail(email);
         if (user == null || !user.getHashedPassword().equals(hashedPassword)) {
             return null;
         }
@@ -64,8 +97,8 @@ public class UserService {
         return JWT.create()
                 .withIssuedAt(issuedAt)
                 .withExpiresAt(expiresAt)
-                .withSubject(username)
-                .withClaim("role", user.getRole())
+                .withSubject(email)
+                .withClaim("role", user.getRole().name())
                 .sign(algorithm);
     }
 
@@ -84,5 +117,13 @@ public class UserService {
         }
     */
         return true;
+    }
+
+    private List<UserDTO> buildListDTO(List<User> users) {
+        List<UserDTO> DTOs = new ArrayList<>();
+        for (User user : users) {
+            DTOs.add(user.buildDTO());
+        }
+        return DTOs;
     }
 }

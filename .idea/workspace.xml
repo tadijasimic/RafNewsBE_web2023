@@ -9,15 +9,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15e93882-fa6f-4040-9567-eee794732ab6" name="Changes" comment="News rest and api paging function for fetching news.">
+    <list default="true" id="15e93882-fa6f-4040-9567-eee794732ab6" name="Changes" comment="News by category search rest api.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/dto/CategoryDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/dto/CommentDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/dto/NewsDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/dto/TagDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/dto/UserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/migrations/data_migration.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/migrations/structure_migration.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/Comment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/News.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/News.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/enumeration/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/entity/enumeration/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/CategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/CommentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/NewsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/NewsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/TagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/TagRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/CategoryRepositoryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/CategoryRepositoryAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/CommentRepositoryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/CommentRepositoryAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/NewsRepositoryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/NewsRepositoryAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/TagRepositoryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/TagRepositoryAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/UserRepositoryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/UserRepositoryAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/mysql/MySQLRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/mysql/MySQLRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/CategoryResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/CategoryResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/CommentResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/CommentResource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/NewsResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/NewsResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/TagResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/TagResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/UserResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/CommentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/NewsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/NewsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/TagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/TagService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +57,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -52,27 +81,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
+    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ],
+    "RunConfigurationTargetLRU": [
+      "25cea4ba-6d7d-4838-b6e8-122afce2e5a3/schema/\"raf_news\"",
+      "25cea4ba-6d7d-4838-b6e8-122afce2e5a3"
+    ],
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/": [
+      "MySQL"
     ]
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RunDashboard">
+    <option name="openRunningConfigInTab" value="true" />
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.76">
+    <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <configuration name="Tomcat 9.0.76" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.76" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="11.0.6">
       <option name="OPEN_IN_BROWSER" value="false" />
       <deployment>
@@ -160,6 +210,17 @@
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="HTTP Request.All in generated-requests" />
+      <item itemvalue="HTTP Request.generated-requests | #1" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.76" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.generated-requests | #1" />
+        <item itemvalue="HTTP Request.All in generated-requests" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -172,7 +233,8 @@
       <workItem from="1687534025408" duration="4088000" />
       <workItem from="1687557580004" duration="1626000" />
       <workItem from="1687568605487" duration="14073000" />
-      <workItem from="1687611062882" duration="19142000" />
+      <workItem from="1687611062882" duration="31039000" />
+      <workItem from="1687743852806" duration="31388000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit.">
       <created>1687534135282</created>
@@ -209,7 +271,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687653590568</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="News by category search rest api.">
+      <created>1687658589371</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1687658589371</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,6 +301,7 @@
     <MESSAGE value="category repository." />
     <MESSAGE value="News rest api." />
     <MESSAGE value="News rest and api paging function for fetching news." />
-    <option name="LAST_COMMIT_MESSAGE" value="News rest and api paging function for fetching news." />
+    <MESSAGE value="News by category search rest api." />
+    <option name="LAST_COMMIT_MESSAGE" value="News by category search rest api." />
   </component>
 </project>
