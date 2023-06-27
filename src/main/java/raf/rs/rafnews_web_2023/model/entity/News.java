@@ -1,6 +1,6 @@
 package raf.rs.rafnews_web_2023.model.entity;
 
-import raf.rs.rafnews_web_2023.model.dto.NewsDTO;
+import raf.rs.rafnews_web_2023.dto.NewsDTO;
 
 import java.sql.Timestamp;
 
@@ -9,23 +9,27 @@ public class News {
     private int id;
     private final String title;
     private final String content;
+    private int visited;
+
     private final Timestamp creationTime;
     private final int authorId;
     private final int categoryId;
 
-    public News(int id, String title, String content, String creationTime, int authorId, int categoryId) {
+    public News(int id, String title, String content, int visited, String creationTime, int authorId, int categoryId) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.visited = visited;
         this.creationTime = Timestamp.valueOf(creationTime);
         this.authorId = authorId;
         this.categoryId = categoryId;
     }
 
-    public News(int id, String title, String content, Timestamp creationTime, int authorId, int categoryId) {
+    public News(int id, String title, String content, int visited, Timestamp creationTime, int authorId, int categoryId) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.visited = visited;
         this.creationTime = creationTime;
         this.authorId = authorId;
         this.categoryId = categoryId;
@@ -66,4 +70,7 @@ public class News {
         return categoryId;
     }
 
+    public int getVisited() {
+        return visited;
+    }
 }

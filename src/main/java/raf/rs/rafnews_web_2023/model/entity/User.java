@@ -1,6 +1,6 @@
 package raf.rs.rafnews_web_2023.model.entity;
 
-import raf.rs.rafnews_web_2023.model.dto.UserDTO;
+import raf.rs.rafnews_web_2023.dto.UserDTO;
 import raf.rs.rafnews_web_2023.model.entity.enumeration.Role;
 import raf.rs.rafnews_web_2023.model.entity.enumeration.Status;
 

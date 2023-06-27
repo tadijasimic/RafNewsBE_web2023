@@ -1,7 +1,7 @@
 package raf.rs.rafnews_web_2023.service;
 
 import raf.rs.rafnews_web_2023.model.entity.News;
-import raf.rs.rafnews_web_2023.model.dto.NewsDTO;
+import raf.rs.rafnews_web_2023.dto.NewsDTO;
 import raf.rs.rafnews_web_2023.repository.api.NewsRepositoryAPI;
 
 import javax.inject.Inject;
@@ -33,6 +33,7 @@ public class NewsService {
                 newsDTO.getId(),
                 newsDTO.getTitle(),
                 newsDTO.getContent(),
+                0,
                 newsDTO.getCreationTime(),
                 newsDTO.getAuthorId(),
                 newsDTO.getCategoryId()

@@ -1,6 +1,6 @@
 package raf.rs.rafnews_web_2023.resource;
 
-import raf.rs.rafnews_web_2023.model.dto.CategoryDTO;
+import raf.rs.rafnews_web_2023.dto.CategoryDTO;
 import raf.rs.rafnews_web_2023.service.CategoryService;
 
 import javax.inject.Inject;

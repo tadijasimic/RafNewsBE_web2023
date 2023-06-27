@@ -1,7 +1,7 @@
 package raf.rs.rafnews_web_2023.model.entity;
 
 
-import raf.rs.rafnews_web_2023.model.dto.CategoryDTO;
+import raf.rs.rafnews_web_2023.dto.CategoryDTO;
 
 public class Category {
 

@@ -32,7 +32,6 @@ public class RafNewsApp extends ResourceConfig {
                 bindAsContract(TagService.class);
                 bindAsContract(CommentService.class);
                 bindAsContract(NewsService.class);
-                System.out.println("A POPISOSASDADd");
 
             }
         };

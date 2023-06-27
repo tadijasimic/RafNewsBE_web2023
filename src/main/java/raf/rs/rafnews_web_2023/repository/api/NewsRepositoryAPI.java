@@ -22,9 +22,10 @@ public interface NewsRepositoryAPI {
         ID(1, "id", Integer.class),
         TITLE(2, "title", String.class),
         CONTENT(3, "content", String.class),
-        CREATION_TIME(4, "creation_time", Timestamp.class),
-        AUTHOR_ID(5, "author_id", Integer.class),
-        CATEGORY_ID(6, "category_id", Integer.class);
+        VISITED(4,"visited", Integer.class),
+        CREATION_TIME(5, "creation_time", Timestamp.class),
+        AUTHOR_ID(6, "author_id", Integer.class),
+        CATEGORY_ID(7, "category_id", Integer.class);
 
 
         public final Class<?> typeClass;

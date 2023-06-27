@@ -1,6 +1,7 @@
 package raf.rs.rafnews_web_2023.resource;
 
-import raf.rs.rafnews_web_2023.model.dto.NewsDTO;
+
+import raf.rs.rafnews_web_2023.dto.NewsDTO;
 import raf.rs.rafnews_web_2023.service.NewsService;
 
 import javax.inject.Inject;
@@ -33,11 +34,13 @@ public class NewsResource {
     public List<NewsDTO> newsInCategory(@PathParam("categoryId") int categoryId){
         return newsService.newsInCategory(categoryId);
     }
+
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public NewsDTO addNews(NewsDTO news) {
         return newsService.addNews(news);
     }
+
 
 
 }

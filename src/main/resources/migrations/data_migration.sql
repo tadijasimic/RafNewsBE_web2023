@@ -46,27 +46,27 @@ VALUES ('Technology', 'Explore the latest advancements in technology.'),
        ('Gaming', 'Stay updated on the latest gaming news and releases.');
 -- ----------------------------------------------------------------------------------------------------
 
-INSERT INTO news (title, content, creation_time, author_id, category_id)
-VALUES ('Breaking News: New Discoveries in Space', 'Scientists have made groundbreaking discoveries in outer space.', '2023-06-08 12:30:00', 8, 3),
-       ('Healthy Recipes for a Balanced Diet', 'Try these delicious and nutritious recipes for a healthier lifestyle.', '2023-05-15 09:45:00', 15, 7),
-       ('Interview with Bestselling Author', 'Get an exclusive interview with the author of the latest bestseller.', '2023-07-01 15:20:00', 6, 10),
-       ('Art Exhibition: Exploring Colors and Textures', 'Visit the art exhibition showcasing vibrant colors and unique textures.', '2023-06-21 18:10:00', 12, 5),
-       ('Tech News: Latest Gadgets and Innovations', 'Stay updated on the latest technology trends and gadgets.', '2023-05-29 10:05:00', 9, 1),
-       ('Movie Review: Blockbuster Hit or Flop?', 'Read our review of the highly anticipated movie that everyone is talking about.', '2023-06-05 16:45:00', 4, 9),
-       ('Travel Guide: Hidden Gems in Europe', 'Discover the hidden gems and off-the-beaten-path destinations in Europe.', '2023-06-12 14:55:00', 18, 2),
-       ('Sports Update: Exciting Matches and Upsets', 'Get the latest updates on sports events and thrilling matches.', '2023-06-17 11:25:00', 5, 6),
-       ('Fashion Trends: What to Wear This Season', 'Explore the latest fashion trends and style inspirations for the current season.', '2023-06-10 13:40:00', 11, 4),
-       ('Health and Wellness Tips: Stay Fit and Healthy', 'Learn valuable tips and advice for maintaining a healthy lifestyle.', '2023-05-25 07:55:00', 7, 8),
-       ('Tech Breakthrough: New AI Algorithm', 'A groundbreaking AI algorithm has revolutionized the tech industry.', '2023-06-29 19:30:00', 14, 3),
-       ('Exclusive Interview with Celebrity Chef', 'Get insights from a renowned celebrity chef about culinary secrets.', '2023-07-03 08:15:00', 2, 7),
-       ('Science News: Latest Discoveries and Research', 'Stay informed about the latest scientific breakthroughs and research findings.', '2023-05-18 17:20:00', 17, 10),
-       ('Music Festival: Unforgettable Performances and Vibes', 'Experience the energy and excitement of a music festival with top-notch performances.', '2023-06-23 11:50:00', 3, 5),
-       ('Business Insights: Strategies for Success', 'Learn valuable business strategies from industry experts and successful entrepreneurs.', '2023-06-07 09:10:00', 10, 1),
-       ('Book Review: Must-Read Novels of the Year', 'Discover the must-read novels that have captivated readers worldwide.', '2023-06-15 14:25:00', 19, 9),
-       ('Adventure Travel: Thrilling Destinations and Activities', 'Embark on an adventurous journey to breathtaking destinations and thrilling activities.', '2023-07-02 16:35:00', 1, 2),
-       ('Gaming News: Latest Releases and Updates', 'Stay updated on the latest gaming news, releases, and exciting updates.', '2023-05-28 13:15:00', 13, 6),
-       ('Beauty Tips: Skincare and Makeup Advice', 'Get beauty tips and tricks for flawless skincare and stunning makeup looks.', '2023-06-13 10:40:00', 16, 4),
-       ('Fitness and Exercise: Achieve Your Health Goals', 'Find inspiration and guidance to achieve your fitness and health goals.', '2023-06-18 12:50:00', 20, 8);
+INSERT INTO news (title, content, visited, creation_time, author_id, category_id)
+VALUES ('Breaking News: New Discoveries in Space', 'Scientists have made groundbreaking discoveries in outer space.', 97, '2023-06-08 12:30:00', 8, 3),
+       ('Healthy Recipes for a Balanced Diet', 'Try these delicious and nutritious recipes for a healthier lifestyle.', 3, '2023-05-15 09:45:00', 15, 7),
+       ('Interview with Bestselling Author', 'Get an exclusive interview with the author of the latest bestseller.', 0, '2023-07-01 15:20:00', 6, 10),
+       ('Art Exhibition: Exploring Colors and Textures', 'Visit the art exhibition showcasing vibrant colors and unique textures.', 54, '2023-06-21 18:10:00', 12, 5),
+       ('Tech News: Latest Gadgets and Innovations', 'Stay updated on the latest technology trends and gadgets.', 1234, '2023-05-29 10:05:00', 9, 1),
+       ('Movie Review: Blockbuster Hit or Flop?', 'Read our review of the highly anticipated movie that everyone is talking about.', 231, '2023-06-05 16:45:00', 4, 9),
+       ('Travel Guide: Hidden Gems in Europe', 'Discover the hidden gems and off-the-beaten-path destinations in Europe.', 32414, '2023-06-12 14:55:00', 18, 2),
+       ('Sports Update: Exciting Matches and Upsets', 'Get the latest updates on sports events and thrilling matches.', 986, '2023-06-17 11:25:00', 5, 6),
+       ('Fashion Trends: What to Wear This Season', 'Explore the latest fashion trends and style inspirations for the current season.', 695,'2023-06-10 13:40:00', 11, 4),
+       ('Health and Wellness Tips: Stay Fit and Healthy', 'Learn valuable tips and advice for maintaining a healthy lifestyle.', 432,'2023-05-25 07:55:00', 7, 8),
+       ('Tech Breakthrough: New AI Algorithm', 'A groundbreaking AI algorithm has revolutionized the tech industry.', 987, '2023-06-29 19:30:00', 14, 3),
+       ('Exclusive Interview with Celebrity Chef', 'Get insights from a renowned celebrity chef about culinary secrets.', 0,'2023-07-03 08:15:00', 2, 7),
+       ('Science News: Latest Discoveries and Research', 'Stay informed about the latest scientific breakthroughs and research findings.', 45,'2023-05-18 17:20:00', 17, 10),
+       ('Music Festival: Unforgettable Performances and Vibes', 'Experience the energy and excitement of a music festival with top-notch performances.', 78,'2023-06-23 11:50:00', 3, 5),
+       ('Business Insights: Strategies for Success', 'Learn valuable business strategies from industry experts and successful entrepreneurs.', 456, '2023-06-07 09:10:00', 10, 1),
+       ('Book Review: Must-Read Novels of the Year', 'Discover the must-read novels that have captivated readers worldwide.', 876, '2023-06-15 14:25:00', 19, 9),
+       ('Adventure Travel: Thrilling Destinations and Activities', 'Embark on an adventurous journey to breathtaking destinations and thrilling activities.', 45536, '2023-07-02 16:35:00', 1, 2),
+       ('Gaming News: Latest Releases and Updates', 'Stay updated on the latest gaming news, releases, and exciting updates.', 7876,'2023-05-28 13:15:00', 13, 6),
+       ('Beauty Tips: Skincare and Makeup Advice', 'Get beauty tips and tricks for flawless skincare and stunning makeup looks.', 43634,'2023-06-13 10:40:00', 16, 4),
+       ('Fitness and Exercise: Achieve Your Health Goals', 'Find inspiration and guidance to achieve your fitness and health goals.', 8778,'2023-06-18 12:50:00', 20, 8);
 
 -- ----------------------------------------------------------------------------------------------------------------------
 

@@ -29,6 +29,7 @@ CREATE TABLE news
     id            INT AUTO_INCREMENT PRIMARY KEY,
     title         VARCHAR(500),
     content       VARCHAR(700),
+    visited       INT,
     creation_time TIMESTAMP,
     author_id     INT,
     category_id   INT,

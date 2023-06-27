@@ -1,7 +1,7 @@
 package raf.rs.rafnews_web_2023.service;
 
 import raf.rs.rafnews_web_2023.model.entity.Comment;
-import raf.rs.rafnews_web_2023.model.dto.CommentDTO;
+import raf.rs.rafnews_web_2023.dto.CommentDTO;
 import raf.rs.rafnews_web_2023.repository.api.CommentRepositoryAPI;
 
 import javax.inject.Inject;

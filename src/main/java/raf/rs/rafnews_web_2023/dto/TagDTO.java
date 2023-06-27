@@ -1,4 +1,4 @@
-package raf.rs.rafnews_web_2023.model.dto;
+package raf.rs.rafnews_web_2023.dto;
 
 import raf.rs.rafnews_web_2023.model.entity.Tag;
 
