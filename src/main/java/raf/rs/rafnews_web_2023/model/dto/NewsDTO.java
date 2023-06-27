@@ -1,6 +1,6 @@
-package raf.rs.rafnews_web_2023.entity.dto;
+package raf.rs.rafnews_web_2023.model.dto;
 
-import raf.rs.rafnews_web_2023.entity.News;
+import raf.rs.rafnews_web_2023.model.entity.News;
 
 public class NewsDTO {
 

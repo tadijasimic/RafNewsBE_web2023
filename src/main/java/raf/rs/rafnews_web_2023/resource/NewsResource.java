@@ -1,6 +1,6 @@
 package raf.rs.rafnews_web_2023.resource;
 
-import raf.rs.rafnews_web_2023.entity.dto.NewsDTO;
+import raf.rs.rafnews_web_2023.model.dto.NewsDTO;
 import raf.rs.rafnews_web_2023.service.NewsService;
 
 import javax.inject.Inject;

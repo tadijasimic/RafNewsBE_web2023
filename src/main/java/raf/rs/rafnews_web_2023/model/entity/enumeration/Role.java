@@ -1,4 +1,4 @@
-package raf.rs.rafnews_web_2023.entity.enumeration;
+package raf.rs.rafnews_web_2023.model.entity.enumeration;
 
 public enum Role {
 

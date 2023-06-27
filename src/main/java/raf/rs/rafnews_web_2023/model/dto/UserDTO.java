@@ -1,6 +1,6 @@
-package raf.rs.rafnews_web_2023.entity.dto;
+package raf.rs.rafnews_web_2023.model.dto;
 
-import raf.rs.rafnews_web_2023.entity.User;
+import raf.rs.rafnews_web_2023.model.entity.User;
 
 public class UserDTO {
 

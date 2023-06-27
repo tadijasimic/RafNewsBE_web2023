@@ -1,11 +1,10 @@
 package raf.rs.rafnews_web_2023.service;
 
-import raf.rs.rafnews_web_2023.entity.News;
-import raf.rs.rafnews_web_2023.entity.dto.NewsDTO;
+import raf.rs.rafnews_web_2023.model.entity.News;
+import raf.rs.rafnews_web_2023.model.dto.NewsDTO;
 import raf.rs.rafnews_web_2023.repository.api.NewsRepositoryAPI;
 
 import javax.inject.Inject;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 

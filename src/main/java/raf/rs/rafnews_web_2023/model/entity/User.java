@@ -1,8 +1,8 @@
-package raf.rs.rafnews_web_2023.entity;
+package raf.rs.rafnews_web_2023.model.entity;
 
-import raf.rs.rafnews_web_2023.entity.dto.UserDTO;
-import raf.rs.rafnews_web_2023.entity.enumeration.Role;
-import raf.rs.rafnews_web_2023.entity.enumeration.Status;
+import raf.rs.rafnews_web_2023.model.dto.UserDTO;
+import raf.rs.rafnews_web_2023.model.entity.enumeration.Role;
+import raf.rs.rafnews_web_2023.model.entity.enumeration.Status;
 
 public class User {
 

@@ -1,6 +1,6 @@
 package raf.rs.rafnews_web_2023.implementation;
 
-import raf.rs.rafnews_web_2023.entity.Comment;
+import raf.rs.rafnews_web_2023.model.entity.Comment;
 import raf.rs.rafnews_web_2023.repository.api.CommentRepositoryAPI;
 import raf.rs.rafnews_web_2023.repository.mysql.MySQLRepository;
 

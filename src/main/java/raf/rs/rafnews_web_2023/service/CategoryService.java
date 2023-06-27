@@ -1,8 +1,8 @@
 package raf.rs.rafnews_web_2023.service;
 
 
-import raf.rs.rafnews_web_2023.entity.Category;
-import raf.rs.rafnews_web_2023.entity.dto.CategoryDTO;
+import raf.rs.rafnews_web_2023.model.dto.CategoryDTO;
+import raf.rs.rafnews_web_2023.model.entity.Category;
 import raf.rs.rafnews_web_2023.repository.api.CategoryRepositoryAPI;
 
 import javax.inject.Inject;
@@ -14,11 +14,9 @@ public class CategoryService {
     @Inject
     CategoryRepositoryAPI categoryRepository;
 
-    
 
-    
-    public CategoryService(){
-        System.out.println(this);
+    public CategoryService() {
+
     }
 
     public List<CategoryDTO> allCategories() {
@@ -39,13 +37,14 @@ public class CategoryService {
         Category category = new Category(categoryDTO.getId(), categoryDTO.getName(), categoryDTO.getDescription());
         categoryRepository.deleteCategory(category);
     }
+
     public CategoryDTO searchCategoryByName(String name) {
         return categoryRepository.searchCategoryByName(name).buildDTO();
     }
 
     private List<CategoryDTO> buildListDTO(List<Category> categories) {
         List<CategoryDTO> DTOs = new ArrayList<>();
-        for(Category category: categories){
+        for (Category category : categories) {
             DTOs.add(category.buildDTO());
         }
         return DTOs;

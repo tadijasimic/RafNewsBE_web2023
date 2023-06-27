@@ -1,6 +1,6 @@
 package raf.rs.rafnews_web_2023.repository.api;
 
-import raf.rs.rafnews_web_2023.entity.News;
+import raf.rs.rafnews_web_2023.model.entity.News;
 
 import java.sql.Timestamp;
 import java.util.List;

@@ -1,6 +1,6 @@
-package raf.rs.rafnews_web_2023.entity;
+package raf.rs.rafnews_web_2023.model.entity;
 
-import raf.rs.rafnews_web_2023.entity.dto.CommentDTO;
+import raf.rs.rafnews_web_2023.model.dto.CommentDTO;
 
 import java.sql.Timestamp;
 

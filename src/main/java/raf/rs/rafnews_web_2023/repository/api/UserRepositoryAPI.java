@@ -1,8 +1,7 @@
 package raf.rs.rafnews_web_2023.repository.api;
 
 
-import raf.rs.rafnews_web_2023.entity.User;
-import raf.rs.rafnews_web_2023.entity.dto.UserDTO;
+import raf.rs.rafnews_web_2023.model.entity.User;
 
 import java.util.List;
 
