@@ -28,6 +28,8 @@ public abstract class CommentDTO_Converter {
                             authors.get(i)
                     )
             );
+            System.out.println("KITOTIJE");
+
         }
         return dtoList;
     }

@@ -115,7 +115,7 @@ VALUES (1, 3),
        (10, 2),
        (10, 14);
 -- ------------------------------------------------------------------------------------------------
-INSERT INTO comment (content, creation_time, user_id, news_id)
+INSERT INTO comment (content, creation_time, author_id, news_id)
 VALUES ('Great article!', '2023-06-01 10:23:45', 1, 2),
        ('Interesting read!', '2023-06-02 14:56:32', 3, 1),
        ('Nice work!', '2023-06-03 09:12:18', 2, 3),

@@ -5,10 +5,9 @@ import raf.rs.rafnews_web_2023.model.News;
 public class NewsPreviewDTO {
 
     private int id;
-    private AuthorDTO author;
     private String title;
-
-    private String newsPreview;
+    private String contentPreview;
+    private AuthorDTO author;
 
     public NewsPreviewDTO() {
 
@@ -16,9 +15,10 @@ public class NewsPreviewDTO {
 
     public NewsPreviewDTO(News news, AuthorDTO authorDTO) {
         id = news.getId();
-        author = authorDTO;
         title = news.getTitle();
-        newsPreview = news.getContent().substring(0, Math.min(news.getContent().length(), 500));
+        contentPreview = news.getContent().substring(0, Math.min(news.getContent().length(), 500));
+        author = authorDTO;
+
     }
 
     public int getId() {
@@ -29,8 +29,8 @@ public class NewsPreviewDTO {
         return author;
     }
 
-    public String getNewsPreview() {
-        return newsPreview;
+    public String getContentPreview() {
+        return contentPreview;
     }
 
     public String getTitle() {

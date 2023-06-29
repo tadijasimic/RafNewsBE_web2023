@@ -36,6 +36,18 @@ CREATE TABLE news
     FOREIGN KEY (author_id) REFERENCES user (id),
     FOREIGN KEY (category_id) REFERENCES category (id)
 );
+-- COMMENTS --
+CREATE TABLE comment
+(
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    content       VARCHAR(500),
+    creation_time TIMESTAMP,
+    author_id       INT,
+    news_id       INT,
+    FOREIGN KEY (author_id) REFERENCES user (id),
+    FOREIGN KEY (news_id) REFERENCES news (id),
+    FOREIGN KEY (news_id) REFERENCES news (id) ON DELETE CASCADE
+);
 
 -- TAGS --
 CREATE TABLE tags
@@ -54,18 +66,7 @@ CREATE TABLE news_tag
     FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
 );
 
--- COMMENTS --
-CREATE TABLE comment
-(
-    id            INT AUTO_INCREMENT PRIMARY KEY,
-    content       VARCHAR(500),
-    creation_time TIMESTAMP,
-    user_id       INT,
-    news_id       INT,
-    FOREIGN KEY (user_id) REFERENCES user (id),
-    FOREIGN KEY (news_id) REFERENCES news (id),
-    FOREIGN KEY (news_id) REFERENCES news (id) ON DELETE CASCADE
-);
+
 
 
 
