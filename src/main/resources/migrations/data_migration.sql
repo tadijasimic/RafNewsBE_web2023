@@ -1,26 +1,26 @@
 use raf_news;
 
 INSERT INTO user (email, name, surname, password, role, status)
-VALUES ('john@example.com', 'John', 'Doe', 'password1', 'admin', 'active'),
-       ('jane@example.com', 'Jane', 'Smith', 'password2', 'content_creator', 'active'),
-       ('michael@example.com', 'Michael', 'Johnson', 'password3', 'content_viewer', 'deactivated'),
-       ('susan@example.com', 'Susan', 'Williams', 'password4', 'admin', 'active'),
-       ('david@example.com', 'David', 'Brown', 'password5', 'content_creator', 'deactivated'),
-       ('sarah@example.com', 'Sarah', 'Jones', 'password6', 'content_viewer', 'active'),
-       ('robert@example.com', 'Robert', 'Garcia', 'password7', 'admin', 'deactivated'),
-       ('lisa@example.com', 'Lisa', 'Miller', 'password8', 'content_creator', 'active'),
-       ('william@example.com', 'William', 'Davis', 'password9', 'content_viewer', 'deactivated'),
-       ('linda@example.com', 'Linda', 'Rodriguez', 'password10', 'admin', 'active'),
-       ('christopher@example.com', 'Christopher', 'Martinez', 'password11', 'content_creator', 'active'),
-       ('karen@example.com', 'Karen', 'Hernandez', 'password12', 'content_viewer', 'deactivated'),
-       ('matthew@example.com', 'Matthew', 'Lopez', 'password13', 'admin', 'active'),
-       ('amy@example.com', 'Amy', 'Gonzalez', 'password14', 'content_creator', 'deactivated'),
-       ('andrew@example.com', 'Andrew', 'Wilson', 'password15', 'content_viewer', 'active'),
-       ('emily@example.com', 'Emily', 'Anderson', 'password16', 'admin', 'deactivated'),
-       ('user17@example.com', 'User17', 'Surname17', 'password17', 'admin', 'active'),
-       ('user18@example.com', 'User18', 'Surname18', 'password18', 'content_creator', 'deactivated'),
-       ('user19@example.com', 'User19', 'Surname19', 'password19', 'content_viewer', 'active'),
-       ('user20@example.com', 'User20', 'Surname20', 'password20', 'admin', 'deactivated');
+VALUES ('john@example.com', 'John', 'Doe', 'password1', 'CONTENT_VIEWER', 'ACTIVE'),
+       ('jane@example.com', 'Jane', 'Smith', 'password2', 'ADMIN', 'DEACTIVATED'),
+       ('michael@example.com', 'Michael', 'Johnson', 'password3', 'CONTENT_VIEWER', 'DEACTIVATED'),
+       ('susan@example.com', 'Susan', 'Williams', 'password4', 'CONTENT_VIEWER', 'ACTIVE'),
+       ('david@example.com', 'David', 'Brown', 'password5', 'CONTENT_CREATOR', 'DEACTIVATED'),
+       ('sarah@example.com', 'Sarah', 'Jones', 'password6', 'ADMIN', 'ACTIVE'),
+       ('robert@example.com', 'Robert', 'Garcia', 'password7', 'ADMIN', 'DEACTIVATED'),
+       ('lisa@example.com', 'Lisa', 'Miller', 'password8', 'CONTENT_CREATOR', 'DEACTIVATED'),
+       ('william@example.com', 'William', 'Davis', 'password9', 'CONTENT_CREATOR', 'DEACTIVATED'),
+       ('linda@example.com', 'Linda', 'Rodriguez', 'password10', 'CONTENT_CREATOR', 'ACTIVE'),
+       ('christopher@example.com', 'Christopher', 'Martinez', 'password11', 'CONTENT_VIEWER', 'ACTIVE'),
+       ('karen@example.com', 'Karen', 'Hernandez', 'password12', 'CONTENT_CREATOR', 'DEACTIVATED'),
+       ('matthew@example.com', 'Matthew', 'Lopez', 'password13', 'CONTENT_CREATOR', 'ACTIVE'),
+       ('amy@example.com', 'Amy', 'Gonzalez', 'password14', 'ADMIN', 'DEACTIVATED'),
+       ('andrew@example.com', 'Andrew', 'Wilson', 'password15', 'CONTENT_VIEWER', 'ACTIVE'),
+       ('emily@example.com', 'Emily', 'Anderson', 'password16', 'CONTENT_VIEWER', 'DEACTIVATED'),
+       ('user17@example.com', 'User17', 'Surname17', 'password17', 'ADMIN', 'ACTIVE'),
+       ('user18@example.com', 'User18', 'Surname18', 'password18', 'CONTENT_CREATOR', 'ACTIVE'),
+       ('user19@example.com', 'User19', 'Surname19', 'password19', 'ADMIN', 'ACTIVE'),
+       ('user20@example.com', 'User20', 'Surname20', 'password20', 'CONTENT_VIEWER', 'DEACTIVATED');
 -- ---------------------------------------------------------------------------------------------------
 
 INSERT INTO category (name, description)
@@ -55,18 +55,18 @@ VALUES ('Breaking News: New Discoveries in Space', 'Scientists have made groundb
        ('Movie Review: Blockbuster Hit or Flop?', 'Read our review of the highly anticipated movie that everyone is talking about.', 231, '2023-06-05 16:45:00', 4, 9),
        ('Travel Guide: Hidden Gems in Europe', 'Discover the hidden gems and off-the-beaten-path destinations in Europe.', 32414, '2023-06-12 14:55:00', 18, 2),
        ('Sports Update: Exciting Matches and Upsets', 'Get the latest updates on sports events and thrilling matches.', 986, '2023-06-17 11:25:00', 5, 6),
-       ('Fashion Trends: What to Wear This Season', 'Explore the latest fashion trends and style inspirations for the current season.', 695,'2023-06-10 13:40:00', 11, 4),
-       ('Health and Wellness Tips: Stay Fit and Healthy', 'Learn valuable tips and advice for maintaining a healthy lifestyle.', 432,'2023-05-25 07:55:00', 7, 8),
+       ('Fashion Trends: What to Wear This Season', 'Explore the latest fashion trends and style inspirations for the current season.', 695, '2023-06-10 13:40:00', 11, 4),
+       ('Health and Wellness Tips: Stay Fit and Healthy', 'Learn valuable tips and advice for maintaining a healthy lifestyle.', 432, '2023-05-25 07:55:00', 7, 8),
        ('Tech Breakthrough: New AI Algorithm', 'A groundbreaking AI algorithm has revolutionized the tech industry.', 987, '2023-06-29 19:30:00', 14, 3),
-       ('Exclusive Interview with Celebrity Chef', 'Get insights from a renowned celebrity chef about culinary secrets.', 0,'2023-07-03 08:15:00', 2, 7),
-       ('Science News: Latest Discoveries and Research', 'Stay informed about the latest scientific breakthroughs and research findings.', 45,'2023-05-18 17:20:00', 17, 10),
-       ('Music Festival: Unforgettable Performances and Vibes', 'Experience the energy and excitement of a music festival with top-notch performances.', 78,'2023-06-23 11:50:00', 3, 5),
+       ('Exclusive Interview with Celebrity Chef', 'Get insights from a renowned celebrity chef about culinary secrets.', 0, '2023-07-03 08:15:00', 2, 7),
+       ('Science News: Latest Discoveries and Research', 'Stay informed about the latest scientific breakthroughs and research findings.', 45, '2023-05-18 17:20:00', 17, 10),
+       ('Music Festival: Unforgettable Performances and Vibes', 'Experience the energy and excitement of a music festival with top-notch performances.', 78, '2023-06-23 11:50:00', 3, 5),
        ('Business Insights: Strategies for Success', 'Learn valuable business strategies from industry experts and successful entrepreneurs.', 456, '2023-06-07 09:10:00', 10, 1),
        ('Book Review: Must-Read Novels of the Year', 'Discover the must-read novels that have captivated readers worldwide.', 876, '2023-06-15 14:25:00', 19, 9),
        ('Adventure Travel: Thrilling Destinations and Activities', 'Embark on an adventurous journey to breathtaking destinations and thrilling activities.', 45536, '2023-07-02 16:35:00', 1, 2),
-       ('Gaming News: Latest Releases and Updates', 'Stay updated on the latest gaming news, releases, and exciting updates.', 7876,'2023-05-28 13:15:00', 13, 6),
-       ('Beauty Tips: Skincare and Makeup Advice', 'Get beauty tips and tricks for flawless skincare and stunning makeup looks.', 43634,'2023-06-13 10:40:00', 16, 4),
-       ('Fitness and Exercise: Achieve Your Health Goals', 'Find inspiration and guidance to achieve your fitness and health goals.', 8778,'2023-06-18 12:50:00', 20, 8);
+       ('Gaming News: Latest Releases and Updates', 'Stay updated on the latest gaming news, releases, and exciting updates.', 7876, '2023-05-28 13:15:00', 13, 6),
+       ('Beauty Tips: Skincare and Makeup Advice', 'Get beauty tips and tricks for flawless skincare and stunning makeup looks.', 43634, '2023-06-13 10:40:00', 16, 4),
+       ('Fitness and Exercise: Achieve Your Haealth Goals', 'Find inspiration and guidance to achieve your fitness and health goals.', 8778, '2023-06-18 12:50:00', 20, 8);
 
 -- ----------------------------------------------------------------------------------------------------------------------
 

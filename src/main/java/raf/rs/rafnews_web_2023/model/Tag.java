@@ -1,4 +1,4 @@
-package raf.rs.rafnews_web_2023.model.entity;
+package raf.rs.rafnews_web_2023.model;
 
 
 import raf.rs.rafnews_web_2023.dto.TagDTO;
@@ -13,9 +13,6 @@ public class Tag {
         this.name = name;
     }
 
-    public TagDTO buildDTO() {
-        return new TagDTO(this);
-    }
 
     public int getId() {
         return id;

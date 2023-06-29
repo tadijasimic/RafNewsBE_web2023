@@ -1,52 +1,74 @@
 package raf.rs.rafnews_web_2023.service;
 
-import raf.rs.rafnews_web_2023.model.entity.News;
+import raf.rs.rafnews_web_2023.converter.NewsDTO_Converter;
 import raf.rs.rafnews_web_2023.dto.NewsDTO;
+import raf.rs.rafnews_web_2023.dto.NewsPreviewDTO;
+import raf.rs.rafnews_web_2023.model.News;
 import raf.rs.rafnews_web_2023.repository.api.NewsRepositoryAPI;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 
 public class NewsService {
     @Inject
-    NewsRepositoryAPI newsRepository;
+    private NewsRepositoryAPI newsRepository;
+
+    @Inject
+    private UserService userService;
+    @Inject
+    private CommentService commentService;
 
     public NewsService() {
         System.out.println(this);
     }
 
-    public List<NewsDTO> allNews() {
-        return buildListDTO(newsRepository.allNews());
+    public List<NewsPreviewDTO> allNews() {
+        List<News> news = newsRepository.allNews();
+        return NewsDTO_Converter
+                .convertToNewsPreviewDTOList(
+                        news,
+                        userService.searchNewsAuthors(news)
+                );
     }
 
-    public List<NewsDTO> newsForPage(int pageIndex, int pageSize) {
-        return buildListDTO(newsRepository.newsForPage(pageIndex, pageSize));
+    public List<NewsPreviewDTO> newsForPage(int pageIndex, int pageSize) {
+        List<News> news = newsRepository.newsForPage(pageIndex, pageSize);
+        return NewsDTO_Converter
+                .convertToNewsPreviewDTOList(
+                        news,
+                        userService.searchNewsAuthors(news)
+                );
     }
 
-    public List<NewsDTO> newsInCategory(int categoryId) {
-        return buildListDTO(newsRepository.newsInCategory(categoryId));
+    public List<NewsPreviewDTO> newsInCategory(int categoryId) {
+        List<News> news = newsRepository.newsInCategory(categoryId);
+        return NewsDTO_Converter
+                .convertToNewsPreviewDTOList(
+                        news,
+                        userService.searchNewsAuthors(news)
+                );
+    }
+
+    public NewsDTO findById(int id) {
+        News news = newsRepository.findById(id);
+        return NewsDTO_Converter
+                .convertToNewsDTO(
+                        news,
+                        userService.searchAuthor(news),
+                        commentService.commentsOnNews(news.getId())
+                );
     }
 
     public NewsDTO addNews(NewsDTO newsDTO) {
-        News news = new News(
-                newsDTO.getId(),
-                newsDTO.getTitle(),
-                newsDTO.getContent(),
-                0,
-                newsDTO.getCreationTime(),
-                newsDTO.getAuthorId(),
-                newsDTO.getCategoryId()
-        );
-        return newsRepository.addNews(news).buildDTO();
-    }
+        News news = NewsDTO_Converter.convertToNews(newsDTO);
+        news = newsRepository.addNews(news);
 
-    private List<NewsDTO> buildListDTO(List<News> newsList) {
-        List<NewsDTO> DTOs = new ArrayList<>();
-        for (News news : newsList) {
-            DTOs.add(news.buildDTO());
-        }
-        return DTOs;
+        return NewsDTO_Converter
+                .convertToNewsDTO(
+                        news,
+                        userService.searchAuthor(news),
+                        commentService.commentsOnNews(news.getId())
+                );
     }
 
 

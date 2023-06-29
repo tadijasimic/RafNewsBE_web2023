@@ -10,38 +10,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15e93882-fa6f-4040-9567-eee794732ab6" name="Changes" comment="factorization">
-      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/converter/CategoryDTO_Converter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/converter/CommentDTO_Converter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/converter/NewsDTO_Converter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/converter/TagDTO_Converter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/converter/UserDTO_Converter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/AuthorDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/NewsPreviewDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/RafNewsApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/RafNewsApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/NewsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/NewsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/dto/CategoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/CategoryDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/dto/CommentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/CommentDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/dto/NewsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/NewsDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/dto/TagDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/TagDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/UserDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/News.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/News.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/Tag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/converter/CategoryDTO_Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/converter/CategoryDTO_Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/converter/CommentDTO_Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/converter/CommentDTO_Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/converter/NewsDTO_Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/converter/NewsDTO_Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/converter/TagDTO_Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/converter/TagDTO_Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/converter/UserDTO_Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/converter/UserDTO_Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/AuthorDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/AuthorDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/CategoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/CategoryDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/CommentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/CommentDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/NewsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/NewsDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/TagDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/TagDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/filter/AuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/filter/AuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/implementation/CategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/implementation/CommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/NewsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/implementation/NewsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/TagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/implementation/TagRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/implementation/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/News.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/News.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/enumeration/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/enumeration/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/entity/enumeration/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/enumeration/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/CategoryRepositoryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/CategoryRepositoryAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/CommentRepositoryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/CommentRepositoryAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/NewsRepositoryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/NewsRepositoryAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/CategoryResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/CategoryResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/TagRepositoryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/TagRepositoryAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/UserRepositoryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/UserRepositoryAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/CommentResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/CommentResource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/NewsResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/NewsResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/TagResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/TagResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/UserResource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/CategoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/CommentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/NewsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/NewsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/TagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/TagService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/migrations/data_migration.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/migrations/data_migration.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/migrations/structure_migration.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/migrations/structure_migration.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +80,9 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2Rc0NTjSu8Ba5vuOa7aVLYmpvho" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -86,13 +99,15 @@
     &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
     &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Tadija/WebstormProjects/raf_news_fe&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -123,7 +138,7 @@
       <deployment>
         <artifact name="RafNews_web_2023:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/" />
+            <option name="CONTEXT_PATH" value="/micaga" />
           </settings>
         </artifact>
       </deployment>
@@ -230,7 +245,10 @@
       <workItem from="1687568605487" duration="14073000" />
       <workItem from="1687611062882" duration="31039000" />
       <workItem from="1687743852806" duration="32056000" />
-      <workItem from="1687879426628" duration="7555000" />
+      <workItem from="1687879426628" duration="7597000" />
+      <workItem from="1687897744143" duration="8505000" />
+      <workItem from="1687916297053" duration="13667000" />
+      <workItem from="1687963674465" duration="22570000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit.">
       <created>1687534135282</created>
@@ -288,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687879969764</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="factorization">
+      <created>1687888176192</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1687888176192</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,5 +340,9 @@
     <MESSAGE value="big chungus" />
     <MESSAGE value="factorization" />
     <option name="LAST_COMMIT_MESSAGE" value="factorization" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

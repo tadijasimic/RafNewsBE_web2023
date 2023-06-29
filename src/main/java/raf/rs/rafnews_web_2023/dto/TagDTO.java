@@ -1,6 +1,6 @@
 package raf.rs.rafnews_web_2023.dto;
 
-import raf.rs.rafnews_web_2023.model.entity.Tag;
+import raf.rs.rafnews_web_2023.model.Tag;
 
 public class TagDTO {
 
@@ -25,4 +25,7 @@ public class TagDTO {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
 }

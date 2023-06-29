@@ -1,6 +1,6 @@
 package raf.rs.rafnews_web_2023.dto;
 
-import raf.rs.rafnews_web_2023.model.entity.Comment;
+import raf.rs.rafnews_web_2023.model.Comment;
 
 public class CommentDTO {
 
@@ -9,20 +9,18 @@ public class CommentDTO {
 
     private String creationTime;
 
-    private int authorId;
+    private AuthorDTO author;
 
-    private int newsId;
 
     public  CommentDTO(){
 
     }
 
-    public CommentDTO(Comment comment) {
+    public CommentDTO(Comment comment, AuthorDTO author) {
         id = comment.getId();
         content = comment.getContent();
         creationTime = comment.getCreationTime().toString();
-        authorId = comment.getAuthorId();
-        newsId = comment.getNewsId();
+        this.author = author;
     }
 
     public void setId(int id) {
@@ -37,13 +35,7 @@ public class CommentDTO {
         this.creationTime = creationTime;
     }
 
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
-    }
 
-    public void setNewsId(int newsId) {
-        this.newsId = newsId;
-    }
 
     public int getId() {
         return id;
@@ -57,11 +49,8 @@ public class CommentDTO {
         return creationTime;
     }
 
-    public int getAuthorId() {
-        return authorId;
+    public AuthorDTO getAuthor() {
+        return author;
     }
 
-    public int getNewsId() {
-        return newsId;
-    }
 }

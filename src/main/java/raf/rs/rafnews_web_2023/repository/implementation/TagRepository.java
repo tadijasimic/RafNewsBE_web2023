@@ -1,6 +1,6 @@
-package raf.rs.rafnews_web_2023.implementation;
+package raf.rs.rafnews_web_2023.repository.implementation;
 
-import raf.rs.rafnews_web_2023.model.entity.Tag;
+import raf.rs.rafnews_web_2023.model.Tag;
 import raf.rs.rafnews_web_2023.repository.api.TagRepositoryAPI;
 import raf.rs.rafnews_web_2023.repository.mysql.MySQLRepository;
 

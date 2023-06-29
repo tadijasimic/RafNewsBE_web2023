@@ -3,8 +3,8 @@ package raf.rs.rafnews_web_2023;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
-import raf.rs.rafnews_web_2023.implementation.*;
 import raf.rs.rafnews_web_2023.repository.api.*;
+import raf.rs.rafnews_web_2023.repository.implementation.*;
 import raf.rs.rafnews_web_2023.service.*;
 
 import javax.inject.Singleton;
@@ -12,6 +12,7 @@ import javax.ws.rs.ApplicationPath;
 
 @ApplicationPath("/api")
 public class RafNewsApp extends ResourceConfig {
+
 
     public RafNewsApp() {
         property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
@@ -28,10 +29,13 @@ public class RafNewsApp extends ResourceConfig {
 
 
                 bindAsContract(UserService.class);
+                bindAsContract(UserService.class);
+                bindAsContract(UserService.class);
                 bindAsContract(CategoryService.class);
                 bindAsContract(TagService.class);
                 bindAsContract(CommentService.class);
                 bindAsContract(NewsService.class);
+
 
             }
         };

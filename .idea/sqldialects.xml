@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/CategoryRepository.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/NewsRepository.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/implementation/UserRepository.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/implementation/CategoryRepository.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/implementation/NewsRepository.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/implementation/UserRepository.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/migrations/data_migration.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/migrations/structure_migration.sql" dialect="MySQL" />
     <file url="PROJECT" dialect="MySQL" />

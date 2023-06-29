@@ -1,7 +1,7 @@
-package raf.rs.rafnews_web_2023.implementation;
+package raf.rs.rafnews_web_2023.repository.implementation;
 
 
-import raf.rs.rafnews_web_2023.model.entity.News;
+import raf.rs.rafnews_web_2023.model.News;
 import raf.rs.rafnews_web_2023.repository.api.NewsRepositoryAPI;
 import raf.rs.rafnews_web_2023.repository.mysql.MySQLRepository;
 
@@ -142,8 +142,7 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
             String[] generatedColumns = {"id"};
 
             preparedStatement = connection.prepareStatement(
-                    "INSERT INTO " + ENTITY_NAME + " " + ColumnNames.buildColumnsInsertQuery() +
-                            " VALUES(?, ?, ?, ?)", generatedColumns);
+                    "INSERT INTO " + ENTITY_NAME + "  " + ColumnNames.buildColumnsInsertQuery() + " VALUES(?, ?, ?, ?)", generatedColumns);
             preparedStatement.setString(1, news.getTitle());
             preparedStatement.setString(2, news.getContent());
             preparedStatement.setInt(3, news.getAuthorId());
@@ -165,6 +164,42 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
             closeConnection(connection);
         }
         return news;
+    }
+
+    @Override
+    public News findById(int newsId) {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = getDB_Connection();
+            statement = connection.createStatement();
+            String sqlQuery = "SELECT * FROM " + ENTITY_NAME + " WHERE " + ColumnNames.ID + " = " + newsId;
+
+            resultSet = statement.executeQuery(sqlQuery);
+            if (resultSet.next()) {
+
+                return new News(
+                        resultSet.getInt(ColumnNames.ID.column_index),
+                        resultSet.getString(ColumnNames.TITLE.column_name),
+                        resultSet.getString(ColumnNames.CONTENT.column_name),
+                        resultSet.getInt(ColumnNames.VISITED.column_name),
+                        resultSet.getTimestamp(ColumnNames.CREATION_TIME.column_name),
+                        resultSet.getInt(ColumnNames.AUTHOR_ID.column_name),
+                        resultSet.getInt(ColumnNames.CATEGORY_ID.column_name)
+
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeStatement(statement);
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+        return null;
     }
 
 

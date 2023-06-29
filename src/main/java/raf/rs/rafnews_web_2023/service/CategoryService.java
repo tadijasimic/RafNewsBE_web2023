@@ -1,12 +1,12 @@
 package raf.rs.rafnews_web_2023.service;
 
 
+import raf.rs.rafnews_web_2023.converter.CategoryDTO_Converter;
 import raf.rs.rafnews_web_2023.dto.CategoryDTO;
-import raf.rs.rafnews_web_2023.model.entity.Category;
+import raf.rs.rafnews_web_2023.model.Category;
 import raf.rs.rafnews_web_2023.repository.api.CategoryRepositoryAPI;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryService {
@@ -20,16 +20,19 @@ public class CategoryService {
     }
 
     public List<CategoryDTO> allCategories() {
-        return buildListDTO(categoryRepository.allCategories());
+        List<Category> categories = categoryRepository.allCategories();
+        return CategoryDTO_Converter.convertToCategoryDTOList(categories);
     }
 
     public List<CategoryDTO> categoriesForPage(int pageIndex, int pageSize) {
-        return buildListDTO(categoryRepository.categoriesForPage(pageIndex, pageSize));
+        List<Category> categories = categoryRepository.categoriesForPage(pageIndex, pageSize);
+        return CategoryDTO_Converter.convertToCategoryDTOList(categories);
     }
 
     public CategoryDTO addCategory(CategoryDTO categoryDTO) {
-        Category category = new Category(categoryDTO.getId(), categoryDTO.getName(), categoryDTO.getDescription());
-        return categoryRepository.addCategory(category).buildDTO();
+        Category category = CategoryDTO_Converter.convertToCategory(categoryDTO);
+        category = categoryRepository.addCategory(category);
+        return CategoryDTO_Converter.convertToCategoryDTO(category);
     }
 
     public void deleteCategory(CategoryDTO categoryDTO) {
@@ -38,15 +41,11 @@ public class CategoryService {
         categoryRepository.deleteCategory(category);
     }
 
+
     public CategoryDTO searchCategoryByName(String name) {
-        return categoryRepository.searchCategoryByName(name).buildDTO();
+        return CategoryDTO_Converter.convertToCategoryDTO
+                (categoryRepository.searchCategoryByName(name));
     }
 
-    private List<CategoryDTO> buildListDTO(List<Category> categories) {
-        List<CategoryDTO> DTOs = new ArrayList<>();
-        for (Category category : categories) {
-            DTOs.add(category.buildDTO());
-        }
-        return DTOs;
-    }
+
 }

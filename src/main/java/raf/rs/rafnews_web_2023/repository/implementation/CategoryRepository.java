@@ -1,7 +1,7 @@
-package raf.rs.rafnews_web_2023.implementation;
+package raf.rs.rafnews_web_2023.repository.implementation;
 
 
-import raf.rs.rafnews_web_2023.model.entity.Category;
+import raf.rs.rafnews_web_2023.model.Category;
 import raf.rs.rafnews_web_2023.repository.api.CategoryRepositoryAPI;
 import raf.rs.rafnews_web_2023.repository.mysql.MySQLRepository;
 
@@ -79,7 +79,6 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
     }
 
 
-
     @Override
     public Category addCategory(Category category) {
 
@@ -124,7 +123,8 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
                     "DELETE FROM " + ENTITY_NAME + " WHERE " + ColumnNames.ID.column_name + " = ?");
             preparedStatement.setInt(1, category.getId());
             int rows_changed = preparedStatement.executeUpdate();
-
+            if (rows_changed < 1)
+                throw new SQLException("delete category failed");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -144,7 +144,8 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
         try {
             connection = this.getDB_Connection();
 
-            preparedStatement = connection.prepareStatement("SELECT * FROM " + ENTITY_NAME + " WHERE " + ColumnNames.NAME + " = ?");
+            preparedStatement = connection.prepareStatement("SELECT * FROM " + ENTITY_NAME + " WHERE "
+                    + ColumnNames.NAME + " = ?");
             preparedStatement.setString(1, name);
             resultSet = preparedStatement.executeQuery();
 

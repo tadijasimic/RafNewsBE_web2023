@@ -1,4 +1,4 @@
-package raf.rs.rafnews_web_2023.model.entity;
+package raf.rs.rafnews_web_2023.model;
 
 import raf.rs.rafnews_web_2023.dto.CommentDTO;
 
@@ -23,10 +23,16 @@ public class Comment {
         this.newsId = postId;
     }
 
-
-    public CommentDTO buildDTO(){
-        return new CommentDTO(this);
+    public Comment(int id, String content, String creationTime, int authorId, int postId){
+        this.id = id;
+        this.content = content;
+        this.creationTime = Timestamp.valueOf(creationTime);
+        this.authorId = authorId;
+        this.newsId = postId;
     }
+
+
+
     public int getId() {
         return id;
     }

@@ -1,6 +1,6 @@
-package raf.rs.rafnews_web_2023.implementation;
+package raf.rs.rafnews_web_2023.repository.implementation;
 
-import raf.rs.rafnews_web_2023.model.entity.User;
+import raf.rs.rafnews_web_2023.model.User;
 import raf.rs.rafnews_web_2023.repository.api.UserRepositoryAPI;
 import raf.rs.rafnews_web_2023.repository.mysql.MySQLRepository;
 

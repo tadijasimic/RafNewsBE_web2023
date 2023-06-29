@@ -1,6 +1,6 @@
-package raf.rs.rafnews_web_2023.implementation;
+package raf.rs.rafnews_web_2023.repository.implementation;
 
-import raf.rs.rafnews_web_2023.model.entity.Comment;
+import raf.rs.rafnews_web_2023.model.Comment;
 import raf.rs.rafnews_web_2023.repository.api.CommentRepositoryAPI;
 import raf.rs.rafnews_web_2023.repository.mysql.MySQLRepository;
 
@@ -48,7 +48,7 @@ public class CommentRepository extends MySQLRepository implements CommentReposit
     }
 
     @Override
-    public List<Comment> commentsForPage(int pageIndex, int pageSize) {
+    public List<Comment> commentsOnNews(int newsId, int pageIndex, int pageSize) {
         List<Comment> commentsForPage = null;
         Connection connection = null;
         Statement statement = null;
@@ -58,8 +58,9 @@ public class CommentRepository extends MySQLRepository implements CommentReposit
             connection = getDB_Connection();
             statement = connection.createStatement();
             int startIndex = pageIndex * pageSize;
-            String sqlQuery = "SELECT * FROM " + ENTITY_NAME + " LIMIT " + startIndex + ", " + pageSize;
-            resultSet = statement.executeQuery(sqlQuery);
+            String sql = "SELECT * FROM " + ENTITY_NAME + " WHERE " + ColumnNames.NEWS_ID + " = " + newsId
+                    + " LIMIT " + startIndex + ", " + pageSize +" ORDER BY " + ColumnNames.CREATION_TIME + " DESC";
+            resultSet = statement.executeQuery(sql);
             commentsForPage = new ArrayList<>();
             while (resultSet.next()) {
                 commentsForPage.add(
@@ -83,17 +84,18 @@ public class CommentRepository extends MySQLRepository implements CommentReposit
     }
 
     @Override
-    public List<Comment> commentsOnNews(int postId) {
+    public List<Comment> commentsOnNews(int newsId) {
         Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        Statement preparedStatement = null;
         ResultSet resultSet = null;
         List<Comment> commentsOnPost = null;
         try {
             connection = this.getDB_Connection();
 
-            preparedStatement = connection.prepareStatement("SELECT * FROM " + ENTITY_NAME + " WHERE " + ColumnNames.NEWS_ID + " = ?");
-            preparedStatement.setInt(1, postId);
-            resultSet = preparedStatement.executeQuery();
+            preparedStatement = connection.createStatement();
+            resultSet = preparedStatement.executeQuery(
+                    "SELECT * FROM " + ENTITY_NAME + " WHERE " + ColumnNames.NEWS_ID  + " = " + newsId
+            +" ORDER BY " + ColumnNames.CREATION_TIME + " DESC" );
             commentsOnPost = new ArrayList<>();
 
             while (resultSet.next()) {
@@ -161,19 +163,19 @@ public class CommentRepository extends MySQLRepository implements CommentReposit
     @Override
     public void deleteComment(Comment comment) {
         Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        Statement statement = null;
         try {
             connection = this.getDB_Connection();
-            preparedStatement = connection.prepareStatement(
-                    "DELETE FROM " + ENTITY_NAME + " WHERE " + ColumnNames.ID.column_name + " = ?");
-            preparedStatement.setInt(1, comment.getId());
-            if(preparedStatement.executeUpdate() > 1)
+            statement = connection.createStatement();
+            int rowsDeleted = statement.executeUpdate(
+                    "DELETE FROM " + ENTITY_NAME + " WHERE " + ColumnNames.ID + " = " + comment.getId());
+            if (rowsDeleted > 1)
                 throw new RuntimeException("Comment delete failed.");
 
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            this.closeStatement(preparedStatement);
+            this.closeStatement(statement);
             this.closeConnection(connection);
         }
     }

@@ -22,8 +22,8 @@ public class CommentResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<CommentDTO> usersForPage(@QueryParam("pageIndex") int pageIndex, @QueryParam("pageSize") int pageSize) {
-        return commentService.commentsForPage(pageIndex, pageSize);
+    public List<CommentDTO> usersForPage(@QueryParam("newsId") int newsId, @QueryParam("pageIndex") int pageIndex, @QueryParam("pageSize") int pageSize) {
+        return commentService.commentsOnNews(newsId, pageIndex, pageSize);
     }
 
     @GET
@@ -38,7 +38,6 @@ public class CommentResource {
     public CommentDTO addComment(CommentDTO comment) {
         return commentService.addComment(comment);
     }
-
 
 
 }

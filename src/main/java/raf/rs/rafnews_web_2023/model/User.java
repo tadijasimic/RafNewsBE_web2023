@@ -1,8 +1,8 @@
-package raf.rs.rafnews_web_2023.model.entity;
+package raf.rs.rafnews_web_2023.model;
 
 import raf.rs.rafnews_web_2023.dto.UserDTO;
-import raf.rs.rafnews_web_2023.model.entity.enumeration.Role;
-import raf.rs.rafnews_web_2023.model.entity.enumeration.Status;
+import raf.rs.rafnews_web_2023.model.enumeration.Role;
+import raf.rs.rafnews_web_2023.model.enumeration.Status;
 
 public class User {
 
@@ -31,9 +31,6 @@ public class User {
         this.status = Status.valueOf(status);
     }
 
-    public UserDTO buildDTO(){
-        return new UserDTO(this);
-    }
 
     public int getId() {
         return id;

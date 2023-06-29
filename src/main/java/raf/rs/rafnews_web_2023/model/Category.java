@@ -1,4 +1,4 @@
-package raf.rs.rafnews_web_2023.model.entity;
+package raf.rs.rafnews_web_2023.model;
 
 
 import raf.rs.rafnews_web_2023.dto.CategoryDTO;
@@ -15,9 +15,7 @@ public class Category {
         this.description = description;
     }
 
-    public CategoryDTO buildDTO(){
-        return new CategoryDTO(this);
-    }
+
 
     public void setId(int id) {
         this.id = id;

@@ -1,4 +1,4 @@
-package raf.rs.rafnews_web_2023.model.entity;
+package raf.rs.rafnews_web_2023.model;
 
 import raf.rs.rafnews_web_2023.dto.NewsDTO;
 
@@ -6,14 +6,13 @@ import java.sql.Timestamp;
 
 public class News {
 
-    private int id;
     private final String title;
     private final String content;
-    private int visited;
-
     private final Timestamp creationTime;
     private final int authorId;
     private final int categoryId;
+    private int id;
+    private int visited;
 
     public News(int id, String title, String content, int visited, String creationTime, int authorId, int categoryId) {
         this.id = id;
@@ -34,9 +33,9 @@ public class News {
         this.authorId = authorId;
         this.categoryId = categoryId;
     }
-    public NewsDTO buildDTO() {
-        return new NewsDTO(this);
-    }
+
+
+
     public int getId() {
         return id;
     }
@@ -48,7 +47,6 @@ public class News {
     public String getTitle() {
         return title;
     }
-
 
 
     public String getContent() {

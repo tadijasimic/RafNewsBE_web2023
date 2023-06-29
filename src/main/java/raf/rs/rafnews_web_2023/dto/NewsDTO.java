@@ -1,6 +1,8 @@
 package raf.rs.rafnews_web_2023.dto;
 
-import raf.rs.rafnews_web_2023.model.entity.News;
+import raf.rs.rafnews_web_2023.model.News;
+
+import java.util.List;
 
 public class NewsDTO {
 
@@ -11,20 +13,22 @@ public class NewsDTO {
 
     private  String creationTime;
 
-    private int authorId;
+    private AuthorDTO author;
 
-    private int categoryId;
+    private List<CommentDTO> comments;
+
+
 
     public NewsDTO(){
     }
 
-    public NewsDTO(News news){
+    public NewsDTO(News news, AuthorDTO author, List<CommentDTO> comments){
         id = news.getId();
         title = news.getTitle();
         content = news.getContent();
         creationTime = news.getCreationTime().toString();
-        authorId = news.getAuthorId();
-        categoryId = news.getCategoryId();
+        this.author = author;
+        this.comments = comments;
     }
 
     public void setId(int id) {
@@ -43,12 +47,12 @@ public class NewsDTO {
         this.creationTime = creationTime;
     }
 
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
+    public void setAuthor(AuthorDTO author) {
+        this.author = author;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
     }
 
     public int getId() {
@@ -67,11 +71,11 @@ public class NewsDTO {
         return creationTime;
     }
 
-    public int getAuthorId() {
-        return authorId;
+    public AuthorDTO getAuthor() {
+        return author;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public List<CommentDTO> getComments() {
+        return comments;
     }
 }

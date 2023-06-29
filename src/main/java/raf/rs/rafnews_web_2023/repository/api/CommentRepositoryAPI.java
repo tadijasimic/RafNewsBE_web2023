@@ -1,6 +1,6 @@
 package raf.rs.rafnews_web_2023.repository.api;
 
-import raf.rs.rafnews_web_2023.model.entity.Comment;
+import raf.rs.rafnews_web_2023.model.Comment;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -9,9 +9,9 @@ public interface CommentRepositoryAPI {
 
     List<Comment> allComments();
 
-    List<Comment> commentsForPage(int pageIndex, int pageSize);
+    List<Comment> commentsOnNews(int newsId);
 
-    List<Comment> commentsOnNews(int postId);
+    List<Comment> commentsOnNews(int newsId, int pageIndex, int pageSize);
 
     Comment addComment(Comment comment);
 

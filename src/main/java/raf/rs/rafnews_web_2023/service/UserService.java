@@ -6,8 +6,12 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import org.apache.commons.codec.digest.DigestUtils;
-import raf.rs.rafnews_web_2023.model.entity.User;
+import raf.rs.rafnews_web_2023.converter.UserDTO_Converter;
+import raf.rs.rafnews_web_2023.dto.AuthorDTO;
 import raf.rs.rafnews_web_2023.dto.UserDTO;
+import raf.rs.rafnews_web_2023.model.Comment;
+import raf.rs.rafnews_web_2023.model.News;
+import raf.rs.rafnews_web_2023.model.User;
 import raf.rs.rafnews_web_2023.repository.api.UserRepositoryAPI;
 
 import javax.inject.Inject;
@@ -24,62 +28,100 @@ public class UserService {
     }
 
     public List<UserDTO> allUsers() {
-        return buildListDTO(userRepository.allUsers());
+        List<User> users = userRepository.allUsers();
+        List<UserDTO> dtoList = new ArrayList<>();
+        for (User user : users) {
+            dtoList.add(UserDTO_Converter.convertToUserDTO(user));
+        }
+        return dtoList;
     }
 
     public List<UserDTO> usersForPage(int pageIndex, int pageSize) {
-        return buildListDTO(userRepository.allUsers());
+        List<User> users = (userRepository.allUsers());
+        List<UserDTO> dtoList = new ArrayList<>();
+        for (User user : users) {
+            dtoList.add(UserDTO_Converter.convertToUserDTO(user));
+        }
+        return dtoList;
     }
 
 
     public UserDTO addUser(UserDTO userDTO) {
-        User user = new User(
-                userDTO.getId(),
-                userDTO.getEmail(),
-                userDTO.getName(),
-                userDTO.getSurname(),
-                null,
-                userDTO.getRole(),
-                userDTO.getStatus()
-        );
-        return userRepository.addUser(user).buildDTO();
+
+        User user = UserDTO_Converter.convertToUser(userDTO);
+        return UserDTO_Converter.convertToUserDTO(userRepository.addUser(user));
     }
 
     public void deleteUser(UserDTO userDTO) {
-        User user = new User(
-                userDTO.getId(),
-                userDTO.getEmail(),
-                userDTO.getName(),
-                userDTO.getSurname(),
-                null,
-                userDTO.getRole(),
-                userDTO.getStatus()
+
+        userRepository.deleteUser(
+                UserDTO_Converter.convertToUser(userDTO)
         );
-        userRepository.deleteUser(user);
+
     }
 
     public UserDTO searchUserByEmail(String email) {
-        return userRepository.searchUserByEmail(email).buildDTO();
+        return UserDTO_Converter.convertToUserDTO(
+                userRepository.searchUserByEmail(email)
+        );
     }
 
     public UserDTO searchUserById(int id) {
-        return userRepository.searchUserById(id).buildDTO();
+        return UserDTO_Converter.convertToUserDTO(
+                userRepository.searchUserById(id)
+        );
     }
 
     public UserDTO editUser(UserDTO userDTO) {
-        User user = new User(
-                userDTO.getId(),
-                userDTO.getEmail(),
-                userDTO.getName(),
-                userDTO.getSurname(),
-                null,
-                userDTO.getRole(),
-                userDTO.getStatus()
+
+        return UserDTO_Converter.convertToUserDTO(
+                userRepository.editUser(
+                        UserDTO_Converter.convertToUser(userDTO)
+                )
         );
-        return userRepository.editUser(user).buildDTO();
     }
 
+    public AuthorDTO searchAuthor(News news) {
+        return UserDTO_Converter.convertToAuthorDTO(
+                userRepository.searchUserById(news.getAuthorId())
+        );
+    }
+
+    public AuthorDTO searchAuthor(Comment comment) {
+        return UserDTO_Converter.convertToAuthorDTO(
+                userRepository.searchUserById(comment.getAuthorId())
+        );
+    }
+
+
+    public List<AuthorDTO> searchNewsAuthors(List<News> news) {
+        List<AuthorDTO> dtoList = new ArrayList<>();
+        for (News currNews : news) {
+            dtoList.add(
+                    UserDTO_Converter.convertToAuthorDTO(
+                            userRepository.searchUserById(currNews.getAuthorId())
+                    )
+            );
+        }
+        return dtoList;
+    }
+
+    public List<AuthorDTO> searchCommentsAuthors(List<Comment> comments) {
+        List<AuthorDTO> dtoList = new ArrayList<>();
+        for (Comment comment : comments) {
+            dtoList.add(
+                    UserDTO_Converter.convertToAuthorDTO(
+                            userRepository.searchUserById(comment.getAuthorId())
+                    )
+            );
+        }
+        return dtoList;
+    }
+
+
+
     public String login(String email, String password) {
+
         String hashedPassword = DigestUtils.sha256Hex(password);
 
         User user = userRepository.searchUserByEmail(email);
@@ -119,11 +161,4 @@ public class UserService {
         return true;
     }
 
-    private List<UserDTO> buildListDTO(List<User> users) {
-        List<UserDTO> DTOs = new ArrayList<>();
-        for (User user : users) {
-            DTOs.add(user.buildDTO());
-        }
-        return DTOs;
-    }
 }

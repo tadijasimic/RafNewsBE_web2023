@@ -1,6 +1,6 @@
 package raf.rs.rafnews_web_2023.dto;
 
-import raf.rs.rafnews_web_2023.model.entity.Category;
+import raf.rs.rafnews_web_2023.model.Category;
 
 public class CategoryDTO {
 

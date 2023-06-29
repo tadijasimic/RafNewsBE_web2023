@@ -1,6 +1,6 @@
 package raf.rs.rafnews_web_2023.repository.api;
 
-import raf.rs.rafnews_web_2023.model.entity.News;
+import raf.rs.rafnews_web_2023.model.News;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -14,6 +14,8 @@ public interface NewsRepositoryAPI {
     List<News> newsInCategory(int categoryId);
 
     News addNews(News news);
+
+    News findById(int newsId);
 
 
 
