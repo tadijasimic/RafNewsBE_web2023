@@ -9,6 +9,11 @@ import raf.rs.rafnews_web_2023.service.*;
 
 import javax.inject.Singleton;
 import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.container.ContainerRequestContext;
+import javax.ws.rs.container.ContainerResponseContext;
+import javax.ws.rs.container.ContainerResponseFilter;
+import javax.ws.rs.ext.Provider;
+import java.io.IOException;
 
 @ApplicationPath("/api")
 public class RafNewsApp extends ResourceConfig {
@@ -42,5 +47,16 @@ public class RafNewsApp extends ResourceConfig {
 
         register(binder);
         packages("raf.rs.rafnews_web_2023");
+    }
+
+    @Provider
+    public static class CorsFilter implements ContainerResponseFilter {
+        @Override
+        public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) {
+            responseContext.getHeaders().add("Access-Control-Allow-Origin", "*");
+            responseContext.getHeaders().add("Access-Control-Allow-Credentials", "true");
+            responseContext.getHeaders().add("Access-Control-Allow-Methods", "OPTIONS, GET, POST, PUT, DELETE");
+            responseContext.getHeaders().add("Access-Control-Allow-Headers", "Content-Type, Authorization");
+        }
     }
 }
