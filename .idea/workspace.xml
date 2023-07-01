@@ -11,7 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="15e93882-fa6f-4040-9567-eee794732ab6" name="Changes" comment="debug.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/RafNewsApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/RafNewsApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,7 +211,7 @@
       <workItem from="1688038079304" duration="914000" />
       <workItem from="1688046113322" duration="295000" />
       <workItem from="1688144029825" duration="11068000" />
-      <workItem from="1688170509677" duration="4747000" />
+      <workItem from="1688170509677" duration="5417000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit.">
       <created>1687534135282</created>
@@ -291,7 +290,15 @@
       <option name="project" value="LOCAL" />
       <updated>1688004005720</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="debug.">
+      <option name="closed" value="true" />
+      <created>1688175541225</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1688175541225</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
