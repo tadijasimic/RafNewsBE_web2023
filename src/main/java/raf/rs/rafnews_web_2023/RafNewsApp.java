@@ -18,7 +18,7 @@ import java.io.IOException;
 @ApplicationPath("/api")
 public class RafNewsApp extends ResourceConfig {
 
-
+//c
     public RafNewsApp() {
         property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
 
