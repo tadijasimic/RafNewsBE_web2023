@@ -19,6 +19,7 @@ public interface CategoryRepositoryAPI {
 
     Category searchCategoryByName(String name);
 
+    Category searchCategoryById(int id);
 
     enum ColumnNames {
 

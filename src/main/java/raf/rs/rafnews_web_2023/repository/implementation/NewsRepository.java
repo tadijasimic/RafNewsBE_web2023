@@ -111,7 +111,7 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
                                 resultSet.getString(ColumnNames.TITLE.column_name),
                                 resultSet.getString(ColumnNames.CONTENT.column_name),
                                 resultSet.getInt(ColumnNames.VISITED.column_name),
-                                Timestamp.valueOf(resultSet.getString(ColumnNames.CREATION_TIME.column_name)),
+                                resultSet.getTimestamp(ColumnNames.CREATION_TIME.column_name),
                                 resultSet.getInt(ColumnNames.AUTHOR_ID.column_name),
                                 resultSet.getInt(ColumnNames.CATEGORY_ID.column_name)
                         )

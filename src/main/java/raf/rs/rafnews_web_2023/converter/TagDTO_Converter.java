@@ -1,6 +1,6 @@
 package raf.rs.rafnews_web_2023.converter;
 
-import raf.rs.rafnews_web_2023.dto.TagDTO;
+import raf.rs.rafnews_web_2023.dto.tag.TagDTO;
 import raf.rs.rafnews_web_2023.model.Tag;
 
 import java.util.ArrayList;

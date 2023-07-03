@@ -1,4 +1,4 @@
-package raf.rs.rafnews_web_2023.dto;
+package raf.rs.rafnews_web_2023.dto.category;
 
 import raf.rs.rafnews_web_2023.model.Category;
 

@@ -1,8 +1,8 @@
 package raf.rs.rafnews_web_2023.service;
 
 import raf.rs.rafnews_web_2023.converter.NewsDTO_Converter;
-import raf.rs.rafnews_web_2023.dto.NewsDTO;
-import raf.rs.rafnews_web_2023.dto.NewsPreviewDTO;
+import raf.rs.rafnews_web_2023.dto.news.NewsDTO;
+import raf.rs.rafnews_web_2023.dto.news.NewsPreviewDTO;
 import raf.rs.rafnews_web_2023.model.News;
 import raf.rs.rafnews_web_2023.repository.api.NewsRepositoryAPI;
 
@@ -18,6 +18,8 @@ public class NewsService {
     @Inject
     private CommentService commentService;
 
+    @Inject CategoryService categoryService;
+
     public NewsService() {
         System.out.println(this);
     }
@@ -27,7 +29,8 @@ public class NewsService {
         return NewsDTO_Converter
                 .convertToNewsPreviewDTOList(
                         news,
-                        userService.searchNewsAuthors(news)
+                        userService.searchNewsAuthors(news),
+                        categoryService.searchNewsCategories(news)
                 );
     }
 
@@ -36,7 +39,8 @@ public class NewsService {
         return NewsDTO_Converter
                 .convertToNewsPreviewDTOList(
                         news,
-                        userService.searchNewsAuthors(news)
+                        userService.searchNewsAuthors(news),
+                        categoryService.searchNewsCategories(news)
                 );
     }
 
@@ -45,7 +49,8 @@ public class NewsService {
         return NewsDTO_Converter
                 .convertToNewsPreviewDTOList(
                         news,
-                        userService.searchNewsAuthors(news)
+                        userService.searchNewsAuthors(news),
+                        categoryService.searchNewsCategories(news)
                 );
     }
 
@@ -55,6 +60,7 @@ public class NewsService {
                 .convertToNewsDTO(
                         news,
                         userService.searchAuthor(news),
+                        categoryService.searchCategoryById(news.getCategoryId()),
                         commentService.commentsOnNews(news.getId())
                 );
     }
@@ -67,7 +73,9 @@ public class NewsService {
                 .convertToNewsDTO(
                         news,
                         userService.searchAuthor(news),
+                        categoryService.searchCategoryById(news.getCategoryId()),
                         commentService.commentsOnNews(news.getId())
+
                 );
     }
 

@@ -47,7 +47,7 @@ VALUES ('Technology', 'Explore the latest advancements in technology.'),
 -- ----------------------------------------------------------------------------------------------------
 
 INSERT INTO news (title, content, visited, creation_time, author_id, category_id)
-VALUES ('Breaking News: New Discoveries in Space', 'Scientists have made groundbreaking discoveries in outer space.', 97, '2023-06-08 12:30:00', 8, 3),
+VALUES ('Breaking News: New Discoveries in Space', 'A blog (a truncation of "weblog") is an informational website published on the World Wide Web consisting of discrete, often informal diary-style text entries (posts). Posts are typically displayed in reverse chronological order so that the most recent post appears first, at the top of the web page.', 97, '2023-06-08 12:30:00', 8, 3),
        ('Healthy Recipes for a Balanced Diet', 'Try these delicious and nutritious recipes for a healthier lifestyle.', 3, '2023-05-15 09:45:00', 15, 7),
        ('Interview with Bestselling Author', 'Get an exclusive interview with the author of the latest bestseller.', 0, '2023-07-01 15:20:00', 6, 10),
        ('Art Exhibition: Exploring Colors and Textures', 'Visit the art exhibition showcasing vibrant colors and unique textures.', 54, '2023-06-21 18:10:00', 12, 5),
@@ -94,7 +94,8 @@ VALUES ('Technology'),
 -- ---------------------------------------------------------------------------------------------------
 
 INSERT INTO news_tag (news_id, tag_id)
-VALUES (1, 3),
+VALUES
+    (1, 3),
        (1, 5),
        (2, 2),
        (2, 6),

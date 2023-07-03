@@ -37,6 +37,7 @@ public class RafNewsApp extends ResourceConfig {
                 bindAsContract(UserService.class);
                 bindAsContract(UserService.class);
                 bindAsContract(CategoryService.class);
+                bindAsContract(CategoryService.class);
                 bindAsContract(TagService.class);
                 bindAsContract(CommentService.class);
                 bindAsContract(NewsService.class);

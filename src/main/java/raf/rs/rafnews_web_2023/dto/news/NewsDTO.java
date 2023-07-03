@@ -1,5 +1,8 @@
-package raf.rs.rafnews_web_2023.dto;
+package raf.rs.rafnews_web_2023.dto.news;
 
+import raf.rs.rafnews_web_2023.dto.category.CategoryDTO;
+import raf.rs.rafnews_web_2023.dto.comment.CommentDTO;
+import raf.rs.rafnews_web_2023.dto.user.AuthorDTO;
 import raf.rs.rafnews_web_2023.model.News;
 
 import java.util.List;
@@ -17,17 +20,20 @@ public class NewsDTO {
 
     private List<CommentDTO> comments;
 
+    private CategoryDTO category;
+
 
 
     public NewsDTO(){
     }
 
-    public NewsDTO(News news, AuthorDTO author, List<CommentDTO> comments){
+    public NewsDTO(News news, AuthorDTO author,CategoryDTO category, List<CommentDTO> comments){
         id = news.getId();
         title = news.getTitle();
         content = news.getContent();
         creationTime = news.getCreationTime().toString();
         this.author = author;
+        this.category= category;
         this.comments = comments;
     }
 
@@ -55,6 +61,10 @@ public class NewsDTO {
         this.comments = comments;
     }
 
+    public void setCategory(CategoryDTO category) {
+        this.category = category;
+    }
+
     public int getId() {
         return id;
     }
@@ -77,5 +87,9 @@ public class NewsDTO {
 
     public List<CommentDTO> getComments() {
         return comments;
+    }
+
+    public CategoryDTO getCategory() {
+        return category;
     }
 }

@@ -1,4 +1,4 @@
-package raf.rs.rafnews_web_2023.dto;
+package raf.rs.rafnews_web_2023.dto.user;
 
 import raf.rs.rafnews_web_2023.model.User;
 
@@ -6,9 +6,9 @@ public class UserDTO {
 
     private int id;
     private String email;
-    private String name;
+    private String fistName;
 
-    private String surname;
+    private String lastName;
 
     private String role;
     private String status;
@@ -18,10 +18,11 @@ public class UserDTO {
     }
 
     public UserDTO(User user) {
+
         id = user.getId();
         email = user.getEmail();
-        name = user.getName();
-        surname = user.getSurname();
+        fistName = user.getName();
+        lastName = user.getSurname();
         role = user.getRole().name();
         status = user.getStatus().name();
     }
@@ -42,20 +43,20 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getFistName() {
+        return fistName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFistName(String fistName) {
+        this.fistName = fistName;
     }
 
     public String getSurname() {
-        return surname;
+        return lastName;
     }
 
     public void setSurname(String surname) {
-        this.surname = surname;
+        this.lastName = surname;
     }
 
     public String getRole() {

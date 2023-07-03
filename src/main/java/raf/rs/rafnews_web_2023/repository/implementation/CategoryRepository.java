@@ -136,7 +136,6 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
     @Override
     public Category searchCategoryByName(String name) {
 
-
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -169,4 +168,38 @@ public class CategoryRepository extends MySQLRepository implements CategoryRepos
         return category;
     }
 
+    @Override
+    public Category searchCategoryById(int categoryId) {
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Category category = null;
+        try {
+            connection = this.getDB_Connection();
+
+            preparedStatement = connection.prepareStatement("SELECT * FROM " + ENTITY_NAME + " WHERE "
+                    + ColumnNames.ID + " = ?");
+            preparedStatement.setInt(1, categoryId);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next())
+                category = new Category(
+                        resultSet.getInt(ColumnNames.ID.column_index),
+                        resultSet.getString(ColumnNames.NAME.column_name),
+                        resultSet.getString(ColumnNames.DESCRIPTION.column_name)
+                );
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeStatement(preparedStatement);
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+
+        return category;
+    }
 }

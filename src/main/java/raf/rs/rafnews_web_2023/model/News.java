@@ -1,7 +1,5 @@
 package raf.rs.rafnews_web_2023.model;
 
-import raf.rs.rafnews_web_2023.dto.NewsDTO;
-
 import java.sql.Timestamp;
 
 public class News {

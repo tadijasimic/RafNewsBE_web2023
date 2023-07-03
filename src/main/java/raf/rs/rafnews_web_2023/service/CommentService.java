@@ -1,8 +1,8 @@
 package raf.rs.rafnews_web_2023.service;
 
 import raf.rs.rafnews_web_2023.converter.CommentDTO_Converter;
-import raf.rs.rafnews_web_2023.dto.AuthorDTO;
-import raf.rs.rafnews_web_2023.dto.CommentDTO;
+import raf.rs.rafnews_web_2023.dto.user.AuthorDTO;
+import raf.rs.rafnews_web_2023.dto.comment.CommentDTO;
 import raf.rs.rafnews_web_2023.model.Comment;
 import raf.rs.rafnews_web_2023.repository.api.CommentRepositoryAPI;
 

@@ -1,7 +1,7 @@
 package raf.rs.rafnews_web_2023.converter;
 
-import raf.rs.rafnews_web_2023.dto.AuthorDTO;
-import raf.rs.rafnews_web_2023.dto.CommentDTO;
+import raf.rs.rafnews_web_2023.dto.user.AuthorDTO;
+import raf.rs.rafnews_web_2023.dto.comment.CommentDTO;
 import raf.rs.rafnews_web_2023.model.Comment;
 
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public abstract class CommentDTO_Converter {
                 dto.getContent(),
                 dto.getCreationTime(),
                 dto.getAuthor().getId(),
-                dto.getId()
+                dto.getNewsId()
         );
     }
 

@@ -1,6 +1,6 @@
 package raf.rs.rafnews_web_2023.converter;
 
-import raf.rs.rafnews_web_2023.dto.CategoryDTO;
+import raf.rs.rafnews_web_2023.dto.category.CategoryDTO;
 import raf.rs.rafnews_web_2023.model.Category;
 
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package raf.rs.rafnews_web_2023.converter;
 
-import raf.rs.rafnews_web_2023.dto.AuthorDTO;
-import raf.rs.rafnews_web_2023.dto.UserDTO;
+import raf.rs.rafnews_web_2023.dto.user.AuthorDTO;
+import raf.rs.rafnews_web_2023.dto.user.UserDTO;
 import raf.rs.rafnews_web_2023.model.User;
 
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public abstract class UserDTO_Converter {
         return new User(
                 dto.getId(),
                 dto.getEmail(),
-                dto.getName(),
+                dto.getFistName(),
                 dto.getSurname(),
                 null,
                 dto.getRole(),

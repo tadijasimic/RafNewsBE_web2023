@@ -1,8 +1,8 @@
 package raf.rs.rafnews_web_2023.resource;
 
 
-import raf.rs.rafnews_web_2023.dto.NewsDTO;
-import raf.rs.rafnews_web_2023.dto.NewsPreviewDTO;
+import raf.rs.rafnews_web_2023.dto.news.NewsDTO;
+import raf.rs.rafnews_web_2023.dto.news.NewsPreviewDTO;
 import raf.rs.rafnews_web_2023.service.NewsService;
 
 import javax.inject.Inject;

@@ -1,8 +1,6 @@
 package raf.rs.rafnews_web_2023.model;
 
 
-import raf.rs.rafnews_web_2023.dto.CategoryDTO;
-
 public class Category {
 
     private int id;

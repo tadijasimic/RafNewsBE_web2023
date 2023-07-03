@@ -1,10 +1,10 @@
 package raf.rs.rafnews_web_2023.converter;
 
-import raf.rs.rafnews_web_2023.dto.AuthorDTO;
-import raf.rs.rafnews_web_2023.dto.CommentDTO;
-import raf.rs.rafnews_web_2023.dto.NewsDTO;
-import raf.rs.rafnews_web_2023.dto.NewsPreviewDTO;
-import raf.rs.rafnews_web_2023.model.Comment;
+import raf.rs.rafnews_web_2023.dto.category.CategoryDTO;
+import raf.rs.rafnews_web_2023.dto.user.AuthorDTO;
+import raf.rs.rafnews_web_2023.dto.comment.CommentDTO;
+import raf.rs.rafnews_web_2023.dto.news.NewsDTO;
+import raf.rs.rafnews_web_2023.dto.news.NewsPreviewDTO;
 import raf.rs.rafnews_web_2023.model.News;
 
 import java.util.ArrayList;
@@ -13,16 +13,17 @@ import java.util.List;
 
 public abstract class NewsDTO_Converter {
 
-    public static NewsDTO convertToNewsDTO(News news, AuthorDTO author, List<CommentDTO> comments) {
-        return new NewsDTO(news, author, comments);
+    public static NewsDTO convertToNewsDTO(News news, AuthorDTO author, CategoryDTO category, List<CommentDTO> comments) {
+        return new NewsDTO(news, author, category, comments);
 
     }
 
-    public static List<NewsDTO> convertToNewsDTOList (
-            List<News> news,
-            List<AuthorDTO> authors,
-            List<List<CommentDTO>> commentsOnPosts)
-    {
+   /* public static List<NewsDTO> convertToNewsDTOList
+            (
+                    List<News> news,
+                    List<AuthorDTO> authors,
+                    List<List<CommentDTO>> commentsOnPosts
+            ) {
         List<NewsDTO> dtoList = new ArrayList<>();
         if (news.size() != authors.size())
             return null;
@@ -37,17 +38,17 @@ public abstract class NewsDTO_Converter {
         }
         return dtoList;
     }
-
-    public static NewsPreviewDTO convertToNewsPreviewDTO(News news, AuthorDTO author) {
-        return new NewsPreviewDTO(news, author);
+*/
+    public static NewsPreviewDTO convertToNewsPreviewDTO(News news, AuthorDTO author, CategoryDTO category) {
+        return new NewsPreviewDTO(news, author,category);
     }
 
-    public static List<NewsPreviewDTO> convertToNewsPreviewDTOList(List<News> news, List<AuthorDTO> authors) {
+    public static List<NewsPreviewDTO> convertToNewsPreviewDTOList(List<News> news, List<AuthorDTO> authors, List<CategoryDTO> categories) {
         List<NewsPreviewDTO> dtoList = new ArrayList<>();
         if (news.size() != authors.size())
             return null;
         for (int i = 0; i < news.size(); i++) {
-            dtoList.add(convertToNewsPreviewDTO(news.get(i), authors.get(i)));
+            dtoList.add( convertToNewsPreviewDTO( news.get(i), authors.get(i), categories.get(i) ) );
         }
         return dtoList;
     }

@@ -7,8 +7,8 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import org.apache.commons.codec.digest.DigestUtils;
 import raf.rs.rafnews_web_2023.converter.UserDTO_Converter;
-import raf.rs.rafnews_web_2023.dto.AuthorDTO;
-import raf.rs.rafnews_web_2023.dto.UserDTO;
+import raf.rs.rafnews_web_2023.dto.user.AuthorDTO;
+import raf.rs.rafnews_web_2023.dto.user.UserDTO;
 import raf.rs.rafnews_web_2023.model.Comment;
 import raf.rs.rafnews_web_2023.model.News;
 import raf.rs.rafnews_web_2023.model.User;
@@ -97,11 +97,7 @@ public class UserService {
     public List<AuthorDTO> searchNewsAuthors(List<News> news) {
         List<AuthorDTO> dtoList = new ArrayList<>();
         for (News currNews : news) {
-            dtoList.add(
-                    UserDTO_Converter.convertToAuthorDTO(
-                            userRepository.searchUserById(currNews.getAuthorId())
-                    )
-            );
+            dtoList.add(searchAuthor(currNews));
         }
         return dtoList;
     }
@@ -109,11 +105,7 @@ public class UserService {
     public List<AuthorDTO> searchCommentsAuthors(List<Comment> comments) {
         List<AuthorDTO> dtoList = new ArrayList<>();
         for (Comment comment : comments) {
-            dtoList.add(
-                    UserDTO_Converter.convertToAuthorDTO(
-                            userRepository.searchUserById(comment.getAuthorId())
-                    )
-            );
+            dtoList.add(searchAuthor(comment));
         }
         return dtoList;
     }
