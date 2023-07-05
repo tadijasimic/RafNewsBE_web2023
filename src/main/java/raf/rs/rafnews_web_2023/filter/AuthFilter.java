@@ -5,7 +5,6 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import raf.rs.rafnews_web_2023.model.Comment;
-import raf.rs.rafnews_web_2023.model.News;
 import raf.rs.rafnews_web_2023.model.enumeration.Role;
 import raf.rs.rafnews_web_2023.model.enumeration.Status;
 import raf.rs.rafnews_web_2023.resource.NewsResource;
@@ -21,6 +20,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +62,12 @@ public class AuthFilter implements ContainerRequestFilter {
         if (jwt.startsWith("Bearer"))
             jwt = jwt.replace("Bearer ", "");
 
+        if (isJwtExpired(jwt)) {
+            requestContext.abortWith(
+                    Response.status(Response.Status.UNAUTHORIZED).build()
+            );
+            throw new IOException("Istekao jwt token");
+        }
 
         Map<String, Object> userInformation = unpackJwtPayload(jwt, SECRET_KEY);
         if (userInformation == null) {
@@ -74,11 +80,13 @@ public class AuthFilter implements ContainerRequestFilter {
     }
 
 
-
     private boolean isAuthRequired(ContainerRequestContext request) {
         // login and signup are auth free as an enter-point to application
-        if (request.getUriInfo().getPath().endsWith("login") || request.getUriInfo().getPath().endsWith("signup"))
+        String requestedPath = request.getUriInfo().getPath();
+
+        if (requestedPath.endsWith("users/login") || requestedPath.endsWith("users/signup") || requestedPath.contains("users/email/"))
             return false;
+
 
         // data editing operations require authorization
         if (request.getMethod().equals("PUT") || request.getMethod().equals("POST") || request.getMethod().equals("DELETE"))
@@ -121,6 +129,7 @@ public class AuthFilter implements ContainerRequestFilter {
 
     boolean isAccessAllowed(Map<String, Object> userInfo, ContainerRequestContext request) {
 
+
         //deaktivirani ljudi ne mogu nicemu da pristupe cemu mogu ulogovani aktivni korisnici
         if (userInfo.get("status").equals(Status.DEACTIVATED.name()))
             return false;
@@ -141,17 +150,10 @@ public class AuthFilter implements ContainerRequestFilter {
             int newsId = Integer.parseInt(getLastResourcePath(request));
 
             // lista novina kojima je on autor
-            List<News> news = newsService.newsByAuthor((int) userInfo.get("id"));
+            int authorId = newsService.findById((int) userInfo.get("id")).getAuthor().getId();
 
-            //proveram da li je on autor novine koju pokusava da obrise
-            boolean isAuthor = false;
-            for (News curr : news) {
-                if (curr.getAuthorId() == (int) userInfo.get("id")) {
-                    isAuthor = true;
-                    break;
-                }
-            }
-            return isAuthor;      //on je pisao novine moze da ih obrise...
+            //on je pisao novine moze da ih obrise...
+            return authorId == (int) userInfo.get("id");
 
         }
         if (request.getUriInfo().getMatchedResources().get(0) instanceof Comment
@@ -160,20 +162,14 @@ public class AuthFilter implements ContainerRequestFilter {
 
             // id komentar koji pokusava da obrise
             int commentId = Integer.parseInt(getLastResourcePath(request));
+            //dovlacim komentar za koji se zahteva brisanje
+            Comment comment = commentService.findById(commentId);
+            //pitam da li postoji
+            if(comment == null)
+                return false;
+            //on je pisao komentar moze da ih obrise i da menja...
+            return comment.getAuthorId() == (int) userInfo.get("id");
 
-            // lista novina kojima je on autor
-            List<Comment> comments = commentService.commensByAuthor((int) userInfo.get("id"));
-
-            //proveram da li je on autor novine koju pokusava da obrise
-            boolean isAuthor = false;
-            for (Comment comment : comments) {
-                if (comment.getAuthorId() == (int) userInfo.get("id")) {
-                    isAuthor = true;
-                    break;
-                }
-            }
-            //on je pisao novine moze da ih obrise...
-            return isAuthor;
         }
 
         return false;
@@ -193,6 +189,15 @@ public class AuthFilter implements ContainerRequestFilter {
         return parts[parts.length - 1];
     }
 
-
+    private boolean isJwtExpired(String jwtToken) {
+        try {
+            DecodedJWT decodedJwt = JWT.decode(jwtToken);
+            Date expirationDate = decodedJwt.getExpiresAt();
+            return expirationDate != null && expirationDate.before(new Date());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return true;
+        }
+    }
 }
 

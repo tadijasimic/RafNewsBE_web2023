@@ -22,6 +22,7 @@ public interface NewsRepositoryAPI {
     News editNews(News news);
 
     void deleteNews(News news);
+    public List<News> filterSearch(int categoryId, String dateOrder, boolean trending, int pageIndex, int pageSize);
 
 
 

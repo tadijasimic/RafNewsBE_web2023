@@ -4,10 +4,10 @@ package raf.rs.rafnews_web_2023.resource;
 import raf.rs.rafnews_web_2023.dto.filter.FilterDTO;
 import raf.rs.rafnews_web_2023.dto.news.NewsDTO;
 import raf.rs.rafnews_web_2023.dto.news.NewsPreviewDTO;
-import raf.rs.rafnews_web_2023.model.User;
 import raf.rs.rafnews_web_2023.service.NewsService;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -32,10 +32,15 @@ public class NewsResource {
     }
 
     @GET
-    @Path("/filter")
+    @Path("/filter/{category}/{trending}/{dateOrder}/{pageIndex}/{pageSize}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<NewsPreviewDTO> filterNews(FilterDTO filterDTO, @QueryParam("pageSize") int pageSize, @QueryParam("pageIndex") int pageIndex) {
-        return null;
+    public List<NewsPreviewDTO> filterNews(
+            @PathParam("category") int categoryId,
+             @PathParam("trending") boolean trending,
+             @PathParam("dateOrder") String dateOrder,
+             @PathParam("pageSize") int pageSize,
+            @PathParam("pageIndex") int pageIndex) {
+        return newsService.filterSearch(categoryId,dateOrder,trending,pageIndex,pageSize);
     }
 
     @GET
@@ -54,19 +59,22 @@ public class NewsResource {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public NewsDTO addNews(NewsPreviewDTO news) {
+    public NewsDTO addNews(@Valid NewsPreviewDTO news) {
         return newsService.addNews(news);
     }
 
     @PUT
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public NewsPreviewDTO editNews(NewsPreviewDTO news) {
+    public NewsPreviewDTO editNews(@Valid NewsPreviewDTO news, @PathParam("id") int id) {
         return newsService.editNews(news);
     }
 
     @DELETE
     @Path("/{id}")
-    public void deleteNews(@PathParam("id") int id) {
+    public void deleteNews(@Valid @PathParam("id") int id) {
         newsService.deleteNews(id);
     }
+
+
 }

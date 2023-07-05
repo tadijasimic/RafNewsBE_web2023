@@ -4,8 +4,8 @@ package raf.rs.rafnews_web_2023.model;
 public class Category {
 
     private int id;
-    private final String name;
-    private final String description;
+    private  String name;
+    private  String description;
 
     public Category(int id, String name, String description) {
         this.id = id;

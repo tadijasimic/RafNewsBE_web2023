@@ -7,9 +7,9 @@ use raf_news;
 CREATE TABLE user
 (
     id       INT AUTO_INCREMENT PRIMARY KEY,
-    email    VARCHAR(100),
-    name     VARCHAR(100),
-    surname  VARCHAR(100),
+    email    VARCHAR(100) UNIQUE,
+    first_name     VARCHAR(100),
+    last_name  VARCHAR(100),
     password VARCHAR(255),
     role     VARCHAR(50),
     status   VARCHAR(50)
@@ -50,7 +50,7 @@ CREATE TABLE comment
 );
 
 -- TAGS --
-CREATE TABLE tags
+CREATE TABLE tag
 (
     id   INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255)
@@ -63,7 +63,7 @@ CREATE TABLE news_tag
     tag_id  INT,
     PRIMARY KEY (news_id, tag_id),
     FOREIGN KEY (news_id) REFERENCES news (id) ON DELETE CASCADE,
-    FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
+    FOREIGN KEY (tag_id) REFERENCES tag (id) ON DELETE CASCADE
 );
 
 

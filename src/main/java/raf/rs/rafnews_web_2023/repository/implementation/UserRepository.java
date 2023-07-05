@@ -85,7 +85,7 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
     }
 
     @Override
-    public User addUser(User user) {
+    public User addUser(User user) throws SQLException {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -96,12 +96,13 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
 
             String[] generatedColumns = {"id"};
 
-            String sql = "INSERT INTO " + ENTITY_NAME + " " + ColumnNames.buildColumnsInsertQuery(ColumnNames.PASSWORD)
-                    + " VALUES(?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO " + ENTITY_NAME + " " + ColumnNames.buildColumnsInsertQuery()
+                    + " VALUES(?, ?, ?, ?, ?, ?)";
             preparedStatement = connection.prepareStatement(sql, generatedColumns);
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getFirstName());
             preparedStatement.setString(3, user.getLastName());
+            preparedStatement.setString(4, user.getPassword());
             preparedStatement.setString(5, user.getRole().name());
             preparedStatement.setString(6, user.getStatus().name());
 
@@ -113,6 +114,7 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
                 throw new RuntimeException("adding user failed");
         } catch (SQLException e) {
             e.printStackTrace();
+            throw e;
         } finally {
             closeStatement(preparedStatement);
             closeResultSet(resultSet);
@@ -160,7 +162,7 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getFirstName());
             preparedStatement.setString(4, user.getLastName());
-            preparedStatement.setString(5, user.getHashedPassword());
+            preparedStatement.setString(5, user.getPassword());
             preparedStatement.setString(6, user.getRole().name());
             preparedStatement.setString(7, user.getStatus().name());
             preparedStatement.setInt(8, user.getId());

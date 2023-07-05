@@ -3,8 +3,8 @@ package raf.rs.rafnews_web_2023.model;
 
 public class Tag {
 
-    private final int id;
-    private final String name;
+    private  int id;
+    private  String name;
 
     public Tag(int id, String name) {
         this.id = id;

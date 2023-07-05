@@ -1,6 +1,6 @@
 package raf.rs.rafnews_web_2023.resource;
 
-import raf.rs.rafnews_web_2023.converter.UserDTO_Converter;
+import raf.rs.rafnews_web_2023.dto.request.LoginRequest;
 import raf.rs.rafnews_web_2023.dto.response.Response;
 import raf.rs.rafnews_web_2023.dto.user.UserDTO;
 import raf.rs.rafnews_web_2023.service.UserService;
@@ -46,28 +46,35 @@ public class UserResource {
 
 
     @POST
-    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public UserDTO add(@Valid UserDTO user, @PathParam("id") int id) {
-        return userService.addUser(user);
+
+            return userService.addUser(user);
     }
 
 
     @PUT
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public UserDTO editUser(UserDTO user) {
+    public UserDTO editUser(@Valid UserDTO user, @PathParam("id") int id) {
         return userService.editUser(user);
     }
 
+    @POST
+    @Path("/login")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response login(LoginRequest loginRequest){
+        return userService.login(loginRequest);
+    }
 
     @POST
     @Path("/signup")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response signup(UserDTO newUser) {
+    public Response signup(@Valid UserDTO newUser) {
         return userService.signup(newUser);
     }
     @DELETE
-    public void deleteUser(UserDTO user) {
+    public void deleteUser(@Valid UserDTO user) {
         userService.deleteUser(user);
     }
 

@@ -15,6 +15,7 @@ import raf.rs.rafnews_web_2023.model.User;
 import raf.rs.rafnews_web_2023.repository.api.UserRepositoryAPI;
 
 import javax.inject.Inject;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,10 +50,15 @@ public class UserService {
     }
 
 
-    public UserDTO addUser(UserDTO userDTO) {
-
-        User user = UserDTO_Converter.convertToUser(userDTO);
-        return UserDTO_Converter.convertToUserDTO(userRepository.addUser(user));
+    public UserDTO addUser(UserDTO userDTO)  {
+        try {
+            User user = UserDTO_Converter.convertToUser(userDTO);
+            return UserDTO_Converter.convertToUserDTO(userRepository.addUser(user));
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void deleteUser(UserDTO userDTO) {
@@ -114,29 +120,51 @@ public class UserService {
     }
 
     public Response signup(UserDTO signupInfo) {
-        User newUser = UserDTO_Converter.convertToUser(signupInfo);
-        newUser = userRepository.addUser(newUser);
-        String jwt = createUserJWT(newUser);
-        return new ResponseBuilder().setStatus(200).setMessage("Signup Successful").build();
-    }
-    public Response login(LoginRequest loginRequest) {
 
+        User newUser = UserDTO_Converter.convertToUser(signupInfo);
+
+        //hash password before storing
+        String passwordHashed = DigestUtils.sha256Hex(newUser.getPassword());
+        System.out.println(passwordHashed);
+        newUser.setPassword(passwordHashed);
+         /*
+        jedini slucaj u kom dodavanje ne uspeva je ako je mail vec postojao u bazi pre signup zahteva,
+        to baza sama resava setovanjem email-a kao unique key u user tabeli
+        */
+        try {
+            newUser = userRepository.addUser(newUser);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            String message = "Sorry, the email address you entered is already associated with an existing account. Please use a different email address or try logging in instead.";
+            return new ResponseBuilder().setStatus(302).setMessage(message).build();
+        }
+        String jwt = createUserJWT(newUser);
+        return new ResponseBuilder().setStatus(200).setMessage("Signup Successful").setJwt(jwt).build();
+    }
+
+    public Response login(LoginRequest loginRequest) {
+        //hashamo sifru
         String hashedPassword = DigestUtils.sha256Hex(loginRequest.getPassword());
 
+        //trazim usera sa mailom iz login requesta
         User user = userRepository.searchUserByEmail(loginRequest.getEmail());
 
         //Korisnik sa ovim mailom nije registrovan...ne postoji acc
-        if (user == null)
-            return new ResponseBuilder().setStatus(301).setMessage("Authentication failed").build();
-
+        if (user == null) {
+            String message = "There is no registered account associated with this email. Please enter a valid email address or sign up to create a new account.";
+            return new ResponseBuilder().setStatus(301).setMessage(message).build();
+        }
         //Da l je uneo tacnu sifru
-        if (!user.getHashedPassword().equals(hashedPassword))
-            return new ResponseBuilder().setStatus(302).setMessage("Passwords not match").build();
-
+        if (!user.getPassword().equals(hashedPassword)) {
+            String message = "The password you entered is incorrect. Please verify your password and try again.";
+            return new ResponseBuilder().setStatus(302).setMessage(message).build();
+        }
         //nasli coveka i tacna sifra pravim payload za coveka stavjam id, role, status
         String jwt = createUserJWT(user);
-        return new ResponseBuilder().setStatus(200).setMessage("ok").setJwt(jwt).build();
-
+        Response loginResponse = new ResponseBuilder().setStatus(200).setMessage("ok").setJwt(jwt).build();
+        System.out.println(loginResponse);
+        return loginResponse;
     }
 
 
@@ -152,8 +180,8 @@ public class UserService {
                 .withExpiresAt(expiresAt)
                 .withSubject(user.getEmail())
                 .withClaim("id", user.getId())
-                .withClaim("firstName", user.getId())
-                .withClaim("lastName", user.getId())
+                .withClaim("firstName", user.getFirstName())
+                .withClaim("lastName", user.getLastName())
                 .withClaim("role", user.getRole().name())
                 .withClaim("status", user.getStatus().name())
                 .sign(algorithm);

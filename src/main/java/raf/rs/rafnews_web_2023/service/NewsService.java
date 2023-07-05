@@ -99,4 +99,15 @@ public class NewsService {
     public List<News> newsByAuthor(int authorId) {
         return newsRepository.newsByAuthor(authorId);
     }
+
+    public List<NewsPreviewDTO> filterSearch(int categoryId, String dateOrder, boolean trending, int pageIndex, int pageSize) {
+        List<News> news =  newsRepository.filterSearch(categoryId,dateOrder,trending, pageIndex, pageSize);
+        return NewsDTO_Converter
+                .convertToNewsPreviewDTOList(
+                        news,
+                        userService.searchNewsAuthors(news),
+                        categoryService.searchNewsCategories(news)
+                );
+    }
+
 }

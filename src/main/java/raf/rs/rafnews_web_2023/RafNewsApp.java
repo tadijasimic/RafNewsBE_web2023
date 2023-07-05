@@ -7,6 +7,7 @@ import raf.rs.rafnews_web_2023.repository.api.*;
 import raf.rs.rafnews_web_2023.repository.implementation.*;
 import raf.rs.rafnews_web_2023.service.*;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Singleton;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.container.ContainerRequestContext;
@@ -18,7 +19,6 @@ import java.io.IOException;
 @ApplicationPath("/api")
 public class RafNewsApp extends ResourceConfig {
 
-//c
     public RafNewsApp() {
         property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
 
@@ -49,6 +49,10 @@ public class RafNewsApp extends ResourceConfig {
 
         register(binder);
         packages("raf.rs.rafnews_web_2023");
+    }
+    @PostConstruct
+    public void init() {
+        register(CorsFilter.class);
     }
 
     @Provider

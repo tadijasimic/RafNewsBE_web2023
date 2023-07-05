@@ -18,6 +18,7 @@ public interface CommentRepositoryAPI {
 
     Comment edditComment(Comment comment);
 
+    Comment findCommentById(int id);
     void deleteComment(Comment comment);
 
 

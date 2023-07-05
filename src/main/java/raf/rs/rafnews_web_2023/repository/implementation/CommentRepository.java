@@ -225,6 +225,43 @@ public class CommentRepository extends MySQLRepository implements CommentReposit
         return comment;
     }
 
+    @Override
+    public Comment findCommentById(int id) {
+        Connection connection = null;
+        Statement preparedStatement = null;
+        ResultSet resultSet = null;
+        Comment comment = null;
+        try {
+            connection = this.getDB_Connection();
+
+            preparedStatement = connection.createStatement();
+            resultSet = preparedStatement.executeQuery(
+                    "SELECT * FROM " + ENTITY_NAME + " WHERE " + ColumnNames.ID + " = " + id
+                            + " ORDER BY " + ColumnNames.CREATION_TIME + " DESC");
+
+            if (resultSet.next()) {
+                comment =
+                        new Comment(
+                                resultSet.getInt(ColumnNames.ID.column_name),
+                                resultSet.getString(ColumnNames.CONTENT.column_name),
+                                resultSet.getTimestamp(ColumnNames.CREATION_TIME.column_name),
+                                resultSet.getInt(ColumnNames.AUTHOR_ID.column_name),
+                                resultSet.getInt(ColumnNames.NEWS_ID.column_name)
+
+                        );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeStatement(preparedStatement);
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+
+        return comment;
+    }
+
 
     @Override
     public void deleteComment(Comment comment) {

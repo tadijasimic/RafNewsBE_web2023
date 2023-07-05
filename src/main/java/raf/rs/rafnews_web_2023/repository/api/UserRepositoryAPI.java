@@ -3,6 +3,7 @@ package raf.rs.rafnews_web_2023.repository.api;
 
 import raf.rs.rafnews_web_2023.model.User;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UserRepositoryAPI {
@@ -12,7 +13,7 @@ public interface UserRepositoryAPI {
 
     List<User> usersForPage(int pageIndex, int pageSize);
 
-    User addUser(User user);
+    User addUser(User user) throws SQLException;
 
     void deleteUser(User user);
 
@@ -27,8 +28,8 @@ public interface UserRepositoryAPI {
 
         ID(1, "id", Integer.class),
         EMAIL(2, "email", String.class),
-        NAME(3, "name", String.class),
-        SURNAME(4, "surname", String.class),
+        NAME(3, "first_name", String.class),
+        SURNAME(4, "last_name", String.class),
         PASSWORD(5, "password", String.class),
         ROLE(6, "role", String.class),
         STATUS(7, "status", String.class);
@@ -46,7 +47,7 @@ public interface UserRepositoryAPI {
         public static String buildColumnsInsertQuery(ColumnNames... without) {
             StringBuilder stringBuilder = new StringBuilder("(");
             ColumnNames[] columnNames = values();
-
+            //pocinje od 1 znaci id se uvek preskace
             for (int i = 1; i < columnNames.length - 1; i++) {
                 if(without.length == 1 && without[0] ==  columnNames[i])
                     continue;
@@ -61,7 +62,7 @@ public interface UserRepositoryAPI {
         public static String buildColumnsUpdateQuery() {
             StringBuilder stringBuilder = new StringBuilder();
             ColumnNames[] columnNames = values();
-
+            //isto preskaces id iteriras od 2. kolone
             for (int i = 1; i < columnNames.length - 1; i++) {
                 stringBuilder.append(columnNames[i].column_name).append(" = ?, ");
             }

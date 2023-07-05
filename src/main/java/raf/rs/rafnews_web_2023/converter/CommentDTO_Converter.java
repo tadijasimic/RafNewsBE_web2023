@@ -14,10 +14,14 @@ public abstract class CommentDTO_Converter {
     }
 
     public static CommentDTO convertToCommentDTO(Comment comment, AuthorDTO author) {
+        if(comment == null || author == null)
+            return null;
         return new CommentDTO(comment, author);
     }
 
     public static List<CommentDTO> convertToCommentDTOList(List<Comment> comments, List<AuthorDTO> authors) {
+        if(comments == null || authors== null)
+            return null;
         List<CommentDTO> dtoList = new ArrayList<>();
         if (comments.size() != authors.size())
             return null;
@@ -35,6 +39,8 @@ public abstract class CommentDTO_Converter {
     }
 
     public static Comment convertToComment(CommentDTO dto) {
+        if(dto == null)
+            return null;
         return new Comment(
                 dto.getId(),
                 dto.getContent(),

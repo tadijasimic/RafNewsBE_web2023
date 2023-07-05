@@ -42,9 +42,9 @@ public abstract class UserDTO_Converter {
         return new User(
                 dto.getId(),
                 dto.getEmail(),
-                dto.getFistName(),
-                dto.getSurname(),
-                null,
+                dto.getFirstName(),
+                dto.getLastName(),
+                dto.getPassword(),
                 dto.getRole(),
                 dto.getStatus());
     }

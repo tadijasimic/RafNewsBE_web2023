@@ -6,12 +6,14 @@ public class UserDTO {
 
     private int id;
     private String email;
-    private String fistName;
+    private String firstName;
 
     private String lastName;
 
     private String role;
     private String status;
+
+    private String password;
 
 
     public UserDTO() {
@@ -21,7 +23,7 @@ public class UserDTO {
 
         id = user.getId();
         email = user.getEmail();
-        fistName = user.getFirstName();
+        firstName = user.getFirstName();
         lastName = user.getLastName();
         role = user.getRole().name();
         status = user.getStatus().name();
@@ -43,20 +45,28 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getFistName() {
-        return fistName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFistName(String fistName) {
-        this.fistName = fistName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getSurname() {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setSurname(String surname) {
+    public void setLastName(String surname) {
         this.lastName = surname;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getRole() {

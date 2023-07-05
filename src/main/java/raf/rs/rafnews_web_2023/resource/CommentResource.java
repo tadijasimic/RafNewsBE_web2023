@@ -39,5 +39,21 @@ public class CommentResource {
         return commentService.addComment(comment);
     }
 
+    @PUT
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public CommentDTO editComment(CommentDTO comment, @PathParam("id") int id) {
+        return commentService.editComment(comment);
+    }
+
+
+    @DELETE
+    @Path("/{id}")
+    public void deleteComment(CommentDTO comment, @PathParam("id") int id) {
+        commentService.deleteComment(comment);
+    }
+
+
+
 
 }

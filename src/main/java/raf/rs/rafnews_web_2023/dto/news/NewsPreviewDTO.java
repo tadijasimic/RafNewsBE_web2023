@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class NewsPreviewDTO {
 
     private int id;
+
     private String title;
     private String content;
 

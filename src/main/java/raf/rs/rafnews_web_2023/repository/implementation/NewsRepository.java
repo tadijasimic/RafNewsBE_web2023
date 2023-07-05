@@ -295,5 +295,72 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
 
     }
 
+    @Override
+    public List<News> filterSearch(int categoryId, String dateOrder, boolean trending, int pageIndex, int pageSize) {
+        // Implementation to filter and search news based on provided criteria
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<News> filteredNews = new ArrayList<>();
+
+        try {
+            connection = getDB_Connection();
+
+            // Prepare the SQL query based on the provided criteria
+            StringBuilder sqlQuery = new StringBuilder("SELECT * FROM news");
+
+            // Append additional criteria based on the provided values
+            if (categoryId != -1) {
+                sqlQuery.append(" WHERE category_id = ?");
+            }
+
+            if (trending) {
+                if (categoryId != -1) {
+                    sqlQuery.append(" AND");
+                } else {
+                    sqlQuery.append(" WHERE");
+                }
+                sqlQuery.append(" visited ").append(dateOrder);
+            } else {
+                if (categoryId != -1) {
+                    sqlQuery.append(" AND");
+                } else {
+                    sqlQuery.append(" WHERE");
+                }
+                sqlQuery.append(" creation_time ").append(dateOrder);
+            }
+
+            // Add pagination to the query
+            sqlQuery.append(" LIMIT ?, ?");
+
+            // Create the prepared statement and set the parameter values
+            preparedStatement = connection.prepareStatement(sqlQuery.toString());
+            int parameterIndex = 1;
+            if (categoryId != -1) {
+                preparedStatement.setInt(parameterIndex++, categoryId);
+            }
+            preparedStatement.setInt(parameterIndex++, pageIndex * pageSize);
+            preparedStatement.setInt(parameterIndex, pageSize);
+
+            // Execute the query and process the result set
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                News news = new News(
+                        resultSet.getInt("id"),
+                        resultSet.getString("title"),
+                        resultSet.getString("content"),
+                        resultSet.getInt("visited"),
+                        resultSet.getTimestamp("creation_time"),
+                        resultSet.getInt("author_id"),
+                        resultSet.getInt("category_id")
+                );
+                filteredNews.add(news);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return filteredNews;
+    }
 
 }

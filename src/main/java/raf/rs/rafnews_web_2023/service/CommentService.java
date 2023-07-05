@@ -71,5 +71,11 @@ public class CommentService {
         return commentRepository.commentsByAuthor(authorId);
     }
 
+    public Comment findById(int authorId) {
+        return commentRepository.findCommentById(authorId);
+    }
+
+
+
 
 }
