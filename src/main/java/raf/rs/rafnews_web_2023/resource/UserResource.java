@@ -1,5 +1,7 @@
 package raf.rs.rafnews_web_2023.resource;
 
+import raf.rs.rafnews_web_2023.converter.UserDTO_Converter;
+import raf.rs.rafnews_web_2023.dto.response.Response;
 import raf.rs.rafnews_web_2023.dto.user.UserDTO;
 import raf.rs.rafnews_web_2023.service.UserService;
 
@@ -44,9 +46,9 @@ public class UserResource {
 
 
     @POST
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public UserDTO create(@Valid UserDTO user) {
-        System.out.flush();
+    public UserDTO add(@Valid UserDTO user, @PathParam("id") int id) {
         return userService.addUser(user);
     }
 
@@ -57,11 +59,17 @@ public class UserResource {
         return userService.editUser(user);
     }
 
+
+    @POST
+    @Path("/signup")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response signup(UserDTO newUser) {
+        return userService.signup(newUser);
+    }
     @DELETE
     public void deleteUser(UserDTO user) {
         userService.deleteUser(user);
     }
-
 
 
 }

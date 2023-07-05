@@ -43,6 +43,7 @@ public class CommentService {
 
     public CommentDTO addComment(CommentDTO commentDTO) {
         Comment comment = CommentDTO_Converter.convertToComment(commentDTO);
+
         comment = commentRepository.addComment(comment);
         return CommentDTO_Converter.convertToCommentDTO(
                 comment,
@@ -54,6 +55,20 @@ public class CommentService {
         commentRepository.deleteComment(
                 CommentDTO_Converter.convertToComment(commentDTO)
         );
+    }
+
+    public CommentDTO editComment(CommentDTO commentDTO) {
+        Comment comment = CommentDTO_Converter.convertToComment(commentDTO);
+
+        comment = commentRepository.edditComment(comment);
+        return CommentDTO_Converter.convertToCommentDTO(
+                comment,
+                userService.searchAuthor(comment)
+        );
+    }
+
+    public List<Comment> commensByAuthor(int authorId) {
+        return commentRepository.commentsByAuthor(authorId);
     }
 
 

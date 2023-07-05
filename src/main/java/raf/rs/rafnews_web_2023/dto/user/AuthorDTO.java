@@ -9,8 +9,9 @@ public class AuthorDTO {
     private String lastName;
 
     public AuthorDTO(User user) {
-        firstName = user.getName();
-        lastName = user.getSurname();
+        id = user.getId();
+        firstName = user.getFirstName();
+        lastName = user.getLastName();
     }
 
 
@@ -18,12 +19,12 @@ public class AuthorDTO {
         return firstName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public void setLastName(String lastName) {

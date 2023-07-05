@@ -1,8 +1,10 @@
 package raf.rs.rafnews_web_2023.resource;
 
 
+import raf.rs.rafnews_web_2023.dto.filter.FilterDTO;
 import raf.rs.rafnews_web_2023.dto.news.NewsDTO;
 import raf.rs.rafnews_web_2023.dto.news.NewsPreviewDTO;
+import raf.rs.rafnews_web_2023.model.User;
 import raf.rs.rafnews_web_2023.service.NewsService;
 
 import javax.inject.Inject;
@@ -30,6 +32,13 @@ public class NewsResource {
     }
 
     @GET
+    @Path("/filter")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<NewsPreviewDTO> filterNews(FilterDTO filterDTO, @QueryParam("pageSize") int pageSize, @QueryParam("pageIndex") int pageIndex) {
+        return null;
+    }
+
+    @GET
     @Path("/category/{categoryId}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<NewsPreviewDTO> newsInCategory(@PathParam("categoryId") int categoryId) {
@@ -45,9 +54,19 @@ public class NewsResource {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public NewsDTO addNews(NewsDTO news) {
+    public NewsDTO addNews(NewsPreviewDTO news) {
         return newsService.addNews(news);
     }
 
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public NewsPreviewDTO editNews(NewsPreviewDTO news) {
+        return newsService.editNews(news);
+    }
 
+    @DELETE
+    @Path("/{id}")
+    public void deleteNews(@PathParam("id") int id) {
+        newsService.deleteNews(id);
+    }
 }

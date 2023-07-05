@@ -5,6 +5,7 @@ import raf.rs.rafnews_web_2023.dto.comment.CommentDTO;
 import raf.rs.rafnews_web_2023.dto.user.AuthorDTO;
 import raf.rs.rafnews_web_2023.model.News;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class NewsDTO {
@@ -31,7 +32,7 @@ public class NewsDTO {
         id = news.getId();
         title = news.getTitle();
         content = news.getContent();
-        creationTime = news.getCreationTime().toString();
+        creationTime = news.getCreationTime().toLocalDateTime().format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
         this.author = author;
         this.category= category;
         this.comments = comments;

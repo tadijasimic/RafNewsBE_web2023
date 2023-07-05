@@ -13,9 +13,15 @@ public interface NewsRepositoryAPI {
 
     List<News> newsInCategory(int categoryId);
 
+    List<News> newsByAuthor(int authorId);
+
     News addNews(News news);
 
     News findById(int newsId);
+
+    News editNews(News news);
+
+    void deleteNews(News news);
 
 
 

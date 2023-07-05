@@ -59,7 +59,7 @@ public class CommentRepository extends MySQLRepository implements CommentReposit
             statement = connection.createStatement();
             int startIndex = pageIndex * pageSize;
             String sql = "SELECT * FROM " + ENTITY_NAME + " WHERE " + ColumnNames.NEWS_ID + " = " + newsId
-                    + " LIMIT " + startIndex + ", " + pageSize +" ORDER BY " + ColumnNames.CREATION_TIME + " DESC";
+                    + " LIMIT " + startIndex + ", " + pageSize + " ORDER BY " + ColumnNames.CREATION_TIME + " DESC";
             resultSet = statement.executeQuery(sql);
             commentsForPage = new ArrayList<>();
             while (resultSet.next()) {
@@ -94,8 +94,8 @@ public class CommentRepository extends MySQLRepository implements CommentReposit
 
             preparedStatement = connection.createStatement();
             resultSet = preparedStatement.executeQuery(
-                    "SELECT * FROM " + ENTITY_NAME + " WHERE " + ColumnNames.NEWS_ID  + " = " + newsId
-            +" ORDER BY " + ColumnNames.CREATION_TIME + " DESC" );
+                    "SELECT * FROM " + ENTITY_NAME + " WHERE " + ColumnNames.NEWS_ID + " = " + newsId
+                            + " ORDER BY " + ColumnNames.CREATION_TIME + " DESC");
             commentsOnPost = new ArrayList<>();
 
             while (resultSet.next()) {
@@ -120,6 +120,44 @@ public class CommentRepository extends MySQLRepository implements CommentReposit
 
         return commentsOnPost;
 
+    }
+
+    @Override
+    public List<Comment> commentsByAuthor(int authorId) {
+        Connection connection = null;
+        Statement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Comment> commentsByAuthor = null;
+        try {
+            connection = this.getDB_Connection();
+
+            preparedStatement = connection.createStatement();
+            resultSet = preparedStatement.executeQuery(
+                    "SELECT * FROM " + ENTITY_NAME + " WHERE " + ColumnNames.AUTHOR_ID + " = " + authorId
+                            + " ORDER BY " + ColumnNames.CREATION_TIME + " DESC");
+            commentsByAuthor = new ArrayList<>();
+
+            while (resultSet.next()) {
+                commentsByAuthor.add(
+                        new Comment(
+                                resultSet.getInt(ColumnNames.ID.column_name),
+                                resultSet.getString(ColumnNames.CONTENT.column_name),
+                                resultSet.getTimestamp(ColumnNames.CREATION_TIME.column_name),
+                                resultSet.getInt(ColumnNames.AUTHOR_ID.column_name),
+                                resultSet.getInt(ColumnNames.NEWS_ID.column_name)
+                        )
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeStatement(preparedStatement);
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+
+        return commentsByAuthor;
 
     }
 
@@ -159,6 +197,34 @@ public class CommentRepository extends MySQLRepository implements CommentReposit
         return null;
 
     }
+
+    @Override
+    public Comment edditComment(Comment comment) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = this.getDB_Connection();
+
+            String sql = "UPDATE " + ENTITY_NAME + " SET " + ColumnNames.buildColumnsUpdateQuery() + " WHERE " + ColumnNames.ID + " = ? ";
+            String[] generatedColumns = {"id"};
+            preparedStatement = connection.prepareStatement(sql, generatedColumns);
+            preparedStatement.setString(1, comment.getContent());
+            preparedStatement.setString(2, comment.getCreationTime().toString());
+            preparedStatement.setInt(3, comment.getAuthorId());
+            preparedStatement.setInt(4, comment.getNewsId());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            this.closeStatement(preparedStatement);
+            this.closeConnection(connection);
+        }
+        return comment;
+    }
+
 
     @Override
     public void deleteComment(Comment comment) {

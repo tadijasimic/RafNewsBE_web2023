@@ -1,0 +1,61 @@
+@POST
+    @Path("/login")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response login(@Valid LoginRequest loginRequest) {
+        Map<String, String> response = new HashMap<>();
+
+        String jwt = this.userService.login(loginRequest.getEmail(), loginRequest.getPassword());
+        if (jwt == null) {
+            response.put("message", "These credentials do nto match our records");
+            return Response.status(422, "Unprocessable Entity").entity(response).build();
+        }
+
+        response.put("jwt", jwt);
+
+        return Response.ok(response).build();
+
+    }
+
+
+
+
+
+
+    @Override
+        public List<News> newsForPage(int pageIndex. int pageSize) {
+            List<News> newsForPage = null;
+            Connection connection = null;
+            Statement statement = null;
+            ResultSet resultSet = null;
+
+            try {
+                connection = getDB_Connection();
+                statement = connection.createStatement();
+                int startIndex = pageIndex * pageSize;
+                String sqlQuery = "SELECT * FROM " + ENTITY_NAME + " LIMIT " + startIndex + ", " + pageSize;
+                resultSet = statement.executeQuery(sqlQuery);
+                newsForPage = new ArrayList<>();
+                while (resultSet.next()) {
+                    newsForPage.add(
+                            new News(
+                                    resultSet.getInt(ColumnNames.ID.column_index),
+                                    resultSet.getString(ColumnNames.TITLE.column_name),
+                                    resultSet.getString(ColumnNames.CONTENT.column_name),
+                                    resultSet.getInt(ColumnNames.VISITED.column_name),
+                                    resultSet.getTimestamp(ColumnNames.CREATION_TIME.column_name),
+                                    resultSet.getInt(ColumnNames.AUTHOR_ID.column_name),
+                                    resultSet.getInt(ColumnNames.CATEGORY_ID.column_name)
+                            )
+                    );
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                closeStatement(statement);
+                closeResultSet(resultSet);
+                closeConnection(connection);
+            }
+            return newsForPage;
+        }
+
+        There is no registered account associated with this email. Please enter a valid email address or sign up to create a new account.

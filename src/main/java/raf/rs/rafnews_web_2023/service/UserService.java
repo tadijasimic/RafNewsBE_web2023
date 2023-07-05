@@ -3,10 +3,10 @@ package raf.rs.rafnews_web_2023.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.interfaces.DecodedJWT;
-import com.auth0.jwt.interfaces.JWTVerifier;
 import org.apache.commons.codec.digest.DigestUtils;
 import raf.rs.rafnews_web_2023.converter.UserDTO_Converter;
+import raf.rs.rafnews_web_2023.dto.request.LoginRequest;
+import raf.rs.rafnews_web_2023.dto.response.Response;
 import raf.rs.rafnews_web_2023.dto.user.AuthorDTO;
 import raf.rs.rafnews_web_2023.dto.user.UserDTO;
 import raf.rs.rafnews_web_2023.model.Comment;
@@ -18,6 +18,9 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static raf.rs.rafnews_web_2023.dto.response.Response.ResponseBuilder;
+import static raf.rs.rafnews_web_2023.filter.AuthFilter.SECRET_KEY;
 
 public class UserService {
 
@@ -110,47 +113,50 @@ public class UserService {
         return dtoList;
     }
 
+    public Response signup(UserDTO signupInfo) {
+        User newUser = UserDTO_Converter.convertToUser(signupInfo);
+        newUser = userRepository.addUser(newUser);
+        String jwt = createUserJWT(newUser);
+        return new ResponseBuilder().setStatus(200).setMessage("Signup Successful").build();
+    }
+    public Response login(LoginRequest loginRequest) {
+
+        String hashedPassword = DigestUtils.sha256Hex(loginRequest.getPassword());
+
+        User user = userRepository.searchUserByEmail(loginRequest.getEmail());
+
+        //Korisnik sa ovim mailom nije registrovan...ne postoji acc
+        if (user == null)
+            return new ResponseBuilder().setStatus(301).setMessage("Authentication failed").build();
+
+        //Da l je uneo tacnu sifru
+        if (!user.getHashedPassword().equals(hashedPassword))
+            return new ResponseBuilder().setStatus(302).setMessage("Passwords not match").build();
+
+        //nasli coveka i tacna sifra pravim payload za coveka stavjam id, role, status
+        String jwt = createUserJWT(user);
+        return new ResponseBuilder().setStatus(200).setMessage("ok").setJwt(jwt).build();
+
+    }
 
 
-    public String login(String email, String password) {
-
-        String hashedPassword = DigestUtils.sha256Hex(password);
-
-        User user = userRepository.searchUserByEmail(email);
-        if (user == null || !user.getHashedPassword().equals(hashedPassword)) {
-            return null;
-        }
+    private String createUserJWT(User user) {
 
         Date issuedAt = new Date();
         Date expiresAt = new Date(issuedAt.getTime() + 24 * 60 * 60 * 1000); // One day
 
-        Algorithm algorithm = Algorithm.HMAC256("secret");
+        Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
 
-        // JWT-om mozete bezbedono poslati informacije na FE
-        // Tako sto sve sto zelite da posaljete zapakujete u claims mapu
         return JWT.create()
                 .withIssuedAt(issuedAt)
                 .withExpiresAt(expiresAt)
-                .withSubject(email)
+                .withSubject(user.getEmail())
+                .withClaim("id", user.getId())
+                .withClaim("firstName", user.getId())
+                .withClaim("lastName", user.getId())
                 .withClaim("role", user.getRole().name())
+                .withClaim("status", user.getStatus().name())
                 .sign(algorithm);
-    }
-
-    public boolean isAuthorized(String token) {
-        Algorithm algorithm = Algorithm.HMAC256("secret");
-        JWTVerifier verifier = JWT.require(algorithm).build();
-        DecodedJWT jwt = verifier.verify(token);
-
-        String username = jwt.getSubject();
-//        jwt.getClaim("role").asString();
-
-        /*User user = this.userRepository.findUser(username);
-
-        if (user == null){
-            return false;
-        }
-    */
-        return true;
     }
 
 }

@@ -90,6 +90,7 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
         return newsForPage;
     }
 
+
     @Override
     public List<News> newsInCategory(int categoryId) {
         Connection connection = null;
@@ -129,6 +130,45 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
         return newsInCategory;
     }
 
+    @Override
+    public List<News> newsByAuthor(int authorId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<News> newsByAuthor = null;
+        try {
+            connection = this.getDB_Connection();
+
+            preparedStatement = connection.prepareStatement("SELECT * FROM " + ENTITY_NAME + " WHERE " + ColumnNames.AUTHOR_ID + " = ?");
+            preparedStatement.setInt(1, authorId);
+            resultSet = preparedStatement.executeQuery();
+            newsByAuthor = new ArrayList<>();
+
+            while (resultSet.next()) {
+                newsByAuthor.add(
+                        new News(
+                                resultSet.getInt(ColumnNames.ID.column_index),
+                                resultSet.getString(ColumnNames.TITLE.column_name),
+                                resultSet.getString(ColumnNames.CONTENT.column_name),
+                                resultSet.getInt(ColumnNames.VISITED.column_name),
+                                resultSet.getTimestamp(ColumnNames.CREATION_TIME.column_name),
+                                resultSet.getInt(ColumnNames.AUTHOR_ID.column_name),
+                                resultSet.getInt(ColumnNames.CATEGORY_ID.column_name)
+                        )
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeStatement(preparedStatement);
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+
+        return newsByAuthor;
+    }
+
 
     @Override
     public News addNews(News news) {
@@ -166,6 +206,7 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
         return news;
     }
 
+
     @Override
     public News findById(int newsId) {
         Connection connection = null;
@@ -200,6 +241,58 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
             closeConnection(connection);
         }
         return null;
+    }
+
+    @Override
+    public News editNews(News news) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = this.getDB_Connection();
+
+            preparedStatement = connection.prepareStatement(
+                    "UPDATE " + ENTITY_NAME + " SET " + ColumnNames.buildColumnsUpdateQuery() + " WHERE " + ColumnNames.ID + " = ? ");
+
+            preparedStatement.setInt(1, news.getCategoryId());
+            preparedStatement.setString(2, news.getTitle());
+            preparedStatement.setString(3, news.getContent());
+            preparedStatement.setInt(4, news.getVisited());
+            preparedStatement.setTimestamp(5, news.getCreationTime());
+            preparedStatement.setInt(6, news.getAuthorId());
+            preparedStatement.setInt(7, news.getCategoryId());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            this.closeStatement(preparedStatement);
+            this.closeConnection(connection);
+        }
+
+        return news;
+    }
+
+    @Override
+    public void deleteNews(News news) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = this.getDB_Connection();
+            preparedStatement = connection.prepareStatement(
+                    "DELETE FROM " + ENTITY_NAME + " WHERE " + ColumnNames.ID + " = ?");
+            preparedStatement.setInt(1, news.getId());
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            this.closeStatement(preparedStatement);
+            this.closeConnection(connection);
+        }
+
     }
 
 

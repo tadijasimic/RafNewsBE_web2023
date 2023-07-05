@@ -12,8 +12,11 @@ public interface CommentRepositoryAPI {
     List<Comment> commentsOnNews(int newsId);
 
     List<Comment> commentsOnNews(int newsId, int pageIndex, int pageSize);
+    List<Comment> commentsByAuthor(int authorId);
 
     Comment addComment(Comment comment);
+
+    Comment edditComment(Comment comment);
 
     void deleteComment(Comment comment);
 

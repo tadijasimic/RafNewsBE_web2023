@@ -8,22 +8,22 @@ public class User {
 
     private int id;
 
-    private String email;
-    private String name;
-    private String surname;
+    private final String email;
+    private final String firstName;
+    private final String lastName;
 
-    private String hashedPassword;
+    private final String hashedPassword;
 
-    private Role role;
+    private final Role role;
 
-    private Status status;
+    private final Status status;
 
 
 
-    public User(int id, String email, String name, String surname, String hashedPassword, String role, String status) {
+    public User(int id, String email, String firstName, String lastName, String hashedPassword, String role, String status) {
         this.id = id;
-        this.name = name;
-        this.surname = surname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.hashedPassword = hashedPassword;
         this.email = email;
         this.role = Role.valueOf(role);
@@ -44,22 +44,18 @@ public class User {
     }
 
 
-
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
-
-
 
     public String getHashedPassword() {
         return hashedPassword;
     }
 
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
-
 
     public Role getRole() {
         return role;

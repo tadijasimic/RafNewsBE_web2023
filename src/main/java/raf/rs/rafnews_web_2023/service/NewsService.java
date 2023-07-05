@@ -11,14 +11,13 @@ import java.util.List;
 
 public class NewsService {
     @Inject
+    CategoryService categoryService;
+    @Inject
     private NewsRepositoryAPI newsRepository;
-
     @Inject
     private UserService userService;
     @Inject
     private CommentService commentService;
-
-    @Inject CategoryService categoryService;
 
     public NewsService() {
         System.out.println(this);
@@ -65,7 +64,7 @@ public class NewsService {
                 );
     }
 
-    public NewsDTO addNews(NewsDTO newsDTO) {
+    public NewsDTO addNews(NewsPreviewDTO newsDTO) {
         News news = NewsDTO_Converter.convertToNews(newsDTO);
         news = newsRepository.addNews(news);
 
@@ -79,5 +78,25 @@ public class NewsService {
                 );
     }
 
+    public NewsPreviewDTO editNews(NewsPreviewDTO newsPreviewDTO) {
+        News news = NewsDTO_Converter.convertToNews(newsPreviewDTO);
+        news = newsRepository.addNews(news);
 
+        return NewsDTO_Converter
+                .convertToNewsPreviewDTO(
+                        news,
+                        userService.searchAuthor(news),
+                        categoryService.searchCategoryById(news.getCategoryId())
+                );
+    }
+
+    public void deleteNews(int id) {
+        News news = new News();
+        news.setId(id);
+        newsRepository.deleteNews(news);
+    }
+
+    public List<News> newsByAuthor(int authorId) {
+        return newsRepository.newsByAuthor(authorId);
+    }
 }

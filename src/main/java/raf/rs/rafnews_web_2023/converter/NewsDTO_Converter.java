@@ -66,4 +66,14 @@ public abstract class NewsDTO_Converter {
         );
     }
 
-}
+    public static News convertToNews(NewsPreviewDTO dto) {
+        return new News(
+                dto.getId(),
+                dto.getTitle(),
+                dto.getContent(),
+                0,
+                dto.getCreationTime(),
+                dto.getAuthor().getId(),
+                0
+        );
+    }}

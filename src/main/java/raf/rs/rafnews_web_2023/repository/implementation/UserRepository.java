@@ -97,18 +97,18 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
             String[] generatedColumns = {"id"};
 
             String sql = "INSERT INTO " + ENTITY_NAME + " " + ColumnNames.buildColumnsInsertQuery(ColumnNames.PASSWORD)
-                    + " VALUES(?, ?, ?, ?, ?, ?)";
+                    + " VALUES(?, ?, ?, ?, ?)";
             preparedStatement = connection.prepareStatement(sql, generatedColumns);
             preparedStatement.setString(1, user.getEmail());
-            preparedStatement.setString(2, user.getName());
-            preparedStatement.setString(3, user.getSurname());
+            preparedStatement.setString(2, user.getFirstName());
+            preparedStatement.setString(3, user.getLastName());
             preparedStatement.setString(5, user.getRole().name());
             preparedStatement.setString(6, user.getStatus().name());
-            preparedStatement.executeUpdate();
 
+            preparedStatement.executeUpdate();
             resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
-                user.setId(resultSet.getInt(ColumnNames.ID.column_index));
+                user.setId((int) resultSet.getLong(1));
             } else
                 throw new RuntimeException("adding user failed");
         } catch (SQLException e) {
@@ -156,13 +156,14 @@ public class UserRepository extends MySQLRepository implements UserRepositoryAPI
             preparedStatement = connection.prepareStatement(
                     "UPDATE " + ENTITY_NAME + " SET " + ColumnNames.buildColumnsUpdateQuery() + " WHERE " + ColumnNames.ID + " = ? ");
 
-            preparedStatement.setString(1, user.getEmail());
-            preparedStatement.setString(2, user.getName());
-            preparedStatement.setString(3, user.getSurname());
-            preparedStatement.setString(4, user.getHashedPassword());
-            preparedStatement.setString(5, user.getRole().name());
-            preparedStatement.setString(6, user.getStatus().name());
-            preparedStatement.setInt(7, user.getId());
+            preparedStatement.setInt(1, user.getId());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getFirstName());
+            preparedStatement.setString(4, user.getLastName());
+            preparedStatement.setString(5, user.getHashedPassword());
+            preparedStatement.setString(6, user.getRole().name());
+            preparedStatement.setString(7, user.getStatus().name());
+            preparedStatement.setInt(8, user.getId());
 
 
             preparedStatement.executeUpdate();

@@ -14,6 +14,8 @@ public class NewsPreviewDTO {
 
     private String creationTime;
 
+    private int visited;
+
     private AuthorDTO author;
 
     private CategoryDTO category;
@@ -27,6 +29,7 @@ public class NewsPreviewDTO {
         id = news.getId();
         title = news.getTitle();
         content = news.getContent();
+        visited = news.getVisited();
         creationTime = news.getCreationTime().toLocalDateTime().format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
         author = authorDTO;
         category = categoryDTO;
@@ -63,6 +66,12 @@ public class NewsPreviewDTO {
     public void setCategory(CategoryDTO category) {
         this.category = category;
     }
+
+    public void setVisited(int visited) {
+        this.visited = visited;
+    }
 }
+
+
 
 

@@ -21,8 +21,8 @@ public class UserDTO {
 
         id = user.getId();
         email = user.getEmail();
-        fistName = user.getName();
-        lastName = user.getSurname();
+        fistName = user.getFirstName();
+        lastName = user.getLastName();
         role = user.getRole().name();
         status = user.getStatus().name();
     }
