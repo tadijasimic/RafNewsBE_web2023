@@ -46,6 +46,7 @@ public class UserResource {
 
 
     @POST
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public UserDTO add(@Valid UserDTO user, @PathParam("id") int id) {
 
@@ -70,7 +71,7 @@ public class UserResource {
     @POST
     @Path("/signup")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response signup(@Valid UserDTO newUser) {
+    public Response signup( UserDTO newUser) {
         return userService.signup(newUser);
     }
     @DELETE

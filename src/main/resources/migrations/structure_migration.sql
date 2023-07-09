@@ -45,7 +45,6 @@ CREATE TABLE comment
     author_id       INT,
     news_id       INT,
     FOREIGN KEY (author_id) REFERENCES user (id),
-    FOREIGN KEY (news_id) REFERENCES news (id),
     FOREIGN KEY (news_id) REFERENCES news (id) ON DELETE CASCADE
 );
 

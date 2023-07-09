@@ -144,7 +144,7 @@ public class UserService {
     }
 
     public Response login(LoginRequest loginRequest) {
-        //hashamo sifru
+        //heshamo sifru
         String hashedPassword = DigestUtils.sha256Hex(loginRequest.getPassword());
 
         //trazim usera sa mailom iz login requesta
@@ -171,8 +171,7 @@ public class UserService {
     private String createUserJWT(User user) {
 
         Date issuedAt = new Date();
-        Date expiresAt = new Date(issuedAt.getTime() + 24 * 60 * 60 * 1000); // One day
-
+        Date expiresAt = new Date(issuedAt.getTime() + 24 * 60 * 60 * 1000); // datum isteka roka = trenutni datum + jedan dan u (u ms)
         Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
 
         return JWT.create()

@@ -4,10 +4,8 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
-import raf.rs.rafnews_web_2023.model.Comment;
 import raf.rs.rafnews_web_2023.model.enumeration.Role;
 import raf.rs.rafnews_web_2023.model.enumeration.Status;
-import raf.rs.rafnews_web_2023.resource.NewsResource;
 import raf.rs.rafnews_web_2023.resource.UserResource;
 import raf.rs.rafnews_web_2023.service.CommentService;
 import raf.rs.rafnews_web_2023.service.NewsService;
@@ -49,33 +47,41 @@ public class AuthFilter implements ContainerRequestFilter {
 
         // Autorizovane rute zahtevaju potpis potrazioca u naslovu
         String jwt = requestContext.getHeaderString("Authorization");
-
         // Nije se potpisao trazioc
         if (jwt == null) {
             requestContext.abortWith(
                     Response.status(Response.Status.NETWORK_AUTHENTICATION_REQUIRED).build()
             );
-            throw new IOException("NEki neulogovani lik je trazio direktan pristup ruti");
+            throw new IOException("NEki neulogovani lik je trazio direktan pristup ruti " + requestContext.getUriInfo().getPath());
         }
 
-        //jwt konvencija
+        // jwt konvencija "Bearer" + hesovaniPayload
         if (jwt.startsWith("Bearer"))
             jwt = jwt.replace("Bearer ", "");
 
-        if (isJwtExpired(jwt)) {
+        // verifikacija jwt tokena ako ne koriscenjem algoritma 256 i secret key-ja
+        Map<String, Object> jwtPayload = unpackJwtPayload(jwt, SECRET_KEY);
+
+        if (jwtPayload == null) {
+            requestContext.abortWith(Response.status(Response.Status.NETWORK_AUTHENTICATION_REQUIRED).build());
+            throw new IOException("Neko je rovario po jwt-u");
+        }
+
+        System.out.println("JWT : " + jwtPayload.get("email") + " " + jwtPayload.get("id") + jwtPayload.get("firstName")
+                + " " + jwtPayload.get("role") + " " + jwtPayload.get("status"));
+
+
+        if (isJwtExpired(jwtPayload)) {
             requestContext.abortWith(
                     Response.status(Response.Status.UNAUTHORIZED).build()
             );
             throw new IOException("Istekao jwt token");
         }
 
-        Map<String, Object> userInformation = unpackJwtPayload(jwt, SECRET_KEY);
-        if (userInformation == null) {
-            requestContext.abortWith(Response.status(Response.Status.NETWORK_AUTHENTICATION_REQUIRED).build());
-            throw new IOException("Neko je prčkao po jwt-u");
-        }
-        if (!isAccessAllowed(userInformation, requestContext))
-            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
+        if (isAccessAllowed(jwtPayload, requestContext))
+            return;
+
+        requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
 
     }
 
@@ -84,21 +90,21 @@ public class AuthFilter implements ContainerRequestFilter {
         // login and signup are auth free as an enter-point to application
         String requestedPath = request.getUriInfo().getPath();
 
-        if (requestedPath.endsWith("users/login") || requestedPath.endsWith("users/signup") || requestedPath.contains("users/email/"))
+        if (requestedPath.endsWith("users/login") || requestedPath.endsWith("users/signup"))
             return false;
 
-
         // data editing operations require authorization
-        if (request.getMethod().equals("PUT") || request.getMethod().equals("POST") || request.getMethod().equals("DELETE"))
-            return true;
+      /* if (request.getMethod().equals("PUT") || request.getMethod().equals("POST") || request.getMethod().equals("DELETE"))
+            return true;*/
 
         List<Object> matchedResources = request.getUriInfo().getMatchedResources();
 
-        //Users' table data viewing and editing require authorization (admin only)
-        for (Object matchedResource : matchedResources) {
+        //todo:prslo..
+        //Users* table data viewing and editing require authorization (admin only)
+        /*for (Object matchedResource : matchedResources) {
             if (matchedResource instanceof UserResource)
                 return true;
-        }
+        }*/
         return false;
     }
 
@@ -113,12 +119,14 @@ public class AuthFilter implements ContainerRequestFilter {
             int id = decodedJwt.getClaim("id").asInt();
             String role = decodedJwt.getClaim("role").asString();
             String status = decodedJwt.getClaim("status").asString();
-
+            Date expDate = decodedJwt.getExpiresAt();
+            System.out.println(role + " " + status + " " + id);
             claims = new HashMap<>();
             claims.put("id", id);
             claims.put("email", email);
             claims.put("role", role);
             claims.put("status", status);
+            claims.put("expDate", expDate);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -127,22 +135,26 @@ public class AuthFilter implements ContainerRequestFilter {
         return claims;
     }
 
+    private boolean isJwtExpired(Map<String, Object> jwtPayload) {
+        Date expirationDate = (jwtPayload.get("expDate") instanceof Date) ? (Date) jwtPayload.get("expDate") : null;
+        return expirationDate != null && expirationDate.before(new Date());
+    }
+
     boolean isAccessAllowed(Map<String, Object> userInfo, ContainerRequestContext request) {
-
-
         //deaktivirani ljudi ne mogu nicemu da pristupe cemu mogu ulogovani aktivni korisnici
         if (userInfo.get("status").equals(Status.DEACTIVATED.name()))
             return false;
 
-        if (userInfo.get("status").equals(Status.ACTIVE.name()) && userInfo.get("role").equals(Role.ADMIN.name()))
-            return true;
 
+        if (userInfo.get("role").equals(Role.ADMIN.name())) {
+            System.out.println("TREBAAAAAAAAAAAAAAAAA");
+            return true;
+        }
 
         //ako neko trazi da pristupi users resursu ne moze ako nije admin (samo admin ima pristup tabeli usera)
         if (request.getUriInfo().getMatchedResources().get(0) instanceof UserResource)
             return false;
-
-
+        /*
         //autorizacija za novine, brisanje , admin moze da brise sve novine, obican user samo svoje novine
         if (request.getUriInfo().getMatchedResources().get(0) instanceof NewsResource && "DELETE".equals(request.getMethod())) {
 
@@ -151,10 +163,10 @@ public class AuthFilter implements ContainerRequestFilter {
 
             // lista novina kojima je on autor
             int authorId = newsService.findById((int) userInfo.get("id")).getAuthor().getId();
+            System.out.println(((int) userInfo.get("id")) + "<-curr userID ||  author id-> "+ authorId );
 
             //on je pisao novine moze da ih obrise...
             return authorId == (int) userInfo.get("id");
-
         }
         if (request.getUriInfo().getMatchedResources().get(0) instanceof Comment
                 &&
@@ -165,14 +177,14 @@ public class AuthFilter implements ContainerRequestFilter {
             //dovlacim komentar za koji se zahteva brisanje
             Comment comment = commentService.findById(commentId);
             //pitam da li postoji
-            if(comment == null)
+            if (comment == null)
                 return false;
             //on je pisao komentar moze da ih obrise i da menja...
             return comment.getAuthorId() == (int) userInfo.get("id");
 
         }
-
-        return false;
+    */
+        return true;
     }
 
     private String getLastResourcePath(ContainerRequestContext requestContext) {
@@ -189,15 +201,6 @@ public class AuthFilter implements ContainerRequestFilter {
         return parts[parts.length - 1];
     }
 
-    private boolean isJwtExpired(String jwtToken) {
-        try {
-            DecodedJWT decodedJwt = JWT.decode(jwtToken);
-            Date expirationDate = decodedJwt.getExpiresAt();
-            return expirationDate != null && expirationDate.before(new Date());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return true;
-        }
-    }
+
 }
 

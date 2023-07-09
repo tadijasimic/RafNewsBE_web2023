@@ -12,9 +12,7 @@ import java.util.List;
 
 public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI {
 
-
     private static final String ENTITY_NAME = "news";
-
 
     @Override
     public List<News> allNews() {
@@ -27,7 +25,7 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
         try {
             connection = getDB_Connection();
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM " + ENTITY_NAME);
+            resultSet = statement.executeQuery("SELECT * FROM " + ENTITY_NAME + " ORDER  BY " + ColumnNames.CREATION_TIME + " DESC" );
             allNews = new ArrayList<>();
             while (resultSet.next()) {
                 News news = new News(
@@ -182,11 +180,13 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
             String[] generatedColumns = {"id"};
 
             preparedStatement = connection.prepareStatement(
-                    "INSERT INTO " + ENTITY_NAME + "  " + ColumnNames.buildColumnsInsertQuery() + " VALUES(?, ?, ?, ?)", generatedColumns);
+                    "INSERT INTO " + ENTITY_NAME + "  " + ColumnNames.buildColumnsInsertQuery() + " VALUES(?, ?, ?, ?, ?, ?)", generatedColumns);
             preparedStatement.setString(1, news.getTitle());
             preparedStatement.setString(2, news.getContent());
-            preparedStatement.setInt(3, news.getAuthorId());
-            preparedStatement.setInt(4, news.getCategoryId());
+            preparedStatement.setInt(3, news.getVisited());
+            preparedStatement.setTimestamp(4, news.getCreationTime());
+            preparedStatement.setInt(5, news.getAuthorId());
+            preparedStatement.setInt(6, news.getCategoryId());
 
             preparedStatement.executeUpdate();
 
@@ -280,8 +280,9 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
         PreparedStatement preparedStatement = null;
         try {
             connection = this.getDB_Connection();
-            preparedStatement = connection.prepareStatement(
-                    "DELETE FROM " + ENTITY_NAME + " WHERE " + ColumnNames.ID + " = ?");
+            String sql = "DELETE FROM " + ENTITY_NAME + " WHERE " + ColumnNames.ID.column_name + " = ?";
+            System.out.println(sql + " " + news.getId());
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, news.getId());
             preparedStatement.executeUpdate();
 
@@ -297,7 +298,7 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
 
     @Override
     public List<News> filterSearch(int categoryId, String dateOrder, boolean trending, int pageIndex, int pageSize) {
-        // Implementation to filter and search news based on provided criteria
+
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -306,43 +307,31 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
         try {
             connection = getDB_Connection();
 
-            // Prepare the SQL query based on the provided criteria
-            StringBuilder sqlQuery = new StringBuilder("SELECT * FROM news");
+            StringBuilder sqlQuery = new StringBuilder("SELECT * FROM " + ENTITY_NAME);
 
-            // Append additional criteria based on the provided values
             if (categoryId != -1) {
                 sqlQuery.append(" WHERE category_id = ?");
             }
 
             if (trending) {
-                if (categoryId != -1) {
-                    sqlQuery.append(" AND");
-                } else {
-                    sqlQuery.append(" WHERE");
-                }
-                sqlQuery.append(" visited ").append(dateOrder);
+                sqlQuery.append(" ORDER BY visited DESC, creation_time ").append(dateOrder);
             } else {
-                if (categoryId != -1) {
-                    sqlQuery.append(" AND");
-                } else {
-                    sqlQuery.append(" WHERE");
-                }
-                sqlQuery.append(" creation_time ").append(dateOrder);
+                sqlQuery.append(" ORDER BY creation_time ").append(dateOrder);
             }
 
-            // Add pagination to the query
-            sqlQuery.append(" LIMIT ?, ?");
+            sqlQuery.append(" LIMIT 0, ?");
 
-            // Create the prepared statement and set the parameter values
             preparedStatement = connection.prepareStatement(sqlQuery.toString());
             int parameterIndex = 1;
             if (categoryId != -1) {
                 preparedStatement.setInt(parameterIndex++, categoryId);
             }
             preparedStatement.setInt(parameterIndex++, pageIndex * pageSize);
-            preparedStatement.setInt(parameterIndex, pageSize);
+            //preparedStatement.setInt(parameterIndex, pageSize);
 
-            // Execute the query and process the result set
+            // Print the SQL query before parameterization
+            System.out.println(sqlQuery.toString());
+
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 News news = new News(
@@ -362,5 +351,29 @@ public class NewsRepository extends MySQLRepository implements NewsRepositoryAPI
 
         return filteredNews;
     }
+
+
+    public void incrementVisitedCount(int newsId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = getDB_Connection();
+
+            String sqlQuery = "UPDATE " + ENTITY_NAME + " SET " + ColumnNames.VISITED.column_name + " = " + ColumnNames.VISITED.column_name + " + 1 WHERE " + ColumnNames.ID.column_name + " = ?";
+
+            preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1, newsId);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeStatement(preparedStatement);
+            closeConnection(connection);
+        }
+    }
+
 
 }

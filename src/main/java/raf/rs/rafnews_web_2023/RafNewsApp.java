@@ -14,7 +14,6 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.ext.Provider;
-import java.io.IOException;
 
 @ApplicationPath("/api")
 public class RafNewsApp extends ResourceConfig {
@@ -24,7 +23,7 @@ public class RafNewsApp extends ResourceConfig {
 
         AbstractBinder binder = new AbstractBinder() {
             @Override
-             protected void configure() {
+            protected void configure() {
 
                 bind(UserRepository.class).to(UserRepositoryAPI.class).in(Singleton.class);
                 bind(CategoryRepository.class).to(CategoryRepositoryAPI.class).in(Singleton.class);
@@ -50,6 +49,7 @@ public class RafNewsApp extends ResourceConfig {
         register(binder);
         packages("raf.rs.rafnews_web_2023");
     }
+
     @PostConstruct
     public void init() {
         register(CorsFilter.class);

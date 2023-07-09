@@ -75,4 +75,17 @@ public class News {
     public void setVisited(int visited) {
         this.visited = visited;
     }
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", creationTime=" + creationTime +
+                ", authorId=" + authorId +
+                ", categoryId=" + categoryId +
+                ", id=" + id +
+                ", visited=" + visited +
+                '}';
+    }
 }

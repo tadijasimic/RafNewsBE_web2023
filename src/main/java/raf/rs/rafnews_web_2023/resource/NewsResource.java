@@ -1,9 +1,9 @@
 package raf.rs.rafnews_web_2023.resource;
 
 
-import raf.rs.rafnews_web_2023.dto.filter.FilterDTO;
 import raf.rs.rafnews_web_2023.dto.news.NewsDTO;
 import raf.rs.rafnews_web_2023.dto.news.NewsPreviewDTO;
+import raf.rs.rafnews_web_2023.model.News;
 import raf.rs.rafnews_web_2023.service.NewsService;
 
 import javax.inject.Inject;
@@ -36,11 +36,13 @@ public class NewsResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<NewsPreviewDTO> filterNews(
             @PathParam("category") int categoryId,
-             @PathParam("trending") boolean trending,
-             @PathParam("dateOrder") String dateOrder,
-             @PathParam("pageSize") int pageSize,
-            @PathParam("pageIndex") int pageIndex) {
-        return newsService.filterSearch(categoryId,dateOrder,trending,pageIndex,pageSize);
+            @PathParam("trending") boolean trending,
+            @PathParam("dateOrder") String dateOrder,
+            @PathParam("pageIndex") int pageIndex,
+            @PathParam("pageSize") int pageSize) {
+        System.out.println(categoryId + "     " + dateOrder + ' ' + trending + ' ' + pageIndex + ' ' + pageSize);
+
+        return newsService.filterSearch(categoryId, dateOrder, trending, pageIndex, pageSize);
     }
 
     @GET
@@ -59,7 +61,9 @@ public class NewsResource {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public NewsDTO addNews(@Valid NewsPreviewDTO news) {
+    public NewsDTO addNews(@Valid News news) {
+
+        System.out.println(news.toString());
         return newsService.addNews(news);
     }
 
@@ -71,10 +75,15 @@ public class NewsResource {
     }
 
     @DELETE
-    @Path("/{id}")
-    public void deleteNews(@Valid @PathParam("id") int id) {
+    @Path("/id/{id}")
+    public void deleteNews(@PathParam("id") int id) {
         newsService.deleteNews(id);
     }
 
-
+    @POST
+    @Path("/visitCount/{newsId}")
+    public void incrementVisitCount(@PathParam("newsId") int newsId) {
+        System.out.println("AAAAAAAAAAAAAAA " + newsId);
+        newsService.incrementVisitedCount(newsId);
+    }
 }

@@ -22,11 +22,13 @@ public interface NewsRepositoryAPI {
     News editNews(News news);
 
     void deleteNews(News news);
-    public List<News> filterSearch(int categoryId, String dateOrder, boolean trending, int pageIndex, int pageSize);
+    List<News> filterSearch(int categoryId, String dateOrder, boolean trending, int pageIndex, int pageSize);
+
+    public void incrementVisitedCount(int newsId);
 
 
 
-    enum ColumnNames {
+        enum ColumnNames {
 
         ID(1, "id", Integer.class),
         TITLE(2, "title", String.class),
@@ -71,6 +73,11 @@ public interface NewsRepositoryAPI {
             System.out.println(stringBuilder);
             return stringBuilder.toString();
 
+        }
+
+        @Override
+        public String toString() {
+            return column_name;
         }
     }
 

@@ -1,7 +1,7 @@
 use raf_news;
 
 INSERT INTO user (email, first_name, last_name, password, role, status)
-VALUES ('john@example.com', 'John', 'Doe', 'password1', 'CONTENT_VIEWER', 'ACTIVE'),
+VALUES ('john@example.com', 'Sofija ', 'Hadzic', 'password1', 'CONTENT_VIEWER', 'ACTIVE'),
        ('jane@example.com', 'Jane', 'Smith', 'password2', 'ADMIN', 'DEACTIVATED'),
        ('michael@example.com', 'Michael', 'Johnson', 'password3', 'CONTENT_VIEWER', 'DEACTIVATED'),
        ('susan@example.com', 'Susan', 'Williams', 'password4', 'CONTENT_VIEWER', 'ACTIVE'),
@@ -48,21 +48,31 @@ VALUES ('Technology', 'Explore the latest advancements in technology.'),
 
 INSERT INTO news (title, content, visited, creation_time, author_id, category_id)
 VALUES ('Breaking BAD: New Discoveries in Space',
-        'A blog (a truncation of "weblog") is an informational website published on the World Wide Web consisting of discrete, often informal diary-style text entries (posts). Posts are typically displayed in reverse chronological order so that the most recent post appears first, at the top of the web page.', 97, '2023-06-08 12:30:00', 8, 3),
-       ('Healthy Recipes for a Balanced Diet', 'Try these delicious and nutritious recipes for a healthier lifestyle.', 3, '2023-05-15 09:45:00', 15, 7),
+        'A blog (a truncation of "weblog") is an informational website published on the World Wide Web consisting of discrete, often informal diary-style text entries (posts). Posts are typically displayed in reverse chronological order so that the most recent post appears first, at the top of the web page.', 97, '2023-11-14 12:30:00', 1, 3),
+       ('Healthy Recipes for a Balanced Diet', 'Try these dAnyone can connect with their audience through blogging and enjoy the myriad benefits that blogging provides: organic traffic from search engines, promotional content for social media, and recognition from a new audience you haven’t tapped into yet.
+
+If you’ve heard about blogging but are a beginner and don’t know where to start, the time for excuses is over. Not only can you create an SEO-friendly blog, but we’ll cover how to write and manage your business''s blog as well as provide helpful templates to simplify your blogging efforts selicious and nutritious recipes for a healthier lifestyle.', 3, '2023-05-15 09:45:00', 15, 7),
        ('Interview with Bestselling Author', 'Get an exclusive interview with the author of the latest bestseller.', 0, '2023-07-01 15:20:00', 6, 10),
        ('Art Exhibition: Exploring Colors and Textures', 'Visit the art exhibition showcasing vibrant colors and unique textures.', 54, '2023-06-21 18:10:00', 12, 5),
-       ('Tech News: Latest Gadgets and Innovations', 'Stay updated on the latest technology trends and gadgets.', 1234, '2023-05-29 10:05:00', 9, 1),
+       ('Tech News: Latest Gadgets and Innovations', 'Stay updAnyone can connect with their audience through blogging and enjoy the myriad benefits that blogging provides: organic traffic from search engines, promotional content for social media, and recognition from a new audience you haven’t tapped into yet.
+
+If you’ve heard about blogging but are a beginner and don’t know where to start, the time for excuses is over. Not only can you create an SEO-friendly blog, but we’ll cover how to write and manage your business''s blog as well as provide helpful templates to simplify your blogging efforts.ated on the latest technology trends and gadgets.', 1234, '2023-05-29 10:05:00', 9, 1),
        ('Movie Review: Blockbuster Hit or Flop?', 'Read our review of the highly anticipated movie that everyone is talking about.', 231, '2023-06-05 16:45:00', 4, 9),
-       ('Travel Guide: Hidden Gems in Europe', 'Discover the hidden gems and off-the-beaten-path destinations in Europe.', 32414, '2023-06-12 14:55:00', 18, 2),
+       ('Travel Guide: Hidden Gems in Europe', 'Discover the hiAnyone can connect with their audience through blogging and enjoy the myriad benefits that blogging provides: organic traffic from search engines, promotional content for social media, and recognition from a new audience you haven’t tapped into yet.
+
+If you’ve heard about blogging but are a beginner and don’t know where to start, the time for excuses is over. Not only can you create an SEO-friendly blog, but we’ll cover how to write and manage your business''s blog as well as provide helpful templates to simplify your blogging efforts.dden gems and off-the-beaten-path destinations in Europe.', 32414, '2023-06-12 14:55:00', 18, 2),
        ('Sports Update: Exciting Matches and Upsets', 'Get the latest updates on sports events and thrilling matches.', 986, '2023-06-17 11:25:00', 5, 6),
        ('Fashion Trends: What to Wear This Season', 'Explore the latest fashion trends and style inspirations for the current season.', 695, '2023-06-10 13:40:00', 11, 4),
        ('Health and Wellness Tips: Stay Fit and Healthy', 'Learn valuable tips and advice for maintaining a healthy lifestyle.', 432, '2023-05-25 07:55:00', 7, 8),
        ('Tech Breakthrough: New AI Algorithm', 'A groundbreaking AI algorithm has revolutionized the tech industry.', 987, '2023-06-29 19:30:00', 14, 3),
-       ('Exclusive Interview with Celebrity Chef', 'Get insights from a renowned celebrity chef about culinary secrets.', 0, '2023-07-03 08:15:00', 2, 7),
+       ('Exclusive Interview with Celebrity Chef', 'Get insights fromAnyone can connect with their audience through blogging and enjoy the myriad benefits that blogging provides: organic traffic from search engines, promotional content for social media, and recognition from a new audience you haven’t tapped into yet.
+
+If you’ve heard about blogging but are a beginner and don’t know where to start, the time for excuses is over. Not only can you create an SEO-friendly blog, but we’ll cover how to write and manage your business''s blog as well as provide helpful templates to simplify your blogging efforts. a renowned celebrity chef about culinary secrets.', 0, '2023-07-03 08:15:00', 2, 7),
        ('Science News: Latest Discoveries and Research', 'Stay informed about the latest scientific breakthroughs and research findings.', 45, '2023-05-18 17:20:00', 17, 10),
        ('Music Festival: Unforgettable Performances and Vibes', 'Experience the energy and excitement of a music festival with top-notch performances.', 78, '2023-06-23 11:50:00', 3, 5),
-       ('Business Insights: Strategies for Success', 'Learn valuable business strategies from industry experts and successful entrepreneurs.', 456, '2023-06-07 09:10:00', 10, 1),
+       ('Business Insights: Strategies for Success', 'Learn Anyone can connect with their audience through blogging and enjoy the myriad benefits that blogging provides: organic traffic from search engines, promotional content for social media, and recognition from a new audience you haven’t tapped into yet.
+
+If you’ve heard about blogging but are a beginner and don’t know where to start, the time for excuses is over. Not only can you create an SEO-friendly blog, but we’ll cover how to write and manage your business''s blog as well as provide helpful templates to simplify your blogging efforts.valuable business strategies from industry experts and successful entrepreneurs.', 456, '2023-06-07 09:10:00', 10, 1),
        ('Book Review: Must-Read Novels of the Year', 'Discover the must-read novels that have captivated readers worldwide.', 876, '2023-06-15 14:25:00', 19, 9),
        ('Adventure Travel: Thrilling Destinations and Activities', 'Embark on an adventurous journey to breathtaking destinations and thrilling activities.', 45536, '2023-07-02 16:35:00', 1, 2),
        ('Gaming News: Latest Releases and Updates', 'Stay updated on the latest gaming news, releases, and exciting updates.', 7876, '2023-05-28 13:15:00', 13, 6),

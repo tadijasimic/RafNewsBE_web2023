@@ -64,8 +64,7 @@ public class NewsService {
                 );
     }
 
-    public NewsDTO addNews(NewsPreviewDTO newsDTO) {
-        News news = NewsDTO_Converter.convertToNews(newsDTO);
+    public NewsDTO addNews(News news) {
         news = newsRepository.addNews(news);
 
         return NewsDTO_Converter
@@ -101,7 +100,7 @@ public class NewsService {
     }
 
     public List<NewsPreviewDTO> filterSearch(int categoryId, String dateOrder, boolean trending, int pageIndex, int pageSize) {
-        List<News> news =  newsRepository.filterSearch(categoryId,dateOrder,trending, pageIndex, pageSize);
+        List<News> news = newsRepository.filterSearch(categoryId, dateOrder, trending, pageIndex, pageSize);
         return NewsDTO_Converter
                 .convertToNewsPreviewDTOList(
                         news,
@@ -110,4 +109,7 @@ public class NewsService {
                 );
     }
 
+    public void incrementVisitedCount(int newsId) {
+        newsRepository.incrementVisitedCount(newsId);
+    }
 }

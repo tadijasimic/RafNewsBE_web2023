@@ -52,6 +52,10 @@ public class NewsPreviewDTO {
         return title;
     }
 
+    public int getVisited() {
+        return visited;
+    }
+
     public String getCreationTime() {
         return creationTime;
     }
