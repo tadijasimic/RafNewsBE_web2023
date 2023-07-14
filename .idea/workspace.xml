@@ -11,17 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="15e93882-fa6f-4040-9567-eee794732ab6" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/RafNewsApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/RafNewsApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/news/NewsPreviewDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/dto/news/NewsPreviewDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/filter/AuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/filter/AuthFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/News.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/model/News.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/NewsRepositoryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/api/NewsRepositoryAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/implementation/NewsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/repository/implementation/NewsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/CommentResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/CommentResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/NewsResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/NewsResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/resource/UserResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/NewsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/NewsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/rs/rafnews_web_2023/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/migrations/data_migration.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/migrations/data_migration.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/migrations/structure_migration.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/migrations/structure_migration.sql" afterDir="false" />
     </list>
@@ -62,40 +52,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
-    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/SOMFULJA",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "editor.preferences.tabs",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Tadija/IdeaProjects/WEB_DOMACI_4&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ],
-    "RunConfigurationTargetLRU": [
-      "25cea4ba-6d7d-4838-b6e8-122afce2e5a3/schema/\"raf_news\"",
-      "25cea4ba-6d7d-4838-b6e8-122afce2e5a3"
+    &quot;RunConfigurationTargetLRU&quot;: [
+      &quot;25cea4ba-6d7d-4838-b6e8-122afce2e5a3/schema/\&quot;raf_news\&quot;&quot;,
+      &quot;25cea4ba-6d7d-4838-b6e8-122afce2e5a3&quot;
     ],
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/": [
-      "MySQL"
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/&quot;: [
+      &quot;MySQL&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="openRunningConfigInTab" value="true" />
   </component>
@@ -227,7 +217,14 @@
       <workItem from="1688144029825" duration="11068000" />
       <workItem from="1688170509677" duration="26438000" />
       <workItem from="1688245462970" duration="136262000" />
-      <workItem from="1688597735788" duration="78440000" />
+      <workItem from="1688597735788" duration="79685000" />
+      <workItem from="1688979984883" duration="2399000" />
+      <workItem from="1688989963128" duration="4000" />
+      <workItem from="1688995825441" duration="600000" />
+      <workItem from="1689024922856" duration="1095000" />
+      <workItem from="1689031295818" duration="259000" />
+      <workItem from="1689296922246" duration="1085000" />
+      <workItem from="1689299434721" duration="288000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit.">
       <created>1687534135282</created>
@@ -354,7 +351,15 @@
       <option name="project" value="LOCAL" />
       <updated>1688588651664</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary=".">
+      <option name="closed" value="true" />
+      <created>1688904819447</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1688904819447</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
