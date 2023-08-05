@@ -2,8 +2,8 @@ use raf_news;
 
 INSERT INTO user (email, first_name, last_name, password, role, status)
 VALUES ('john@example.com', 'Sofija ', 'Hadzic', 'password1', 'CONTENT_VIEWER', 'ACTIVE'),
-       ('jane@example.com', 'Jane', 'Smith', 'password2', 'ADMIN', 'DEACTIVATED'),
-       ('michael@example.com', 'Michael', 'Johnson', 'password3', 'CONTENT_VIEWER', 'DEACTIVATED'),
+       ('jane@example.com', 'Milan', 'Milosevic', 'password2', 'ADMIN', 'DEACTIVATED'),
+       ('michael@example.com', 'Mivan', 'Majer', 'password3', 'CONTENT_VIEWER', 'DEACTIVATED'),
        ('susan@example.com', 'Susan', 'Williams', 'password4', 'CONTENT_VIEWER', 'ACTIVE'),
        ('david@example.com', 'David', 'Brown', 'password5', 'CONTENT_CREATOR', 'DEACTIVATED'),
        ('sarah@example.com', 'Sarah', 'Jones', 'password6', 'ADMIN', 'ACTIVE'),
