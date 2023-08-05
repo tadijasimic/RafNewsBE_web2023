@@ -147,7 +147,6 @@ public class AuthFilter implements ContainerRequestFilter {
 
 
         if (userInfo.get("role").equals(Role.ADMIN.name())) {
-            System.out.println("TREBAAAAAAAAAAAAAAAAA");
             return true;
         }
 

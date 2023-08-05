@@ -48,7 +48,8 @@ VALUES ('Technology', 'Explore the latest advancements in technology.'),
 
 INSERT INTO news (title, content, visited, creation_time, author_id, category_id)
 VALUES ('Breaking BAD: New Discoveries in Space',
-        'A blog (a truncation of "weblog") is an informational website published on the World Wide Web consisting of discrete, often informal diary-style text entries (posts). Posts are typically displayed in reverse chronological order so that the most recent post appears first, at the top of the web page.', 97, '2023-11-14 12:30:00', 1, 3),
+        'A blog (a truncation of "weblog") is a se pitate koji tip treninga je najbolji za Vas, a čuli ste i videli najrazličitije savete na internetu, od porodice, prijatelja ili poznanika, te Vam sve te informacije ne pomažu ni najmanje - tu smo da Vam pomognemo. Kontaktirajte nas i zakažite sastanak sa našim trenerima ili popunite "pametni" upitnik koji će Vam u odnosu na date odgovore predložiti nekoliko vrsta treninga koji bi za Vas bili dobra opcja.
+ the World Wide Web consisting of discrete, often informal diary-style text entries (posts). Posts are typically displayed in reverse chronological order so that the most recent post appears first, at the top of the web page.', 97, '2023-11-14 12:30:00', 1, 3),
        ('Healthy Recipes for a Balanced Diet', 'Try these dAnyone can connect with their audience through blogging and enjoy the myriad benefits that blogging provides: organic traffic from search engines, promotional content for social media, and recognition from a new audience you haven’t tapped into yet.
 
 If you’ve heard about blogging but are a beginner and don’t know where to start, the time for excuses is over. Not only can you create an SEO-friendly blog, but we’ll cover how to write and manage your business''s blog as well as provide helpful templates to simplify your blogging efforts selicious and nutritious recipes for a healthier lifestyle.', 3, '2023-05-15 09:45:00', 15, 7),
